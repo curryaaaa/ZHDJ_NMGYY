@@ -1,0 +1,201 @@
+@charset "UTF-8";
+.buttonsy.data-v-4883731c {
+  display: flex;
+  /* 使用Flexbox布局 */
+  justify-content: space-between;
+  /* 在容器里均匀分布子元素 */
+  background-color: #ffffff;
+  margin: 17rpx;
+  padding: 16rpx;
+  font-size: 30rpx;
+  color: #3d3131;
+  border-radius: 20rpx;
+  /* 设置圆角半径为 10px */
+  padding-left: 30px;
+}
+.buttimage.data-v-4883731c {
+  top: 17%;
+  height: 60rpx;
+  width: 60rpx;
+}
+.chuizhi.data-v-4883731c {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  font-weight: bold;
+}
+.buttonIco1.data-v-4883731c {
+  position: relative;
+  height: 80rpx;
+  /* 假设父容器有固定高度 */
+  flex: 1;
+  /* 每个项目占据可用空间的相同比例 */
+}
+.buttonIco2.data-v-4883731c {
+  position: relative;
+  height: 80rpx;
+  /* 假设父容器有固定高度 */
+  flex: 2;
+  /* 每个项目占据可用空间的相同比例 */
+}
+/* Flexbox布局容器 */
+.container.data-v-4883731c {
+  display: flex;
+  /* 使用Flexbox布局 */
+  justify-content: space-between;
+  /* 在容器里均匀分布子元素 */
+  text-align: left;
+}
+/* 子元素样式 */
+.item.data-v-4883731c {
+  flex: 2;
+  /* 每个项目占据可用空间的相同比例 */
+}
+.jiangqie-top-bg.data-v-4883731c {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* 让背景图铺满整个容器 */
+  background-position: 0 -120rpx;
+  background-position: center;
+  height: 100vh;
+  /* 设置容器高度为视口高度 */
+}
+.jiangqie-userbox.data-v-4883731c {
+  min-height: 410rpx;
+}
+.jiangqie-usersetup.data-v-4883731c {
+  display: none;
+  padding-top: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.jiangqie-usersetup image.data-v-4883731c {
+  float: right;
+  height: 36rpx;
+  width: 36rpx;
+  margin-right: 40rpx;
+}
+.jiangqie-userinfo.data-v-4883731c {
+  padding-bottom: 20rpx;
+  text-align: center;
+}
+.jiangqie-useravatar.data-v-4883731c {
+  text-align: center;
+  height: 240rpx;
+  clear: both;
+  padding-top: 80rpx;
+}
+.jiangqie-useravatar image.data-v-4883731c {
+  height: 152rpx;
+  width: 152rpx;
+  border-radius: 152rpx;
+  border: 12rpx solid #FFF;
+  margin-bottom: 20rpx;
+}
+.jiangqie-username.data-v-4883731c {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #FFF;
+}
+.jiangqie-useralogin.data-v-4883731c {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  font-weight: 300;
+  color: #FFF;
+}
+.jiangqie-usermember.data-v-4883731c {
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #9B9B9B;
+}
+.jiangqie-listbox.data-v-4883731c {
+  padding: 0;
+}
+.jiangqie-listblock.data-v-4883731c {
+  overflow: hidden;
+  margin: 8rpx 18rpx;
+  padding: 20rpx 0;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+}
+.jiangqie-listblock.data-v-4883731c:last-child {
+  border-bottom: none;
+}
+.jiangqie-listcont.data-v-4883731c {
+  float: right;
+  text-align: right;
+}
+.jiangqie-listcont text.data-v-4883731c {
+  font-size: 24rpx;
+  font-weight: 200;
+  color: #999;
+}
+.jiangqie-listcont image.data-v-4883731c {
+  float: right;
+  height: 36rpx;
+  width: 36rpx;
+  padding-right: 22rpx;
+  margin-top: 12rpx;
+}
+.jiangqie-listtitle.data-v-4883731c {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  /* 垂直居中 */
+}
+.jiangqie-listtitle text.data-v-4883731c {
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #333;
+  display: flex;
+  vertical-align: top;
+}
+.jiangqie-listtitle image.data-v-4883731c {
+  float: left;
+  height: 48rpx;
+  width: 48rpx;
+  margin-right: 11px;
+  margin-top: 1px;
+  padding-left: 16px;
+}
+button.jiangqie-listtitle.data-v-4883731c {
+  padding: 0;
+  line-height: inherit;
+  background-color: transparent;
+}
+.jiangqie-listblock-line.data-v-4883731c {
+  border-bottom: 1rpx solid #DDD;
+}
+.jiangqie-listblock-line.data-v-4883731c:last-child {
+  border-bottom: none;
+}
+.jiangqie-list-split.data-v-4883731c {
+  height: 16rpx;
+  background-color: #F3F3F3;
+}
+.jiangqie-text.data-v-4883731c {
+  background-color: #FFF;
+}
+/* 备案信息 */
+.zhuige-recordinfo.data-v-4883731c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #999999;
+}
+.zhuige-recordinfo text.data-v-4883731c {
+  padding-bottom: 20rpx;
+}
+
