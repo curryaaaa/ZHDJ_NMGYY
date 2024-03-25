@@ -335,9 +335,13 @@ var _default = {
   },
   methods: {
     Wodeintegral: function Wodeintegral(e) {
-      console.log(11);
       uni.navigateTo({
         url: '/pages/wodeintegral/wodeintegral'
+      });
+    },
+    Gerenxinxi: function Gerenxinxi(e) {
+      uni.navigateTo({
+        url: '/pages/personalData/personalData'
       });
     },
     /**

@@ -99,19 +99,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
-/*
- * 酱茄小程序开源版 v2.4.10
- * 作者: 追格
- * 文档：https://www.zhuige.com/docs/zxfree.html
- * github: https://github.com/zhuige-com/jiangqie_kafei
- * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
- * Copyright © 2020-2024 www.zhuige.com All rights reserved.
- */
-
 var Auth = __webpack_require__(/*! ./utils/auth.js */ 30);
 var _default = {
   globalData: {
-    appName: '酱茄Free'
+    appName: ''
   },
   onLaunch: function onLaunch() {
     var updateManager = wx.getUpdateManager();
@@ -134,6 +125,12 @@ var _default = {
     updateManager.onUpdateFailed(function () {
       // 新版本下载失败
     });
+  },
+  onShow: function onShow() {
+    console.log('App Show');
+  },
+  onHide: function onHide() {
+    console.log('App Hide');
   },
   methods: {}
 };

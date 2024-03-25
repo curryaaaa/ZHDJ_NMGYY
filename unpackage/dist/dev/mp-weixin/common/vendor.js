@@ -189,7 +189,29 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 162:
+/***/ 17:
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 178:
 /*!******************************************************!*\
   !*** D:/A.work/yiyuan/components/uni-icons/icons.js ***!
   \******************************************************/
@@ -303,28 +325,6 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 17:
-/*!*************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
 /***/ 18:
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
@@ -355,2042 +355,6 @@ function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
 module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 191:
-/*!*****************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/parser.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni, wx) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * @fileoverview html 解析器
- */
-
-// 配置
-var config = {
-  // 信任的标签（保持标签名不变）
-  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,ruby,rt,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
-  // 块级标签（转为 div，其他的非信任标签转为 span）
-  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
-  // 要移除的标签
-  ignoreTags: makeMap('area,base,canvas,embed,frame,head,iframe,input,link,map,meta,param,rp,script,source,style,textarea,title,track,wbr'),
-  // 自闭合的标签
-  voidTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
-  // html 实体
-  entities: {
-    lt: '<',
-    gt: '>',
-    quot: '"',
-    apos: "'",
-    ensp: "\u2002",
-    emsp: "\u2003",
-    nbsp: '\xA0',
-    semi: ';',
-    ndash: '–',
-    mdash: '—',
-    middot: '·',
-    lsquo: '‘',
-    rsquo: '’',
-    ldquo: '“',
-    rdquo: '”',
-    bull: '•',
-    hellip: '…',
-    larr: '←',
-    uarr: '↑',
-    rarr: '→',
-    darr: '↓'
-  },
-  // 默认的标签样式
-  tagStyle: {
-    address: 'font-style:italic',
-    big: 'display:inline;font-size:1.2em',
-    caption: 'display:table-caption;text-align:center',
-    center: 'text-align:center',
-    cite: 'font-style:italic',
-    dd: 'margin-left:40px',
-    mark: 'background-color:yellow',
-    pre: 'font-family:monospace;white-space:pre',
-    s: 'text-decoration:line-through',
-    small: 'display:inline;font-size:0.8em',
-    strike: 'text-decoration:line-through',
-    u: 'text-decoration:underline'
-  },
-  // svg 大小写对照表
-  svgDict: {
-    animatetransform: 'animateTransform',
-    lineargradient: 'linearGradient',
-    viewbox: 'viewBox',
-    attributename: 'attributeName',
-    repeatcount: 'repeatCount',
-    repeatdur: 'repeatDur'
-  }
-};
-var tagSelector = {};
-var _uni$getSystemInfoSyn = uni.getSystemInfoSync(),
-  windowWidth = _uni$getSystemInfoSyn.windowWidth,
-  system = _uni$getSystemInfoSyn.system;
-var blankChar = makeMap(' ,\r,\n,\t,\f');
-var idIndex = 0;
-
-/**
- * @description 创建 map
- * @param {String} str 逗号分隔
- */
-function makeMap(str) {
-  var map = Object.create(null);
-  var list = str.split(',');
-  for (var i = list.length; i--;) {
-    map[list[i]] = true;
-  }
-  return map;
-}
-
-/**
- * @description 解码 html 实体
- * @param {String} str 要解码的字符串
- * @param {Boolean} amp 要不要解码 &amp;
- * @returns {String} 解码后的字符串
- */
-function decodeEntity(str, amp) {
-  var i = str.indexOf('&');
-  while (i !== -1) {
-    var j = str.indexOf(';', i + 3);
-    var code = void 0;
-    if (j === -1) break;
-    if (str[i + 1] === '#') {
-      // &#123; 形式的实体
-      code = parseInt((str[i + 2] === 'x' ? '0' : '') + str.substring(i + 2, j));
-      if (!isNaN(code)) {
-        str = str.substr(0, i) + String.fromCharCode(code) + str.substr(j + 1);
-      }
-    } else {
-      // &nbsp; 形式的实体
-      code = str.substring(i + 1, j);
-      if (config.entities[code] || code === 'amp' && amp) {
-        str = str.substr(0, i) + (config.entities[code] || '&') + str.substr(j + 1);
-      }
-    }
-    i = str.indexOf('&', i + 1);
-  }
-  return str;
-}
-
-/**
- * @description 合并多个块级标签，加快长内容渲染
- * @param {Array} nodes 要合并的标签数组
- */
-function mergeNodes(nodes) {
-  var i = nodes.length - 1;
-  for (var j = i; j >= -1; j--) {
-    if (j === -1 || nodes[j].c || !nodes[j].name || nodes[j].name !== 'div' && nodes[j].name !== 'p' && nodes[j].name[0] !== 'h' || (nodes[j].attrs.style || '').includes('inline')) {
-      if (i - j >= 5) {
-        nodes.splice(j + 1, i - j, {
-          name: 'div',
-          attrs: {},
-          children: nodes.slice(j + 1, i + 1)
-        });
-      }
-      i = j - 1;
-    }
-  }
-}
-
-/**
- * @description html 解析器
- * @param {Object} vm 组件实例
- */
-function Parser(vm) {
-  this.options = vm || {};
-  this.tagStyle = Object.assign({}, config.tagStyle, this.options.tagStyle);
-  this.imgList = vm.imgList || [];
-  this.imgList._unloadimgs = 0;
-  this.plugins = vm.plugins || [];
-  this.attrs = Object.create(null);
-  this.stack = [];
-  this.nodes = [];
-  this.pre = (this.options.containerStyle || '').includes('white-space') && this.options.containerStyle.includes('pre') ? 2 : 0;
-}
-
-/**
- * @description 执行解析
- * @param {String} content 要解析的文本
- */
-Parser.prototype.parse = function (content) {
-  // 插件处理
-  for (var i = this.plugins.length; i--;) {
-    if (this.plugins[i].onUpdate) {
-      content = this.plugins[i].onUpdate(content, config) || content;
-    }
-  }
-  new Lexer(this).parse(content);
-  // 出栈未闭合的标签
-  while (this.stack.length) {
-    this.popNode();
-  }
-  if (this.nodes.length > 50) {
-    mergeNodes(this.nodes);
-  }
-  return this.nodes;
-};
-
-/**
- * @description 将标签暴露出来（不被 rich-text 包含）
- */
-Parser.prototype.expose = function () {
-  for (var i = this.stack.length; i--;) {
-    var item = this.stack[i];
-    if (item.c || item.name === 'a' || item.name === 'video' || item.name === 'audio') return;
-    item.c = 1;
-  }
-};
-
-/**
- * @description 处理插件
- * @param {Object} node 要处理的标签
- * @returns {Boolean} 是否要移除此标签
- */
-Parser.prototype.hook = function (node) {
-  for (var i = this.plugins.length; i--;) {
-    if (this.plugins[i].onParse && this.plugins[i].onParse(node, this) === false) {
-      return false;
-    }
-  }
-  return true;
-};
-
-/**
- * @description 将链接拼接上主域名
- * @param {String} url 需要拼接的链接
- * @returns {String} 拼接后的链接
- */
-Parser.prototype.getUrl = function (url) {
-  var domain = this.options.domain;
-  if (url[0] === '/') {
-    if (url[1] === '/') {
-      // // 开头的补充协议名
-      url = (domain ? domain.split('://')[0] : 'http') + ':' + url;
-    } else if (domain) {
-      // 否则补充整个域名
-      url = domain + url;
-    }
-  } else if (!url.includes('data:') && !url.includes('://')) {
-    if (domain) {
-      url = domain + '/' + url;
-    }
-  }
-  return url;
-};
-
-/**
- * @description 解析样式表
- * @param {Object} node 标签
- * @returns {Object}
- */
-Parser.prototype.parseStyle = function (node) {
-  var attrs = node.attrs;
-  var list = (this.tagStyle[node.name] || '').split(';').concat((attrs.style || '').split(';'));
-  var styleObj = {};
-  var tmp = '';
-  if (attrs.id && !this.xml) {
-    // 暴露锚点
-    if (this.options.useAnchor) {
-      this.expose();
-    } else if (node.name !== 'img' && node.name !== 'a' && node.name !== 'video' && node.name !== 'audio') {
-      attrs.id = undefined;
-    }
-  }
-
-  // 转换 width 和 height 属性
-  if (attrs.width) {
-    styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
-    attrs.width = undefined;
-  }
-  if (attrs.height) {
-    styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
-    attrs.height = undefined;
-  }
-  for (var i = 0, len = list.length; i < len; i++) {
-    var info = list[i].split(':');
-    if (info.length < 2) continue;
-    var key = info.shift().trim().toLowerCase();
-    var value = info.join(':').trim();
-    if (value[0] === '-' && value.lastIndexOf('-') > 0 || value.includes('safe')) {
-      // 兼容性的 css 不压缩
-      tmp += ";".concat(key, ":").concat(value);
-    } else if (!styleObj[key] || value.includes('import') || !styleObj[key].includes('import')) {
-      // 重复的样式进行覆盖
-      if (value.includes('url')) {
-        // 填充链接
-        var j = value.indexOf('(') + 1;
-        if (j) {
-          while (value[j] === '"' || value[j] === "'" || blankChar[value[j]]) {
-            j++;
-          }
-          value = value.substr(0, j) + this.getUrl(value.substr(j));
-        }
-      } else if (value.includes('rpx')) {
-        // 转换 rpx（rich-text 内部不支持 rpx）
-        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {
-          return parseFloat($) * windowWidth / 750 + 'px';
-        });
-      }
-      styleObj[key] = value;
-    }
-  }
-  node.attrs.style = tmp;
-  return styleObj;
-};
-
-/**
- * @description 解析到标签名
- * @param {String} name 标签名
- * @private
- */
-Parser.prototype.onTagName = function (name) {
-  this.tagName = this.xml ? name : name.toLowerCase();
-  if (this.tagName === 'svg') {
-    this.xml = (this.xml || 0) + 1; // svg 标签内大小写敏感
-  }
-};
-
-/**
- * @description 解析到属性名
- * @param {String} name 属性名
- * @private
- */
-Parser.prototype.onAttrName = function (name) {
-  name = this.xml ? name : name.toLowerCase();
-  if (name.substr(0, 5) === 'data-') {
-    if (name === 'data-src' && !this.attrs.src) {
-      // data-src 自动转为 src
-      this.attrName = 'src';
-    } else if (this.tagName === 'img' || this.tagName === 'a') {
-      // a 和 img 标签保留 data- 的属性，可以在 imgtap 和 linktap 事件中使用
-      this.attrName = name;
-    } else {
-      // 剩余的移除以减小大小
-      this.attrName = undefined;
-    }
-  } else {
-    this.attrName = name;
-    this.attrs[name] = 'T'; // boolean 型属性缺省设置
-  }
-};
-
-/**
- * @description 解析到属性值
- * @param {String} val 属性值
- * @private
- */
-Parser.prototype.onAttrVal = function (val) {
-  var name = this.attrName || '';
-  if (name === 'style' || name === 'href') {
-    // 部分属性进行实体解码
-    this.attrs[name] = decodeEntity(val, true);
-  } else if (name.includes('src')) {
-    // 拼接主域名
-    this.attrs[name] = this.getUrl(decodeEntity(val, true));
-  } else if (name) {
-    this.attrs[name] = val;
-  }
-};
-
-/**
- * @description 解析到标签开始
- * @param {Boolean} selfClose 是否有自闭合标识 />
- * @private
- */
-Parser.prototype.onOpenTag = function (selfClose) {
-  // 拼装 node
-  var node = Object.create(null);
-  node.name = this.tagName;
-  node.attrs = this.attrs;
-  // 避免因为自动 diff 使得 type 被设置为 null 导致部分内容不显示
-  if (this.options.nodes.length) {
-    node.type = 'node';
-  }
-  this.attrs = Object.create(null);
-  var attrs = node.attrs;
-  var parent = this.stack[this.stack.length - 1];
-  var siblings = parent ? parent.children : this.nodes;
-  var close = this.xml ? selfClose : config.voidTags[node.name];
-
-  // 替换标签名选择器
-  if (tagSelector[node.name]) {
-    attrs.class = tagSelector[node.name] + (attrs.class ? ' ' + attrs.class : '');
-  }
-
-  // 转换 embed 标签
-  if (node.name === 'embed') {
-    var src = attrs.src || '';
-    // 按照后缀名和 type 将 embed 转为 video 或 audio
-    if (src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8') || (attrs.type || '').includes('video')) {
-      node.name = 'video';
-    } else if (src.includes('.mp3') || src.includes('.wav') || src.includes('.aac') || src.includes('.m4a') || (attrs.type || '').includes('audio')) {
-      node.name = 'audio';
-    }
-    if (attrs.autostart) {
-      attrs.autoplay = 'T';
-    }
-    attrs.controls = 'T';
-  }
-
-  // 处理音视频
-  if (node.name === 'video' || node.name === 'audio') {
-    // 设置 id 以便获取 context
-    if (node.name === 'video' && !attrs.id) {
-      attrs.id = 'v' + idIndex++;
-    }
-    // 没有设置 controls 也没有设置 autoplay 的自动设置 controls
-    if (!attrs.controls && !attrs.autoplay) {
-      attrs.controls = 'T';
-    }
-    // 用数组存储所有可用的 source
-    node.src = [];
-    if (attrs.src) {
-      node.src.push(attrs.src);
-      attrs.src = undefined;
-    }
-    this.expose();
-  }
-
-  // 处理自闭合标签
-  if (close) {
-    if (!this.hook(node) || config.ignoreTags[node.name]) {
-      // 通过 base 标签设置主域名
-      if (node.name === 'base' && !this.options.domain) {
-        this.options.domain = attrs.href;
-      } else if (node.name === 'source' && parent && (parent.name === 'video' || parent.name === 'audio') && attrs.src) {
-        // 设置 source 标签（仅父节点为 video 或 audio 时有效）
-        parent.src.push(attrs.src);
-      }
-      return;
-    }
-
-    // 解析 style
-    var styleObj = this.parseStyle(node);
-
-    // 处理图片
-    if (node.name === 'img') {
-      if (attrs.src) {
-        // 标记 webp
-        if (attrs.src.includes('webp')) {
-          node.webp = 'T';
-        }
-        // data url 图片如果没有设置 original-src 默认为不可预览的小图片
-        if (attrs.src.includes('data:') && !attrs['original-src']) {
-          attrs.ignore = 'T';
-        }
-        if (!attrs.ignore || node.webp || attrs.src.includes('cloud://')) {
-          for (var i = this.stack.length; i--;) {
-            var item = this.stack[i];
-            if (item.name === 'a') {
-              node.a = item.attrs;
-            }
-            if (item.name === 'table' && !node.webp && !attrs.src.includes('cloud://')) {
-              if (!styleObj.display || styleObj.display.includes('inline')) {
-                node.t = 'inline-block';
-              } else {
-                node.t = styleObj.display;
-              }
-              styleObj.display = undefined;
-            }
-            var style = item.attrs.style || '';
-            if (style.includes('flex:') && !style.includes('flex:0') && !style.includes('flex: 0') && (!styleObj.width || parseInt(styleObj.width) > 100)) {
-              styleObj.width = '100% !important';
-              styleObj.height = '';
-              for (var j = i + 1; j < this.stack.length; j++) {
-                this.stack[j].attrs.style = (this.stack[j].attrs.style || '').replace('inline-', '');
-              }
-            } else if (style.includes('flex') && styleObj.width === '100%') {
-              for (var _j = i + 1; _j < this.stack.length; _j++) {
-                var _style = this.stack[_j].attrs.style || '';
-                if (!_style.includes(';width') && !_style.includes(' width') && _style.indexOf('width') !== 0) {
-                  styleObj.width = '';
-                  break;
-                }
-              }
-            } else if (style.includes('inline-block')) {
-              if (styleObj.width && styleObj.width[styleObj.width.length - 1] === '%') {
-                item.attrs.style += ';max-width:' + styleObj.width;
-                styleObj.width = '';
-              } else {
-                item.attrs.style += ';max-width:100%';
-              }
-            }
-            item.c = 1;
-          }
-          attrs.i = this.imgList.length.toString();
-          var _src = attrs['original-src'] || attrs.src;
-          if (this.imgList.includes(_src)) {
-            // 如果有重复的链接则对域名进行随机大小写变换避免预览时错位
-            var _i = _src.indexOf('://');
-            if (_i !== -1) {
-              _i += 3;
-              var newSrc = _src.substr(0, _i);
-              for (; _i < _src.length; _i++) {
-                if (_src[_i] === '/') break;
-                newSrc += Math.random() > 0.5 ? _src[_i].toUpperCase() : _src[_i];
-              }
-              newSrc += _src.substr(_i);
-              _src = newSrc;
-            }
-          }
-          this.imgList.push(_src);
-          if (!node.t) {
-            this.imgList._unloadimgs += 1;
-          }
-        }
-      }
-      if (styleObj.display === 'inline') {
-        styleObj.display = '';
-      }
-      if (attrs.ignore) {
-        styleObj['max-width'] = styleObj['max-width'] || '100%';
-        attrs.style += ';-webkit-touch-callout:none';
-      }
-
-      // 设置的宽度超出屏幕，为避免变形，高度转为自动
-      if (parseInt(styleObj.width) > windowWidth) {
-        styleObj.height = undefined;
-      }
-      // 记录是否设置了宽高
-      if (!isNaN(parseInt(styleObj.width))) {
-        node.w = 'T';
-      }
-      if (!isNaN(parseInt(styleObj.height)) && (!styleObj.height.includes('%') || parent && (parent.attrs.style || '').includes('height'))) {
-        node.h = 'T';
-      }
-    } else if (node.name === 'svg') {
-      siblings.push(node);
-      this.stack.push(node);
-      this.popNode();
-      return;
-    }
-    for (var key in styleObj) {
-      if (styleObj[key]) {
-        attrs.style += ";".concat(key, ":").concat(styleObj[key].replace(' !important', ''));
-      }
-    }
-    attrs.style = attrs.style.substr(1) || undefined;
-  } else {
-    if ((node.name === 'pre' || (attrs.style || '').includes('white-space') && attrs.style.includes('pre')) && this.pre !== 2) {
-      this.pre = node.pre = 1;
-    }
-    node.children = [];
-    this.stack.push(node);
-  }
-
-  // 加入节点树
-  siblings.push(node);
-};
-
-/**
- * @description 解析到标签结束
- * @param {String} name 标签名
- * @private
- */
-Parser.prototype.onCloseTag = function (name) {
-  // 依次出栈到匹配为止
-  name = this.xml ? name : name.toLowerCase();
-  var i;
-  for (i = this.stack.length; i--;) {
-    if (this.stack[i].name === name) break;
-  }
-  if (i !== -1) {
-    while (this.stack.length > i) {
-      this.popNode();
-    }
-  } else if (name === 'p' || name === 'br') {
-    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
-    siblings.push({
-      name: name,
-      attrs: {
-        class: tagSelector[name] || '',
-        style: this.tagStyle[name] || ''
-      }
-    });
-  }
-};
-
-/**
- * @description 处理标签出栈
- * @private
- */
-Parser.prototype.popNode = function () {
-  var node = this.stack.pop();
-  var attrs = node.attrs;
-  var children = node.children;
-  var parent = this.stack[this.stack.length - 1];
-  var siblings = parent ? parent.children : this.nodes;
-  if (!this.hook(node) || config.ignoreTags[node.name]) {
-    // 获取标题
-    if (node.name === 'title' && children.length && children[0].type === 'text' && this.options.setTitle) {
-      uni.setNavigationBarTitle({
-        title: children[0].text
-      });
-    }
-    siblings.pop();
-    return;
-  }
-  if (node.pre && this.pre !== 2) {
-    // 是否合并空白符标识
-    this.pre = node.pre = undefined;
-    for (var i = this.stack.length; i--;) {
-      if (this.stack[i].pre) {
-        this.pre = 1;
-      }
-    }
-  }
-  var styleObj = {};
-
-  // 转换 svg
-  if (node.name === 'svg') {
-    if (this.xml > 1) {
-      // 多层 svg 嵌套
-      this.xml--;
-      return;
-    }
-    var src = '';
-    var style = attrs.style;
-    attrs.style = '';
-    attrs.xmlns = 'http://www.w3.org/2000/svg';
-    (function traversal(node) {
-      if (node.type === 'text') {
-        src += node.text;
-        return;
-      }
-      var name = config.svgDict[node.name] || node.name;
-      src += '<' + name;
-      for (var item in node.attrs) {
-        var val = node.attrs[item];
-        if (val) {
-          src += " ".concat(config.svgDict[item] || item, "=\"").concat(val, "\"");
-        }
-      }
-      if (!node.children) {
-        src += '/>';
-      } else {
-        src += '>';
-        for (var _i2 = 0; _i2 < node.children.length; _i2++) {
-          traversal(node.children[_i2]);
-        }
-        src += '</' + name + '>';
-      }
-    })(node);
-    node.name = 'img';
-    node.attrs = {
-      src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
-      style: style,
-      ignore: 'T'
-    };
-    node.children = undefined;
-    this.xml = false;
-    return;
-  }
-
-  // 转换 align 属性
-  if (attrs.align) {
-    if (node.name === 'table') {
-      if (attrs.align === 'center') {
-        styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';
-      } else {
-        styleObj.float = attrs.align;
-      }
-    } else {
-      styleObj['text-align'] = attrs.align;
-    }
-    attrs.align = undefined;
-  }
-
-  // 转换 dir 属性
-  if (attrs.dir) {
-    styleObj.direction = attrs.dir;
-    attrs.dir = undefined;
-  }
-
-  // 转换 font 标签的属性
-  if (node.name === 'font') {
-    if (attrs.color) {
-      styleObj.color = attrs.color;
-      attrs.color = undefined;
-    }
-    if (attrs.face) {
-      styleObj['font-family'] = attrs.face;
-      attrs.face = undefined;
-    }
-    if (attrs.size) {
-      var size = parseInt(attrs.size);
-      if (!isNaN(size)) {
-        if (size < 1) {
-          size = 1;
-        } else if (size > 7) {
-          size = 7;
-        }
-        styleObj['font-size'] = ['x-small', 'small', 'medium', 'large', 'x-large', 'xx-large', 'xxx-large'][size - 1];
-      }
-      attrs.size = undefined;
-    }
-  }
-
-  // 一些编辑器的自带 class
-  if ((attrs.class || '').includes('align-center')) {
-    styleObj['text-align'] = 'center';
-  }
-  Object.assign(styleObj, this.parseStyle(node));
-  if (node.name !== 'table' && parseInt(styleObj.width) > windowWidth) {
-    styleObj['max-width'] = '100%';
-    styleObj['box-sizing'] = 'border-box';
-  }
-  if (config.blockTags[node.name]) {
-    node.name = 'div';
-  } else if (!config.trustTags[node.name] && !this.xml) {
-    // 未知标签转为 span，避免无法显示
-    node.name = 'span';
-  }
-  if (node.name === 'a' || node.name === 'ad') {
-    this.expose();
-  } else if (node.name === 'video') {
-    if ((styleObj.height || '').includes('auto')) {
-      styleObj.height = undefined;
-    }
-  } else if ((node.name === 'ul' || node.name === 'ol') && node.c) {
-    // 列表处理
-    var types = {
-      a: 'lower-alpha',
-      A: 'upper-alpha',
-      i: 'lower-roman',
-      I: 'upper-roman'
-    };
-    if (types[attrs.type]) {
-      attrs.style += ';list-style-type:' + types[attrs.type];
-      attrs.type = undefined;
-    }
-    for (var _i3 = children.length; _i3--;) {
-      if (children[_i3].name === 'li') {
-        children[_i3].c = 1;
-      }
-    }
-  } else if (node.name === 'table') {
-    // 表格处理
-    // cellpadding、cellspacing、border 这几个常用表格属性需要通过转换实现
-    var padding = parseFloat(attrs.cellpadding);
-    var spacing = parseFloat(attrs.cellspacing);
-    var border = parseFloat(attrs.border);
-    var bordercolor = styleObj['border-color'];
-    var borderstyle = styleObj['border-style'];
-    if (node.c) {
-      // padding 和 spacing 默认 2
-      if (isNaN(padding)) {
-        padding = 2;
-      }
-      if (isNaN(spacing)) {
-        spacing = 2;
-      }
-    }
-    if (border) {
-      attrs.style += ";border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray');
-    }
-    if (node.flag && node.c) {
-      // 有 colspan 或 rowspan 且含有链接的表格通过 grid 布局实现
-      styleObj.display = 'grid';
-      if (spacing) {
-        styleObj['grid-gap'] = spacing + 'px';
-        styleObj.padding = spacing + 'px';
-      } else if (border) {
-        // 无间隔的情况下避免边框重叠
-        attrs.style += ';border-left:0;border-top:0';
-      }
-      var width = []; // 表格的列宽
-      var trList = []; // tr 列表
-      var cells = []; // 保存新的单元格
-      var map = {}; // 被合并单元格占用的格子
-
-      (function traversal(nodes) {
-        for (var _i4 = 0; _i4 < nodes.length; _i4++) {
-          if (nodes[_i4].name === 'tr') {
-            trList.push(nodes[_i4]);
-          } else {
-            traversal(nodes[_i4].children || []);
-          }
-        }
-      })(children);
-      for (var row = 1; row <= trList.length; row++) {
-        var col = 1;
-        for (var j = 0; j < trList[row - 1].children.length; j++) {
-          var td = trList[row - 1].children[j];
-          if (td.name === 'td' || td.name === 'th') {
-            // 这个格子被上面的单元格占用，则列号++
-            while (map[row + '.' + col]) {
-              col++;
-            }
-            var _style2 = td.attrs.style || '';
-            var start = _style2.indexOf('width') ? _style2.indexOf(';width') : 0;
-            // 提取出 td 的宽度
-            if (start !== -1) {
-              var end = _style2.indexOf(';', start + 6);
-              if (end === -1) {
-                end = _style2.length;
-              }
-              if (!td.attrs.colspan) {
-                width[col] = _style2.substring(start ? start + 7 : 6, end);
-              }
-              _style2 = _style2.substr(0, start) + _style2.substr(end);
-            }
-            // 设置竖直对齐
-            _style2 += ';display:flex';
-            start = _style2.indexOf('vertical-align');
-            if (start !== -1) {
-              var val = _style2.substr(start + 15, 10);
-              if (val.includes('middle')) {
-                _style2 += ';align-items:center';
-              } else if (val.includes('bottom')) {
-                _style2 += ';align-items:flex-end';
-              }
-            } else {
-              _style2 += ';align-items:center';
-            }
-            // 设置水平对齐
-            start = _style2.indexOf('text-align');
-            if (start !== -1) {
-              var _val = _style2.substr(start + 11, 10);
-              if (_val.includes('center')) {
-                _style2 += ';justify-content: center';
-              } else if (_val.includes('right')) {
-                _style2 += ';justify-content: right';
-              }
-            }
-            _style2 = (border ? ";border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray') + (spacing ? '' : ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') + ';' + _style2;
-            // 处理列合并
-            if (td.attrs.colspan) {
-              _style2 += ";grid-column-start:".concat(col, ";grid-column-end:").concat(col + parseInt(td.attrs.colspan));
-              if (!td.attrs.rowspan) {
-                _style2 += ";grid-row-start:".concat(row, ";grid-row-end:").concat(row + 1);
-              }
-              col += parseInt(td.attrs.colspan) - 1;
-            }
-            // 处理行合并
-            if (td.attrs.rowspan) {
-              _style2 += ";grid-row-start:".concat(row, ";grid-row-end:").concat(row + parseInt(td.attrs.rowspan));
-              if (!td.attrs.colspan) {
-                _style2 += ";grid-column-start:".concat(col, ";grid-column-end:").concat(col + 1);
-              }
-              // 记录下方单元格被占用
-              for (var rowspan = 1; rowspan < td.attrs.rowspan; rowspan++) {
-                for (var colspan = 0; colspan < (td.attrs.colspan || 1); colspan++) {
-                  map[row + rowspan + '.' + (col - colspan)] = 1;
-                }
-              }
-            }
-            if (_style2) {
-              td.attrs.style = _style2;
-            }
-            cells.push(td);
-            col++;
-          }
-        }
-        if (row === 1) {
-          var temp = '';
-          for (var _i5 = 1; _i5 < col; _i5++) {
-            temp += (width[_i5] ? width[_i5] : 'auto') + ' ';
-          }
-          styleObj['grid-template-columns'] = temp;
-        }
-      }
-      node.children = cells;
-    } else {
-      // 没有使用合并单元格的表格通过 table 布局实现
-      if (node.c) {
-        styleObj.display = 'table';
-      }
-      if (!isNaN(spacing)) {
-        styleObj['border-spacing'] = spacing + 'px';
-      }
-      if (border || padding) {
-        // 遍历
-        (function traversal(nodes) {
-          for (var _i6 = 0; _i6 < nodes.length; _i6++) {
-            var _td = nodes[_i6];
-            if (_td.name === 'th' || _td.name === 'td') {
-              if (border) {
-                _td.attrs.style = "border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray', ";").concat(_td.attrs.style || '');
-              }
-              if (padding) {
-                _td.attrs.style = "padding:".concat(padding, "px;").concat(_td.attrs.style || '');
-              }
-            } else if (_td.children) {
-              traversal(_td.children);
-            }
-          }
-        })(children);
-      }
-    }
-    // 给表格添加一个单独的横向滚动层
-    if (this.options.scrollTable && !(attrs.style || '').includes('inline')) {
-      var table = Object.assign({}, node);
-      node.name = 'div';
-      node.attrs = {
-        style: 'overflow:auto'
-      };
-      node.children = [table];
-      attrs = table.attrs;
-    }
-  } else if ((node.name === 'td' || node.name === 'th') && (attrs.colspan || attrs.rowspan)) {
-    for (var _i7 = this.stack.length; _i7--;) {
-      if (this.stack[_i7].name === 'table') {
-        this.stack[_i7].flag = 1; // 指示含有合并单元格
-        break;
-      }
-    }
-  } else if (node.name === 'ruby') {
-    // 转换 ruby
-    node.name = 'span';
-    for (var _i8 = 0; _i8 < children.length - 1; _i8++) {
-      if (children[_i8].type === 'text' && children[_i8 + 1].name === 'rt') {
-        children[_i8] = {
-          name: 'div',
-          attrs: {
-            style: 'display:inline-block;text-align:center'
-          },
-          children: [{
-            name: 'div',
-            attrs: {
-              style: 'font-size:50%;' + (children[_i8 + 1].attrs.style || '')
-            },
-            children: children[_i8 + 1].children
-          }, children[_i8]]
-        };
-        children.splice(_i8 + 1, 1);
-      }
-    }
-  } else if (node.c) {
-    (function traversal(node) {
-      node.c = 2;
-      for (var _i9 = node.children.length; _i9--;) {
-        var child = node.children[_i9];
-        if (!child.c || child.name === 'table') {
-          node.c = 1;
-        }
-      }
-    })(node);
-  }
-  if ((styleObj.display || '').includes('flex') && !node.c) {
-    for (var _i10 = children.length; _i10--;) {
-      var item = children[_i10];
-      if (item.f) {
-        item.attrs.style = (item.attrs.style || '') + item.f;
-        item.f = undefined;
-      }
-    }
-  }
-  // flex 布局时部分样式需要提取到 rich-text 外层
-  var flex = parent && ((parent.attrs.style || '').includes('flex') || (parent.attrs.style || '').includes('grid'))
-
-  // 检查基础库版本 virtualHost 是否可用
-  && !(node.c && wx.getNFCAdapter); // eslint-disable-line
-
-  if (flex) {
-    node.f = ';max-width:100%';
-  }
-  if (children.length >= 50 && node.c && !(styleObj.display || '').includes('flex')) {
-    mergeNodes(children);
-  }
-  for (var key in styleObj) {
-    if (styleObj[key]) {
-      var _val2 = ";".concat(key, ":").concat(styleObj[key].replace(' !important', ''));
-      if (flex && (key.includes('flex') && key !== 'flex-direction' || key === 'align-self' || key.includes('grid') || styleObj[key][0] === '-' || key.includes('width') && _val2.includes('%'))) {
-        node.f += _val2;
-        if (key === 'width') {
-          attrs.style += ';width:100%';
-        }
-      } else {
-        attrs.style += _val2;
-      }
-    }
-  }
-  attrs.style = attrs.style.substr(1) || undefined;
-};
-
-/**
- * @description 解析到文本
- * @param {String} text 文本内容
- */
-Parser.prototype.onText = function (text) {
-  if (!this.pre) {
-    // 合并空白符
-    var trim = '';
-    var flag;
-    for (var i = 0, len = text.length; i < len; i++) {
-      if (!blankChar[text[i]]) {
-        trim += text[i];
-      } else {
-        if (trim[trim.length - 1] !== ' ') {
-          trim += ' ';
-        }
-        if (text[i] === '\n' && !flag) {
-          flag = true;
-        }
-      }
-    }
-    // 去除含有换行符的空串
-    if (trim === ' ') {
-      if (flag) return;
-    }
-    text = trim;
-  }
-  var node = Object.create(null);
-  node.type = 'text';
-  node.text = decodeEntity(text);
-  if (this.hook(node)) {
-    if (this.options.selectable === 'force' && system.includes('iOS') && !uni.canIUse('rich-text.user-select')) {
-      this.expose();
-    }
-    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
-    siblings.push(node);
-  }
-};
-
-/**
- * @description html 词法分析器
- * @param {Object} handler 高层处理器
- */
-function Lexer(handler) {
-  this.handler = handler;
-}
-
-/**
- * @description 执行解析
- * @param {String} content 要解析的文本
- */
-Lexer.prototype.parse = function (content) {
-  this.content = content || '';
-  this.i = 0; // 标记解析位置
-  this.start = 0; // 标记一个单词的开始位置
-  this.state = this.text; // 当前状态
-  for (var len = this.content.length; this.i !== -1 && this.i < len;) {
-    this.state();
-  }
-};
-
-/**
- * @description 检查标签是否闭合
- * @param {String} method 如果闭合要进行的操作
- * @returns {Boolean} 是否闭合
- * @private
- */
-Lexer.prototype.checkClose = function (method) {
-  var selfClose = this.content[this.i] === '/';
-  if (this.content[this.i] === '>' || selfClose && this.content[this.i + 1] === '>') {
-    if (method) {
-      this.handler[method](this.content.substring(this.start, this.i));
-    }
-    this.i += selfClose ? 2 : 1;
-    this.start = this.i;
-    this.handler.onOpenTag(selfClose);
-    if (this.handler.tagName === 'script') {
-      this.i = this.content.indexOf('</', this.i);
-      if (this.i !== -1) {
-        this.i += 2;
-        this.start = this.i;
-      }
-      this.state = this.endTag;
-    } else {
-      this.state = this.text;
-    }
-    return true;
-  }
-  return false;
-};
-
-/**
- * @description 文本状态
- * @private
- */
-Lexer.prototype.text = function () {
-  this.i = this.content.indexOf('<', this.i); // 查找最近的标签
-  if (this.i === -1) {
-    // 没有标签了
-    if (this.start < this.content.length) {
-      this.handler.onText(this.content.substring(this.start, this.content.length));
-    }
-    return;
-  }
-  var c = this.content[this.i + 1];
-  if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
-    // 标签开头
-    if (this.start !== this.i) {
-      this.handler.onText(this.content.substring(this.start, this.i));
-    }
-    this.start = ++this.i;
-    this.state = this.tagName;
-  } else if (c === '/' || c === '!' || c === '?') {
-    if (this.start !== this.i) {
-      this.handler.onText(this.content.substring(this.start, this.i));
-    }
-    var next = this.content[this.i + 2];
-    if (c === '/' && (next >= 'a' && next <= 'z' || next >= 'A' && next <= 'Z')) {
-      // 标签结尾
-      this.i += 2;
-      this.start = this.i;
-      this.state = this.endTag;
-      return;
-    }
-    // 处理注释
-    var end = '-->';
-    if (c !== '!' || this.content[this.i + 2] !== '-' || this.content[this.i + 3] !== '-') {
-      end = '>';
-    }
-    this.i = this.content.indexOf(end, this.i);
-    if (this.i !== -1) {
-      this.i += end.length;
-      this.start = this.i;
-    }
-  } else {
-    this.i++;
-  }
-};
-
-/**
- * @description 标签名状态
- * @private
- */
-Lexer.prototype.tagName = function () {
-  if (blankChar[this.content[this.i]]) {
-    // 解析到标签名
-    this.handler.onTagName(this.content.substring(this.start, this.i));
-    while (blankChar[this.content[++this.i]]) {
-      ;
-    }
-    if (this.i < this.content.length && !this.checkClose()) {
-      this.start = this.i;
-      this.state = this.attrName;
-    }
-  } else if (!this.checkClose('onTagName')) {
-    this.i++;
-  }
-};
-
-/**
- * @description 属性名状态
- * @private
- */
-Lexer.prototype.attrName = function () {
-  var c = this.content[this.i];
-  if (blankChar[c] || c === '=') {
-    // 解析到属性名
-    this.handler.onAttrName(this.content.substring(this.start, this.i));
-    var needVal = c === '=';
-    var len = this.content.length;
-    while (++this.i < len) {
-      c = this.content[this.i];
-      if (!blankChar[c]) {
-        if (this.checkClose()) return;
-        if (needVal) {
-          // 等号后遇到第一个非空字符
-          this.start = this.i;
-          this.state = this.attrVal;
-          return;
-        }
-        if (this.content[this.i] === '=') {
-          needVal = true;
-        } else {
-          this.start = this.i;
-          this.state = this.attrName;
-          return;
-        }
-      }
-    }
-  } else if (!this.checkClose('onAttrName')) {
-    this.i++;
-  }
-};
-
-/**
- * @description 属性值状态
- * @private
- */
-Lexer.prototype.attrVal = function () {
-  var c = this.content[this.i];
-  var len = this.content.length;
-  if (c === '"' || c === "'") {
-    // 有冒号的属性
-    this.start = ++this.i;
-    this.i = this.content.indexOf(c, this.i);
-    if (this.i === -1) return;
-    this.handler.onAttrVal(this.content.substring(this.start, this.i));
-  } else {
-    // 没有冒号的属性
-    for (; this.i < len; this.i++) {
-      if (blankChar[this.content[this.i]]) {
-        this.handler.onAttrVal(this.content.substring(this.start, this.i));
-        break;
-      } else if (this.checkClose('onAttrVal')) return;
-    }
-  }
-  while (blankChar[this.content[++this.i]]) {
-    ;
-  }
-  if (this.i < len && !this.checkClose()) {
-    this.start = this.i;
-    this.state = this.attrName;
-  }
-};
-
-/**
- * @description 结束标签状态
- * @returns {String} 结束的标签名
- * @private
- */
-Lexer.prototype.endTag = function () {
-  var c = this.content[this.i];
-  if (blankChar[c] || c === '>' || c === '/') {
-    this.handler.onCloseTag(this.content.substring(this.start, this.i));
-    if (c !== '>') {
-      this.i = this.content.indexOf('>', this.i);
-      if (this.i === -1) return;
-    }
-    this.start = ++this.i;
-    this.state = this.text;
-  } else {
-    this.i++;
-  }
-};
-var _default = Parser;
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 192:
-/*!**********************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/audio/index.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ 193));
-/**
- * @fileoverview audio 插件
- */
-
-var index = 0;
-function Audio(vm) {
-  this.vm = vm;
-}
-Audio.prototype.onUpdate = function () {
-  this.audios = [];
-};
-Audio.prototype.onParse = function (node) {
-  if (node.name === 'audio') {
-    if (!node.attrs.id) {
-      node.attrs.id = 'a' + index++;
-    }
-    this.audios.push(node.attrs.id);
-  }
-};
-Audio.prototype.onLoad = function () {
-  var _this = this;
-  setTimeout(function () {
-    for (var i = 0; i < _this.audios.length; i++) {
-      var ctx = _context.default.get(_this.audios[i]);
-      ctx.id = _this.audios[i];
-      _this.vm._videos.push(ctx);
-    }
-  }, 500);
-};
-var _default = Audio;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 193:
-/*!************************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/audio/context.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var ctx = {};
-var _default = {
-  get: function get(id) {
-    return ctx[id];
-  },
-  set: function set(id, vm) {
-    ctx[id] = vm;
-  },
-  remove: function remove(id) {
-    ctx[id] = undefined;
-  }
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 194:
-/*!**************************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/highlight/index.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _prism = _interopRequireDefault(__webpack_require__(/*! ./prism.min */ 195));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 196));
-var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 191));
-/**
- * @fileoverview highlight 插件
- * Include prismjs (https://prismjs.com)
- */
-
-function Highlight(vm) {
-  this.vm = vm;
-}
-Highlight.prototype.onParse = function (node, vm) {
-  if (node.name === 'pre') {
-    if (vm.options.editable) {
-      node.attrs.class = (node.attrs.class || '') + ' hl-pre';
-      return;
-    }
-    var i;
-    for (i = node.children.length; i--;) {
-      if (node.children[i].name === 'code') break;
-    }
-    if (i === -1) return;
-    var code = node.children[i];
-    var className = code.attrs.class + ' ' + node.attrs.class;
-    i = className.indexOf('language-');
-    if (i === -1) {
-      i = className.indexOf('lang-');
-      if (i === -1) {
-        className = 'language-text';
-        i = 9;
-      } else {
-        i += 5;
-      }
-    } else {
-      i += 9;
-    }
-    var j;
-    for (j = i; j < className.length; j++) {
-      if (className[j] === ' ') break;
-    }
-    var lang = className.substring(i, j);
-    if (code.children.length) {
-      var text = this.vm.getText(code.children).replace(/&amp;/g, '&');
-      if (!text) return;
-      if (node.c) {
-        node.c = undefined;
-      }
-      if (_prism.default.languages[lang]) {
-        code.children = new _parser.default(this.vm).parse(
-        // 加一层 pre 保留空白符
-        '<pre>' + _prism.default.highlight(text, _prism.default.languages[lang], lang).replace(/token /g, 'hl-') + '</pre>')[0].children;
-      }
-      node.attrs.class = 'hl-pre';
-      code.attrs.class = 'hl-code';
-      if (_config.default.showLanguageName) {
-        node.children.push({
-          name: 'div',
-          attrs: {
-            class: 'hl-language',
-            style: 'user-select:none'
-          },
-          children: [{
-            type: 'text',
-            text: lang
-          }]
-        });
-      }
-      if (_config.default.copyByLongPress) {
-        node.attrs.style += (node.attrs.style || '') + ';user-select:none';
-        node.attrs['data-content'] = text;
-        vm.expose();
-      }
-      if (_config.default.showLineNumber) {
-        var line = text.split('\n').length;
-        var children = [];
-        for (var k = line; k--;) {
-          children.push({
-            name: 'span',
-            attrs: {
-              class: 'span'
-            }
-          });
-        }
-        node.children.push({
-          name: 'span',
-          attrs: {
-            class: 'line-numbers-rows'
-          },
-          children: children
-        });
-      }
-    }
-  }
-};
-var _default = Highlight;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 195:
-/*!******************************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/highlight/prism.min.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/*! PrismJS 1.22.0
-https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript */
-var _self = "undefined" != typeof window ? window : "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? self : {},
-  Prism = function (u) {
-    var c = /\blang(?:uage)?-([\w-]+)\b/i,
-      n = 0,
-      M = {
-        manual: u.Prism && u.Prism.manual,
-        disableWorkerMessageHandler: u.Prism && u.Prism.disableWorkerMessageHandler,
-        util: {
-          encode: function e(n) {
-            return n instanceof W ? new W(n.type, e(n.content), n.alias) : Array.isArray(n) ? n.map(e) : n.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
-          },
-          type: function type(e) {
-            return Object.prototype.toString.call(e).slice(8, -1);
-          },
-          objId: function objId(e) {
-            return e.__id || Object.defineProperty(e, "__id", {
-              value: ++n
-            }), e.__id;
-          },
-          clone: function t(e, r) {
-            var a, n;
-            switch (r = r || {}, M.util.type(e)) {
-              case "Object":
-                if (n = M.util.objId(e), r[n]) return r[n];
-                for (var i in a = {}, r[n] = a, e) {
-                  e.hasOwnProperty(i) && (a[i] = t(e[i], r));
-                }
-                return a;
-              case "Array":
-                return n = M.util.objId(e), r[n] ? r[n] : (a = [], r[n] = a, e.forEach(function (e, n) {
-                  a[n] = t(e, r);
-                }), a);
-              default:
-                return e;
-            }
-          },
-          getLanguage: function getLanguage(e) {
-            for (; e && !c.test(e.className);) {
-              e = e.parentElement;
-            }
-            return e ? (e.className.match(c) || [, "none"])[1].toLowerCase() : "none";
-          },
-          currentScript: function currentScript() {
-            if ("undefined" == typeof document) return null;
-            if ("currentScript" in document) return document.currentScript;
-            try {
-              throw new Error();
-            } catch (e) {
-              var n = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(e.stack) || [])[1];
-              if (n) {
-                var t = document.getElementsByTagName("script");
-                for (var r in t) {
-                  if (t[r].src == n) return t[r];
-                }
-              }
-              return null;
-            }
-          },
-          isActive: function isActive(e, n, t) {
-            for (var r = "no-" + n; e;) {
-              var a = e.classList;
-              if (a.contains(n)) return !0;
-              if (a.contains(r)) return !1;
-              e = e.parentElement;
-            }
-            return !!t;
-          }
-        },
-        languages: {
-          extend: function extend(e, n) {
-            var t = M.util.clone(M.languages[e]);
-            for (var r in n) {
-              t[r] = n[r];
-            }
-            return t;
-          },
-          insertBefore: function insertBefore(t, e, n, r) {
-            var a = (r = r || M.languages)[t],
-              i = {};
-            for (var l in a) {
-              if (a.hasOwnProperty(l)) {
-                if (l == e) for (var o in n) {
-                  n.hasOwnProperty(o) && (i[o] = n[o]);
-                }
-                n.hasOwnProperty(l) || (i[l] = a[l]);
-              }
-            }
-            var s = r[t];
-            return r[t] = i, M.languages.DFS(M.languages, function (e, n) {
-              n === s && e != t && (this[e] = i);
-            }), i;
-          },
-          DFS: function e(n, t, r, a) {
-            a = a || {};
-            var i = M.util.objId;
-            for (var l in n) {
-              if (n.hasOwnProperty(l)) {
-                t.call(n, l, n[l], r || l);
-                var o = n[l],
-                  s = M.util.type(o);
-                "Object" !== s || a[i(o)] ? "Array" !== s || a[i(o)] || (a[i(o)] = !0, e(o, t, l, a)) : (a[i(o)] = !0, e(o, t, null, a));
-              }
-            }
-          }
-        },
-        plugins: {},
-        highlightAll: function highlightAll(e, n) {
-          M.highlightAllUnder(document, e, n);
-        },
-        highlightAllUnder: function highlightAllUnder(e, n, t) {
-          var r = {
-            callback: t,
-            container: e,
-            selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
-          };
-          M.hooks.run("before-highlightall", r), r.elements = Array.prototype.slice.apply(r.container.querySelectorAll(r.selector)), M.hooks.run("before-all-elements-highlight", r);
-          for (var a, i = 0; a = r.elements[i++];) {
-            M.highlightElement(a, !0 === n, r.callback);
-          }
-        },
-        highlightElement: function highlightElement(e, n, t) {
-          var r = M.util.getLanguage(e),
-            a = M.languages[r];
-          e.className = e.className.replace(c, "").replace(/\s+/g, " ") + " language-" + r;
-          var i = e.parentElement;
-          i && "pre" === i.nodeName.toLowerCase() && (i.className = i.className.replace(c, "").replace(/\s+/g, " ") + " language-" + r);
-          var l = {
-            element: e,
-            language: r,
-            grammar: a,
-            code: e.textContent
-          };
-          function o(e) {
-            l.highlightedCode = e, M.hooks.run("before-insert", l), l.element.innerHTML = l.highlightedCode, M.hooks.run("after-highlight", l), M.hooks.run("complete", l), t && t.call(l.element);
-          }
-          if (M.hooks.run("before-sanity-check", l), !l.code) return M.hooks.run("complete", l), void (t && t.call(l.element));
-          if (M.hooks.run("before-highlight", l), l.grammar) {
-            if (n && u.Worker) {
-              var s = new Worker(M.filename);
-              s.onmessage = function (e) {
-                o(e.data);
-              }, s.postMessage(JSON.stringify({
-                language: l.language,
-                code: l.code,
-                immediateClose: !0
-              }));
-            } else o(M.highlight(l.code, l.grammar, l.language));
-          } else o(M.util.encode(l.code));
-        },
-        highlight: function highlight(e, n, t) {
-          var r = {
-            code: e,
-            grammar: n,
-            language: t
-          };
-          return M.hooks.run("before-tokenize", r), r.tokens = M.tokenize(r.code, r.grammar), M.hooks.run("after-tokenize", r), W.stringify(M.util.encode(r.tokens), r.language);
-        },
-        tokenize: function tokenize(e, n) {
-          var t = n.rest;
-          if (t) {
-            for (var r in t) {
-              n[r] = t[r];
-            }
-            delete n.rest;
-          }
-          var a = new i();
-          return I(a, a.head, e), function e(n, t, r, a, i, l) {
-            for (var o in r) {
-              if (r.hasOwnProperty(o) && r[o]) {
-                var s = r[o];
-                s = Array.isArray(s) ? s : [s];
-                for (var u = 0; u < s.length; ++u) {
-                  if (l && l.cause == o + "," + u) return;
-                  var c = s[u],
-                    g = c.inside,
-                    f = !!c.lookbehind,
-                    h = !!c.greedy,
-                    d = 0,
-                    v = c.alias;
-                  if (h && !c.pattern.global) {
-                    var p = c.pattern.toString().match(/[imsuy]*$/)[0];
-                    c.pattern = RegExp(c.pattern.source, p + "g");
-                  }
-                  for (var m = c.pattern || c, y = a.next, k = i; y !== t.tail && !(l && k >= l.reach); k += y.value.length, y = y.next) {
-                    var b = y.value;
-                    if (t.length > n.length) return;
-                    if (!(b instanceof W)) {
-                      var x = 1;
-                      if (h && y != t.tail.prev) {
-                        m.lastIndex = k;
-                        var w = m.exec(n);
-                        if (!w) break;
-                        var A = w.index + (f && w[1] ? w[1].length : 0),
-                          P = w.index + w[0].length,
-                          S = k;
-                        for (S += y.value.length; S <= A;) {
-                          y = y.next, S += y.value.length;
-                        }
-                        if (S -= y.value.length, k = S, y.value instanceof W) continue;
-                        for (var E = y; E !== t.tail && (S < P || "string" == typeof E.value); E = E.next) {
-                          x++, S += E.value.length;
-                        }
-                        x--, b = n.slice(k, S), w.index -= k;
-                      } else {
-                        m.lastIndex = 0;
-                        var w = m.exec(b);
-                      }
-                      if (w) {
-                        f && (d = w[1] ? w[1].length : 0);
-                        var A = w.index + d,
-                          O = w[0].slice(d),
-                          P = A + O.length,
-                          L = b.slice(0, A),
-                          N = b.slice(P),
-                          j = k + b.length;
-                        l && j > l.reach && (l.reach = j);
-                        var C = y.prev;
-                        L && (C = I(t, C, L), k += L.length), z(t, C, x);
-                        var _ = new W(o, g ? M.tokenize(O, g) : O, v, O);
-                        y = I(t, C, _), N && I(t, y, N), 1 < x && e(n, t, r, y.prev, k, {
-                          cause: o + "," + u,
-                          reach: j
-                        });
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }(e, a, n, a.head, 0), function (e) {
-            var n = [],
-              t = e.head.next;
-            for (; t !== e.tail;) {
-              n.push(t.value), t = t.next;
-            }
-            return n;
-          }(a);
-        },
-        hooks: {
-          all: {},
-          add: function add(e, n) {
-            var t = M.hooks.all;
-            t[e] = t[e] || [], t[e].push(n);
-          },
-          run: function run(e, n) {
-            var t = M.hooks.all[e];
-            if (t && t.length) for (var r, a = 0; r = t[a++];) {
-              r(n);
-            }
-          }
-        },
-        Token: W
-      };
-    function W(e, n, t, r) {
-      this.type = e, this.content = n, this.alias = t, this.length = 0 | (r || "").length;
-    }
-    function i() {
-      var e = {
-          value: null,
-          prev: null,
-          next: null
-        },
-        n = {
-          value: null,
-          prev: e,
-          next: null
-        };
-      e.next = n, this.head = e, this.tail = n, this.length = 0;
-    }
-    function I(e, n, t) {
-      var r = n.next,
-        a = {
-          value: t,
-          prev: n,
-          next: r
-        };
-      return n.next = a, r.prev = a, e.length++, a;
-    }
-    function z(e, n, t) {
-      for (var r = n.next, a = 0; a < t && r !== e.tail; a++) {
-        r = r.next;
-      }
-      (n.next = r).prev = n, e.length -= a;
-    }
-    if (u.Prism = M, W.stringify = function n(e, t) {
-      if ("string" == typeof e) return e;
-      if (Array.isArray(e)) {
-        var r = "";
-        return e.forEach(function (e) {
-          r += n(e, t);
-        }), r;
-      }
-      var a = {
-          type: e.type,
-          content: n(e.content, t),
-          tag: "span",
-          classes: ["token", e.type],
-          attributes: {},
-          language: t
-        },
-        i = e.alias;
-      i && (Array.isArray(i) ? Array.prototype.push.apply(a.classes, i) : a.classes.push(i)), M.hooks.run("wrap", a);
-      var l = "";
-      for (var o in a.attributes) {
-        l += " " + o + '="' + (a.attributes[o] || "").replace(/"/g, "&quot;") + '"';
-      }
-      return "<" + a.tag + ' class="' + a.classes.join(" ") + '"' + l + ">" + a.content + "</" + a.tag + ">";
-    }, !u.document) return u.addEventListener && (M.disableWorkerMessageHandler || u.addEventListener("message", function (e) {
-      var n = JSON.parse(e.data),
-        t = n.language,
-        r = n.code,
-        a = n.immediateClose;
-      u.postMessage(M.highlight(r, M.languages[t], t)), a && u.close();
-    }, !1)), M;
-    var e = M.util.currentScript();
-    function t() {
-      M.manual || M.highlightAll();
-    }
-    if (e && (M.filename = e.src, e.hasAttribute("data-manual") && (M.manual = !0)), !M.manual) {
-      var r = document.readyState;
-      "loading" === r || "interactive" === r && e && e.defer ? document.addEventListener("DOMContentLoaded", t) : window.requestAnimationFrame ? window.requestAnimationFrame(t) : window.setTimeout(t, 16);
-    }
-    return M;
-  }(_self);
-var _default = Prism;
-exports.default = _default;
-"undefined" != typeof global && (global.Prism = Prism);
-Prism.languages.markup = {
-  comment: /<!--[\s\S]*?-->/,
-  prolog: /<\?[\s\S]+?\?>/,
-  doctype: {
-    pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
-    greedy: !0,
-    inside: {
-      "internal-subset": {
-        pattern: /(\[)[\s\S]+(?=\]>$)/,
-        lookbehind: !0,
-        greedy: !0,
-        inside: null
-      },
-      string: {
-        pattern: /"[^"]*"|'[^']*'/,
-        greedy: !0
-      },
-      punctuation: /^<!|>$|[[\]]/,
-      "doctype-tag": /^DOCTYPE/,
-      name: /[^\s<>'"]+/
-    }
-  },
-  cdata: /<!\[CDATA\[[\s\S]*?]]>/i,
-  tag: {
-    pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
-    greedy: !0,
-    inside: {
-      tag: {
-        pattern: /^<\/?[^\s>\/]+/,
-        inside: {
-          punctuation: /^<\/?/,
-          namespace: /^[^\s>\/:]+:/
-        }
-      },
-      "attr-value": {
-        pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
-        inside: {
-          punctuation: [{
-            pattern: /^=/,
-            alias: "attr-equals"
-          }, /"|'/]
-        }
-      },
-      punctuation: /\/?>/,
-      "attr-name": {
-        pattern: /[^\s>\/]+/,
-        inside: {
-          namespace: /^[^\s>\/:]+:/
-        }
-      }
-    }
-  },
-  entity: [{
-    pattern: /&[\da-z]{1,8};/i,
-    alias: "named-entity"
-  }, /&#x?[\da-f]{1,8};/i]
-}, Prism.languages.markup.tag.inside["attr-value"].inside.entity = Prism.languages.markup.entity, Prism.languages.markup.doctype.inside["internal-subset"].inside = Prism.languages.markup, Prism.hooks.add("wrap", function (a) {
-  "entity" === a.type && (a.attributes.title = a.content.replace(/&amp;/, "&"));
-}), Object.defineProperty(Prism.languages.markup.tag, "addInlined", {
-  value: function value(a, e) {
-    var s = {};
-    s["language-" + e] = {
-      pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
-      lookbehind: !0,
-      inside: Prism.languages[e]
-    }, s.cdata = /^<!\[CDATA\[|\]\]>$/i;
-    var n = {
-      "included-cdata": {
-        pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-        inside: s
-      }
-    };
-    n["language-" + e] = {
-      pattern: /[\s\S]+/,
-      inside: Prism.languages[e]
-    };
-    var t = {};
-    t[a] = {
-      pattern: RegExp("(<__[^]*?>)(?:<!\\[CDATA\\[(?:[^\\]]|\\](?!\\]>))*\\]\\]>|(?!<!\\[CDATA\\[)[^])*?(?=</__>)".replace(/__/g, function () {
-        return a;
-      }), "i"),
-      lookbehind: !0,
-      greedy: !0,
-      inside: n
-    }, Prism.languages.insertBefore("markup", "cdata", t);
-  }
-}), Prism.languages.html = Prism.languages.markup, Prism.languages.mathml = Prism.languages.markup, Prism.languages.svg = Prism.languages.markup, Prism.languages.xml = Prism.languages.extend("markup", {}), Prism.languages.ssml = Prism.languages.xml, Prism.languages.atom = Prism.languages.xml, Prism.languages.rss = Prism.languages.xml;
-!function (e) {
-  var t = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
-  e.languages.css = {
-    comment: /\/\*[\s\S]*?\*\//,
-    atrule: {
-      pattern: /@[\w-]+[\s\S]*?(?:;|(?=\s*\{))/,
-      inside: {
-        rule: /^@[\w-]+/,
-        "selector-function-argument": {
-          pattern: /(\bselector\s*\((?!\s*\))\s*)(?:[^()]|\((?:[^()]|\([^()]*\))*\))+?(?=\s*\))/,
-          lookbehind: !0,
-          alias: "selector"
-        },
-        keyword: {
-          pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
-          lookbehind: !0
-        }
-      }
-    },
-    url: {
-      pattern: RegExp("\\burl\\((?:" + t.source + "|(?:[^\\\\\r\n()\"']|\\\\[^])*)\\)", "i"),
-      greedy: !0,
-      inside: {
-        function: /^url/i,
-        punctuation: /^\(|\)$/,
-        string: {
-          pattern: RegExp("^" + t.source + "$"),
-          alias: "url"
-        }
-      }
-    },
-    selector: RegExp("[^{}\\s](?:[^{};\"']|" + t.source + ")*?(?=\\s*\\{)"),
-    string: {
-      pattern: t,
-      greedy: !0
-    },
-    property: /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
-    important: /!important\b/i,
-    function: /[-a-z0-9]+(?=\()/i,
-    punctuation: /[(){};:,]/
-  }, e.languages.css.atrule.inside.rest = e.languages.css;
-  var s = e.languages.markup;
-  s && (s.tag.addInlined("style", "css"), e.languages.insertBefore("inside", "attr-value", {
-    "style-attr": {
-      pattern: /(^|["'\s])style\s*=\s*(?:"[^"]*"|'[^']*')/i,
-      lookbehind: !0,
-      inside: {
-        "attr-value": {
-          pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
-          inside: {
-            style: {
-              pattern: /(["'])[\s\S]+(?=["']$)/,
-              lookbehind: !0,
-              alias: "language-css",
-              inside: e.languages.css
-            },
-            punctuation: [{
-              pattern: /^=/,
-              alias: "attr-equals"
-            }, /"|'/]
-          }
-        },
-        "attr-name": /^style/i
-      }
-    }
-  }, s.tag));
-}(Prism);
-Prism.languages.clike = {
-  comment: [{
-    pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-    lookbehind: !0
-  }, {
-    pattern: /(^|[^\\:])\/\/.*/,
-    lookbehind: !0,
-    greedy: !0
-  }],
-  string: {
-    pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-    greedy: !0
-  },
-  "class-name": {
-    pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new)\s+|\bcatch\s+\()[\w.\\]+/i,
-    lookbehind: !0,
-    inside: {
-      punctuation: /[.\\]/
-    }
-  },
-  keyword: /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
-  boolean: /\b(?:true|false)\b/,
-  function: /\w+(?=\()/,
-  number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
-  operator: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
-  punctuation: /[{}[\];(),.:]/
-};
-Prism.languages.javascript = Prism.languages.extend("clike", {
-  "class-name": [Prism.languages.clike["class-name"], {
-    pattern: /(^|[^$\w\xA0-\uFFFF])[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/,
-    lookbehind: !0
-  }],
-  keyword: [{
-    pattern: /((?:^|})\s*)(?:catch|finally)\b/,
-    lookbehind: !0
-  }, {
-    pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|(?:get|set)(?=\s*[\[$\w\xA0-\uFFFF])|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
-    lookbehind: !0
-  }],
-  number: /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
-  function: /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
-  operator: /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
-}), Prism.languages.javascript["class-name"][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/, Prism.languages.insertBefore("javascript", "keyword", {
-  regex: {
-    pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
-    lookbehind: !0,
-    greedy: !0,
-    inside: {
-      "regex-source": {
-        pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
-        lookbehind: !0,
-        alias: "language-regex",
-        inside: Prism.languages.regex
-      },
-      "regex-flags": /[a-z]+$/,
-      "regex-delimiter": /^\/|\/$/
-    }
-  },
-  "function-variable": {
-    pattern: /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/,
-    alias: "function"
-  },
-  parameter: [{
-    pattern: /(function(?:\s+[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\))/,
-    lookbehind: !0,
-    inside: Prism.languages.javascript
-  }, {
-    pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/i,
-    inside: Prism.languages.javascript
-  }, {
-    pattern: /(\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*=>)/,
-    lookbehind: !0,
-    inside: Prism.languages.javascript
-  }, {
-    pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*\{)/,
-    lookbehind: !0,
-    inside: Prism.languages.javascript
-  }],
-  constant: /\b[A-Z](?:[A-Z_]|\dx?)*\b/
-}), Prism.languages.insertBefore("javascript", "string", {
-  "template-string": {
-    pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
-    greedy: !0,
-    inside: {
-      "template-punctuation": {
-        pattern: /^`|`$/,
-        alias: "string"
-      },
-      interpolation: {
-        pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
-        lookbehind: !0,
-        inside: {
-          "interpolation-punctuation": {
-            pattern: /^\${|}$/,
-            alias: "punctuation"
-          },
-          rest: Prism.languages.javascript
-        }
-      },
-      string: /[\s\S]+/
-    }
-  }
-}), Prism.languages.markup && Prism.languages.markup.tag.addInlined("script", "javascript"), Prism.languages.js = Prism.languages.javascript;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
-
-/***/ }),
-
-/***/ 196:
-/*!***************************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/highlight/config.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  copyByLongPress: true,
-  // 是否需要长按代码块时显示复制代码内容菜单
-  showLanguageName: true,
-  // 是否在代码块右上角显示语言的名称
-  showLineNumber: true // 是否显示行号
-};
-exports.default = _default;
 
 /***/ }),
 
@@ -3908,7 +1872,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -4816,7 +2780,2594 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 204:
+/***/ 207:
+/*!*****************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/parser.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, wx) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/**
+ * @fileoverview html 解析器
+ */
+
+// 配置
+var config = {
+  // 信任的标签（保持标签名不变）
+  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,ruby,rt,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
+  // 块级标签（转为 div，其他的非信任标签转为 span）
+  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
+  // 要移除的标签
+  ignoreTags: makeMap('area,base,canvas,embed,frame,head,iframe,input,link,map,meta,param,rp,script,source,style,textarea,title,track,wbr'),
+  // 自闭合的标签
+  voidTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
+  // html 实体
+  entities: {
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    ensp: "\u2002",
+    emsp: "\u2003",
+    nbsp: '\xA0',
+    semi: ';',
+    ndash: '–',
+    mdash: '—',
+    middot: '·',
+    lsquo: '‘',
+    rsquo: '’',
+    ldquo: '“',
+    rdquo: '”',
+    bull: '•',
+    hellip: '…',
+    larr: '←',
+    uarr: '↑',
+    rarr: '→',
+    darr: '↓'
+  },
+  // 默认的标签样式
+  tagStyle: {
+    address: 'font-style:italic',
+    big: 'display:inline;font-size:1.2em',
+    caption: 'display:table-caption;text-align:center',
+    center: 'text-align:center',
+    cite: 'font-style:italic',
+    dd: 'margin-left:40px',
+    mark: 'background-color:yellow',
+    pre: 'font-family:monospace;white-space:pre',
+    s: 'text-decoration:line-through',
+    small: 'display:inline;font-size:0.8em',
+    strike: 'text-decoration:line-through',
+    u: 'text-decoration:underline'
+  },
+  // svg 大小写对照表
+  svgDict: {
+    animatetransform: 'animateTransform',
+    lineargradient: 'linearGradient',
+    viewbox: 'viewBox',
+    attributename: 'attributeName',
+    repeatcount: 'repeatCount',
+    repeatdur: 'repeatDur'
+  }
+};
+var tagSelector = {};
+var _uni$getSystemInfoSyn = uni.getSystemInfoSync(),
+  windowWidth = _uni$getSystemInfoSyn.windowWidth,
+  system = _uni$getSystemInfoSyn.system;
+var blankChar = makeMap(' ,\r,\n,\t,\f');
+var idIndex = 0;
+
+/**
+ * @description 创建 map
+ * @param {String} str 逗号分隔
+ */
+function makeMap(str) {
+  var map = Object.create(null);
+  var list = str.split(',');
+  for (var i = list.length; i--;) {
+    map[list[i]] = true;
+  }
+  return map;
+}
+
+/**
+ * @description 解码 html 实体
+ * @param {String} str 要解码的字符串
+ * @param {Boolean} amp 要不要解码 &amp;
+ * @returns {String} 解码后的字符串
+ */
+function decodeEntity(str, amp) {
+  var i = str.indexOf('&');
+  while (i !== -1) {
+    var j = str.indexOf(';', i + 3);
+    var code = void 0;
+    if (j === -1) break;
+    if (str[i + 1] === '#') {
+      // &#123; 形式的实体
+      code = parseInt((str[i + 2] === 'x' ? '0' : '') + str.substring(i + 2, j));
+      if (!isNaN(code)) {
+        str = str.substr(0, i) + String.fromCharCode(code) + str.substr(j + 1);
+      }
+    } else {
+      // &nbsp; 形式的实体
+      code = str.substring(i + 1, j);
+      if (config.entities[code] || code === 'amp' && amp) {
+        str = str.substr(0, i) + (config.entities[code] || '&') + str.substr(j + 1);
+      }
+    }
+    i = str.indexOf('&', i + 1);
+  }
+  return str;
+}
+
+/**
+ * @description 合并多个块级标签，加快长内容渲染
+ * @param {Array} nodes 要合并的标签数组
+ */
+function mergeNodes(nodes) {
+  var i = nodes.length - 1;
+  for (var j = i; j >= -1; j--) {
+    if (j === -1 || nodes[j].c || !nodes[j].name || nodes[j].name !== 'div' && nodes[j].name !== 'p' && nodes[j].name[0] !== 'h' || (nodes[j].attrs.style || '').includes('inline')) {
+      if (i - j >= 5) {
+        nodes.splice(j + 1, i - j, {
+          name: 'div',
+          attrs: {},
+          children: nodes.slice(j + 1, i + 1)
+        });
+      }
+      i = j - 1;
+    }
+  }
+}
+
+/**
+ * @description html 解析器
+ * @param {Object} vm 组件实例
+ */
+function Parser(vm) {
+  this.options = vm || {};
+  this.tagStyle = Object.assign({}, config.tagStyle, this.options.tagStyle);
+  this.imgList = vm.imgList || [];
+  this.imgList._unloadimgs = 0;
+  this.plugins = vm.plugins || [];
+  this.attrs = Object.create(null);
+  this.stack = [];
+  this.nodes = [];
+  this.pre = (this.options.containerStyle || '').includes('white-space') && this.options.containerStyle.includes('pre') ? 2 : 0;
+}
+
+/**
+ * @description 执行解析
+ * @param {String} content 要解析的文本
+ */
+Parser.prototype.parse = function (content) {
+  // 插件处理
+  for (var i = this.plugins.length; i--;) {
+    if (this.plugins[i].onUpdate) {
+      content = this.plugins[i].onUpdate(content, config) || content;
+    }
+  }
+  new Lexer(this).parse(content);
+  // 出栈未闭合的标签
+  while (this.stack.length) {
+    this.popNode();
+  }
+  if (this.nodes.length > 50) {
+    mergeNodes(this.nodes);
+  }
+  return this.nodes;
+};
+
+/**
+ * @description 将标签暴露出来（不被 rich-text 包含）
+ */
+Parser.prototype.expose = function () {
+  for (var i = this.stack.length; i--;) {
+    var item = this.stack[i];
+    if (item.c || item.name === 'a' || item.name === 'video' || item.name === 'audio') return;
+    item.c = 1;
+  }
+};
+
+/**
+ * @description 处理插件
+ * @param {Object} node 要处理的标签
+ * @returns {Boolean} 是否要移除此标签
+ */
+Parser.prototype.hook = function (node) {
+  for (var i = this.plugins.length; i--;) {
+    if (this.plugins[i].onParse && this.plugins[i].onParse(node, this) === false) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * @description 将链接拼接上主域名
+ * @param {String} url 需要拼接的链接
+ * @returns {String} 拼接后的链接
+ */
+Parser.prototype.getUrl = function (url) {
+  var domain = this.options.domain;
+  if (url[0] === '/') {
+    if (url[1] === '/') {
+      // // 开头的补充协议名
+      url = (domain ? domain.split('://')[0] : 'http') + ':' + url;
+    } else if (domain) {
+      // 否则补充整个域名
+      url = domain + url;
+    }
+  } else if (!url.includes('data:') && !url.includes('://')) {
+    if (domain) {
+      url = domain + '/' + url;
+    }
+  }
+  return url;
+};
+
+/**
+ * @description 解析样式表
+ * @param {Object} node 标签
+ * @returns {Object}
+ */
+Parser.prototype.parseStyle = function (node) {
+  var attrs = node.attrs;
+  var list = (this.tagStyle[node.name] || '').split(';').concat((attrs.style || '').split(';'));
+  var styleObj = {};
+  var tmp = '';
+  if (attrs.id && !this.xml) {
+    // 暴露锚点
+    if (this.options.useAnchor) {
+      this.expose();
+    } else if (node.name !== 'img' && node.name !== 'a' && node.name !== 'video' && node.name !== 'audio') {
+      attrs.id = undefined;
+    }
+  }
+
+  // 转换 width 和 height 属性
+  if (attrs.width) {
+    styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
+    attrs.width = undefined;
+  }
+  if (attrs.height) {
+    styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
+    attrs.height = undefined;
+  }
+  for (var i = 0, len = list.length; i < len; i++) {
+    var info = list[i].split(':');
+    if (info.length < 2) continue;
+    var key = info.shift().trim().toLowerCase();
+    var value = info.join(':').trim();
+    if (value[0] === '-' && value.lastIndexOf('-') > 0 || value.includes('safe')) {
+      // 兼容性的 css 不压缩
+      tmp += ";".concat(key, ":").concat(value);
+    } else if (!styleObj[key] || value.includes('import') || !styleObj[key].includes('import')) {
+      // 重复的样式进行覆盖
+      if (value.includes('url')) {
+        // 填充链接
+        var j = value.indexOf('(') + 1;
+        if (j) {
+          while (value[j] === '"' || value[j] === "'" || blankChar[value[j]]) {
+            j++;
+          }
+          value = value.substr(0, j) + this.getUrl(value.substr(j));
+        }
+      } else if (value.includes('rpx')) {
+        // 转换 rpx（rich-text 内部不支持 rpx）
+        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {
+          return parseFloat($) * windowWidth / 750 + 'px';
+        });
+      }
+      styleObj[key] = value;
+    }
+  }
+  node.attrs.style = tmp;
+  return styleObj;
+};
+
+/**
+ * @description 解析到标签名
+ * @param {String} name 标签名
+ * @private
+ */
+Parser.prototype.onTagName = function (name) {
+  this.tagName = this.xml ? name : name.toLowerCase();
+  if (this.tagName === 'svg') {
+    this.xml = (this.xml || 0) + 1; // svg 标签内大小写敏感
+  }
+};
+
+/**
+ * @description 解析到属性名
+ * @param {String} name 属性名
+ * @private
+ */
+Parser.prototype.onAttrName = function (name) {
+  name = this.xml ? name : name.toLowerCase();
+  if (name.substr(0, 5) === 'data-') {
+    if (name === 'data-src' && !this.attrs.src) {
+      // data-src 自动转为 src
+      this.attrName = 'src';
+    } else if (this.tagName === 'img' || this.tagName === 'a') {
+      // a 和 img 标签保留 data- 的属性，可以在 imgtap 和 linktap 事件中使用
+      this.attrName = name;
+    } else {
+      // 剩余的移除以减小大小
+      this.attrName = undefined;
+    }
+  } else {
+    this.attrName = name;
+    this.attrs[name] = 'T'; // boolean 型属性缺省设置
+  }
+};
+
+/**
+ * @description 解析到属性值
+ * @param {String} val 属性值
+ * @private
+ */
+Parser.prototype.onAttrVal = function (val) {
+  var name = this.attrName || '';
+  if (name === 'style' || name === 'href') {
+    // 部分属性进行实体解码
+    this.attrs[name] = decodeEntity(val, true);
+  } else if (name.includes('src')) {
+    // 拼接主域名
+    this.attrs[name] = this.getUrl(decodeEntity(val, true));
+  } else if (name) {
+    this.attrs[name] = val;
+  }
+};
+
+/**
+ * @description 解析到标签开始
+ * @param {Boolean} selfClose 是否有自闭合标识 />
+ * @private
+ */
+Parser.prototype.onOpenTag = function (selfClose) {
+  // 拼装 node
+  var node = Object.create(null);
+  node.name = this.tagName;
+  node.attrs = this.attrs;
+  // 避免因为自动 diff 使得 type 被设置为 null 导致部分内容不显示
+  if (this.options.nodes.length) {
+    node.type = 'node';
+  }
+  this.attrs = Object.create(null);
+  var attrs = node.attrs;
+  var parent = this.stack[this.stack.length - 1];
+  var siblings = parent ? parent.children : this.nodes;
+  var close = this.xml ? selfClose : config.voidTags[node.name];
+
+  // 替换标签名选择器
+  if (tagSelector[node.name]) {
+    attrs.class = tagSelector[node.name] + (attrs.class ? ' ' + attrs.class : '');
+  }
+
+  // 转换 embed 标签
+  if (node.name === 'embed') {
+    var src = attrs.src || '';
+    // 按照后缀名和 type 将 embed 转为 video 或 audio
+    if (src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8') || (attrs.type || '').includes('video')) {
+      node.name = 'video';
+    } else if (src.includes('.mp3') || src.includes('.wav') || src.includes('.aac') || src.includes('.m4a') || (attrs.type || '').includes('audio')) {
+      node.name = 'audio';
+    }
+    if (attrs.autostart) {
+      attrs.autoplay = 'T';
+    }
+    attrs.controls = 'T';
+  }
+
+  // 处理音视频
+  if (node.name === 'video' || node.name === 'audio') {
+    // 设置 id 以便获取 context
+    if (node.name === 'video' && !attrs.id) {
+      attrs.id = 'v' + idIndex++;
+    }
+    // 没有设置 controls 也没有设置 autoplay 的自动设置 controls
+    if (!attrs.controls && !attrs.autoplay) {
+      attrs.controls = 'T';
+    }
+    // 用数组存储所有可用的 source
+    node.src = [];
+    if (attrs.src) {
+      node.src.push(attrs.src);
+      attrs.src = undefined;
+    }
+    this.expose();
+  }
+
+  // 处理自闭合标签
+  if (close) {
+    if (!this.hook(node) || config.ignoreTags[node.name]) {
+      // 通过 base 标签设置主域名
+      if (node.name === 'base' && !this.options.domain) {
+        this.options.domain = attrs.href;
+      } else if (node.name === 'source' && parent && (parent.name === 'video' || parent.name === 'audio') && attrs.src) {
+        // 设置 source 标签（仅父节点为 video 或 audio 时有效）
+        parent.src.push(attrs.src);
+      }
+      return;
+    }
+
+    // 解析 style
+    var styleObj = this.parseStyle(node);
+
+    // 处理图片
+    if (node.name === 'img') {
+      if (attrs.src) {
+        // 标记 webp
+        if (attrs.src.includes('webp')) {
+          node.webp = 'T';
+        }
+        // data url 图片如果没有设置 original-src 默认为不可预览的小图片
+        if (attrs.src.includes('data:') && !attrs['original-src']) {
+          attrs.ignore = 'T';
+        }
+        if (!attrs.ignore || node.webp || attrs.src.includes('cloud://')) {
+          for (var i = this.stack.length; i--;) {
+            var item = this.stack[i];
+            if (item.name === 'a') {
+              node.a = item.attrs;
+            }
+            if (item.name === 'table' && !node.webp && !attrs.src.includes('cloud://')) {
+              if (!styleObj.display || styleObj.display.includes('inline')) {
+                node.t = 'inline-block';
+              } else {
+                node.t = styleObj.display;
+              }
+              styleObj.display = undefined;
+            }
+            var style = item.attrs.style || '';
+            if (style.includes('flex:') && !style.includes('flex:0') && !style.includes('flex: 0') && (!styleObj.width || parseInt(styleObj.width) > 100)) {
+              styleObj.width = '100% !important';
+              styleObj.height = '';
+              for (var j = i + 1; j < this.stack.length; j++) {
+                this.stack[j].attrs.style = (this.stack[j].attrs.style || '').replace('inline-', '');
+              }
+            } else if (style.includes('flex') && styleObj.width === '100%') {
+              for (var _j = i + 1; _j < this.stack.length; _j++) {
+                var _style = this.stack[_j].attrs.style || '';
+                if (!_style.includes(';width') && !_style.includes(' width') && _style.indexOf('width') !== 0) {
+                  styleObj.width = '';
+                  break;
+                }
+              }
+            } else if (style.includes('inline-block')) {
+              if (styleObj.width && styleObj.width[styleObj.width.length - 1] === '%') {
+                item.attrs.style += ';max-width:' + styleObj.width;
+                styleObj.width = '';
+              } else {
+                item.attrs.style += ';max-width:100%';
+              }
+            }
+            item.c = 1;
+          }
+          attrs.i = this.imgList.length.toString();
+          var _src = attrs['original-src'] || attrs.src;
+          if (this.imgList.includes(_src)) {
+            // 如果有重复的链接则对域名进行随机大小写变换避免预览时错位
+            var _i = _src.indexOf('://');
+            if (_i !== -1) {
+              _i += 3;
+              var newSrc = _src.substr(0, _i);
+              for (; _i < _src.length; _i++) {
+                if (_src[_i] === '/') break;
+                newSrc += Math.random() > 0.5 ? _src[_i].toUpperCase() : _src[_i];
+              }
+              newSrc += _src.substr(_i);
+              _src = newSrc;
+            }
+          }
+          this.imgList.push(_src);
+          if (!node.t) {
+            this.imgList._unloadimgs += 1;
+          }
+        }
+      }
+      if (styleObj.display === 'inline') {
+        styleObj.display = '';
+      }
+      if (attrs.ignore) {
+        styleObj['max-width'] = styleObj['max-width'] || '100%';
+        attrs.style += ';-webkit-touch-callout:none';
+      }
+
+      // 设置的宽度超出屏幕，为避免变形，高度转为自动
+      if (parseInt(styleObj.width) > windowWidth) {
+        styleObj.height = undefined;
+      }
+      // 记录是否设置了宽高
+      if (!isNaN(parseInt(styleObj.width))) {
+        node.w = 'T';
+      }
+      if (!isNaN(parseInt(styleObj.height)) && (!styleObj.height.includes('%') || parent && (parent.attrs.style || '').includes('height'))) {
+        node.h = 'T';
+      }
+    } else if (node.name === 'svg') {
+      siblings.push(node);
+      this.stack.push(node);
+      this.popNode();
+      return;
+    }
+    for (var key in styleObj) {
+      if (styleObj[key]) {
+        attrs.style += ";".concat(key, ":").concat(styleObj[key].replace(' !important', ''));
+      }
+    }
+    attrs.style = attrs.style.substr(1) || undefined;
+  } else {
+    if ((node.name === 'pre' || (attrs.style || '').includes('white-space') && attrs.style.includes('pre')) && this.pre !== 2) {
+      this.pre = node.pre = 1;
+    }
+    node.children = [];
+    this.stack.push(node);
+  }
+
+  // 加入节点树
+  siblings.push(node);
+};
+
+/**
+ * @description 解析到标签结束
+ * @param {String} name 标签名
+ * @private
+ */
+Parser.prototype.onCloseTag = function (name) {
+  // 依次出栈到匹配为止
+  name = this.xml ? name : name.toLowerCase();
+  var i;
+  for (i = this.stack.length; i--;) {
+    if (this.stack[i].name === name) break;
+  }
+  if (i !== -1) {
+    while (this.stack.length > i) {
+      this.popNode();
+    }
+  } else if (name === 'p' || name === 'br') {
+    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
+    siblings.push({
+      name: name,
+      attrs: {
+        class: tagSelector[name] || '',
+        style: this.tagStyle[name] || ''
+      }
+    });
+  }
+};
+
+/**
+ * @description 处理标签出栈
+ * @private
+ */
+Parser.prototype.popNode = function () {
+  var node = this.stack.pop();
+  var attrs = node.attrs;
+  var children = node.children;
+  var parent = this.stack[this.stack.length - 1];
+  var siblings = parent ? parent.children : this.nodes;
+  if (!this.hook(node) || config.ignoreTags[node.name]) {
+    // 获取标题
+    if (node.name === 'title' && children.length && children[0].type === 'text' && this.options.setTitle) {
+      uni.setNavigationBarTitle({
+        title: children[0].text
+      });
+    }
+    siblings.pop();
+    return;
+  }
+  if (node.pre && this.pre !== 2) {
+    // 是否合并空白符标识
+    this.pre = node.pre = undefined;
+    for (var i = this.stack.length; i--;) {
+      if (this.stack[i].pre) {
+        this.pre = 1;
+      }
+    }
+  }
+  var styleObj = {};
+
+  // 转换 svg
+  if (node.name === 'svg') {
+    if (this.xml > 1) {
+      // 多层 svg 嵌套
+      this.xml--;
+      return;
+    }
+    var src = '';
+    var style = attrs.style;
+    attrs.style = '';
+    attrs.xmlns = 'http://www.w3.org/2000/svg';
+    (function traversal(node) {
+      if (node.type === 'text') {
+        src += node.text;
+        return;
+      }
+      var name = config.svgDict[node.name] || node.name;
+      src += '<' + name;
+      for (var item in node.attrs) {
+        var val = node.attrs[item];
+        if (val) {
+          src += " ".concat(config.svgDict[item] || item, "=\"").concat(val, "\"");
+        }
+      }
+      if (!node.children) {
+        src += '/>';
+      } else {
+        src += '>';
+        for (var _i2 = 0; _i2 < node.children.length; _i2++) {
+          traversal(node.children[_i2]);
+        }
+        src += '</' + name + '>';
+      }
+    })(node);
+    node.name = 'img';
+    node.attrs = {
+      src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
+      style: style,
+      ignore: 'T'
+    };
+    node.children = undefined;
+    this.xml = false;
+    return;
+  }
+
+  // 转换 align 属性
+  if (attrs.align) {
+    if (node.name === 'table') {
+      if (attrs.align === 'center') {
+        styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';
+      } else {
+        styleObj.float = attrs.align;
+      }
+    } else {
+      styleObj['text-align'] = attrs.align;
+    }
+    attrs.align = undefined;
+  }
+
+  // 转换 dir 属性
+  if (attrs.dir) {
+    styleObj.direction = attrs.dir;
+    attrs.dir = undefined;
+  }
+
+  // 转换 font 标签的属性
+  if (node.name === 'font') {
+    if (attrs.color) {
+      styleObj.color = attrs.color;
+      attrs.color = undefined;
+    }
+    if (attrs.face) {
+      styleObj['font-family'] = attrs.face;
+      attrs.face = undefined;
+    }
+    if (attrs.size) {
+      var size = parseInt(attrs.size);
+      if (!isNaN(size)) {
+        if (size < 1) {
+          size = 1;
+        } else if (size > 7) {
+          size = 7;
+        }
+        styleObj['font-size'] = ['x-small', 'small', 'medium', 'large', 'x-large', 'xx-large', 'xxx-large'][size - 1];
+      }
+      attrs.size = undefined;
+    }
+  }
+
+  // 一些编辑器的自带 class
+  if ((attrs.class || '').includes('align-center')) {
+    styleObj['text-align'] = 'center';
+  }
+  Object.assign(styleObj, this.parseStyle(node));
+  if (node.name !== 'table' && parseInt(styleObj.width) > windowWidth) {
+    styleObj['max-width'] = '100%';
+    styleObj['box-sizing'] = 'border-box';
+  }
+  if (config.blockTags[node.name]) {
+    node.name = 'div';
+  } else if (!config.trustTags[node.name] && !this.xml) {
+    // 未知标签转为 span，避免无法显示
+    node.name = 'span';
+  }
+  if (node.name === 'a' || node.name === 'ad') {
+    this.expose();
+  } else if (node.name === 'video') {
+    if ((styleObj.height || '').includes('auto')) {
+      styleObj.height = undefined;
+    }
+  } else if ((node.name === 'ul' || node.name === 'ol') && node.c) {
+    // 列表处理
+    var types = {
+      a: 'lower-alpha',
+      A: 'upper-alpha',
+      i: 'lower-roman',
+      I: 'upper-roman'
+    };
+    if (types[attrs.type]) {
+      attrs.style += ';list-style-type:' + types[attrs.type];
+      attrs.type = undefined;
+    }
+    for (var _i3 = children.length; _i3--;) {
+      if (children[_i3].name === 'li') {
+        children[_i3].c = 1;
+      }
+    }
+  } else if (node.name === 'table') {
+    // 表格处理
+    // cellpadding、cellspacing、border 这几个常用表格属性需要通过转换实现
+    var padding = parseFloat(attrs.cellpadding);
+    var spacing = parseFloat(attrs.cellspacing);
+    var border = parseFloat(attrs.border);
+    var bordercolor = styleObj['border-color'];
+    var borderstyle = styleObj['border-style'];
+    if (node.c) {
+      // padding 和 spacing 默认 2
+      if (isNaN(padding)) {
+        padding = 2;
+      }
+      if (isNaN(spacing)) {
+        spacing = 2;
+      }
+    }
+    if (border) {
+      attrs.style += ";border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray');
+    }
+    if (node.flag && node.c) {
+      // 有 colspan 或 rowspan 且含有链接的表格通过 grid 布局实现
+      styleObj.display = 'grid';
+      if (spacing) {
+        styleObj['grid-gap'] = spacing + 'px';
+        styleObj.padding = spacing + 'px';
+      } else if (border) {
+        // 无间隔的情况下避免边框重叠
+        attrs.style += ';border-left:0;border-top:0';
+      }
+      var width = []; // 表格的列宽
+      var trList = []; // tr 列表
+      var cells = []; // 保存新的单元格
+      var map = {}; // 被合并单元格占用的格子
+
+      (function traversal(nodes) {
+        for (var _i4 = 0; _i4 < nodes.length; _i4++) {
+          if (nodes[_i4].name === 'tr') {
+            trList.push(nodes[_i4]);
+          } else {
+            traversal(nodes[_i4].children || []);
+          }
+        }
+      })(children);
+      for (var row = 1; row <= trList.length; row++) {
+        var col = 1;
+        for (var j = 0; j < trList[row - 1].children.length; j++) {
+          var td = trList[row - 1].children[j];
+          if (td.name === 'td' || td.name === 'th') {
+            // 这个格子被上面的单元格占用，则列号++
+            while (map[row + '.' + col]) {
+              col++;
+            }
+            var _style2 = td.attrs.style || '';
+            var start = _style2.indexOf('width') ? _style2.indexOf(';width') : 0;
+            // 提取出 td 的宽度
+            if (start !== -1) {
+              var end = _style2.indexOf(';', start + 6);
+              if (end === -1) {
+                end = _style2.length;
+              }
+              if (!td.attrs.colspan) {
+                width[col] = _style2.substring(start ? start + 7 : 6, end);
+              }
+              _style2 = _style2.substr(0, start) + _style2.substr(end);
+            }
+            // 设置竖直对齐
+            _style2 += ';display:flex';
+            start = _style2.indexOf('vertical-align');
+            if (start !== -1) {
+              var val = _style2.substr(start + 15, 10);
+              if (val.includes('middle')) {
+                _style2 += ';align-items:center';
+              } else if (val.includes('bottom')) {
+                _style2 += ';align-items:flex-end';
+              }
+            } else {
+              _style2 += ';align-items:center';
+            }
+            // 设置水平对齐
+            start = _style2.indexOf('text-align');
+            if (start !== -1) {
+              var _val = _style2.substr(start + 11, 10);
+              if (_val.includes('center')) {
+                _style2 += ';justify-content: center';
+              } else if (_val.includes('right')) {
+                _style2 += ';justify-content: right';
+              }
+            }
+            _style2 = (border ? ";border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray') + (spacing ? '' : ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') + ';' + _style2;
+            // 处理列合并
+            if (td.attrs.colspan) {
+              _style2 += ";grid-column-start:".concat(col, ";grid-column-end:").concat(col + parseInt(td.attrs.colspan));
+              if (!td.attrs.rowspan) {
+                _style2 += ";grid-row-start:".concat(row, ";grid-row-end:").concat(row + 1);
+              }
+              col += parseInt(td.attrs.colspan) - 1;
+            }
+            // 处理行合并
+            if (td.attrs.rowspan) {
+              _style2 += ";grid-row-start:".concat(row, ";grid-row-end:").concat(row + parseInt(td.attrs.rowspan));
+              if (!td.attrs.colspan) {
+                _style2 += ";grid-column-start:".concat(col, ";grid-column-end:").concat(col + 1);
+              }
+              // 记录下方单元格被占用
+              for (var rowspan = 1; rowspan < td.attrs.rowspan; rowspan++) {
+                for (var colspan = 0; colspan < (td.attrs.colspan || 1); colspan++) {
+                  map[row + rowspan + '.' + (col - colspan)] = 1;
+                }
+              }
+            }
+            if (_style2) {
+              td.attrs.style = _style2;
+            }
+            cells.push(td);
+            col++;
+          }
+        }
+        if (row === 1) {
+          var temp = '';
+          for (var _i5 = 1; _i5 < col; _i5++) {
+            temp += (width[_i5] ? width[_i5] : 'auto') + ' ';
+          }
+          styleObj['grid-template-columns'] = temp;
+        }
+      }
+      node.children = cells;
+    } else {
+      // 没有使用合并单元格的表格通过 table 布局实现
+      if (node.c) {
+        styleObj.display = 'table';
+      }
+      if (!isNaN(spacing)) {
+        styleObj['border-spacing'] = spacing + 'px';
+      }
+      if (border || padding) {
+        // 遍历
+        (function traversal(nodes) {
+          for (var _i6 = 0; _i6 < nodes.length; _i6++) {
+            var _td = nodes[_i6];
+            if (_td.name === 'th' || _td.name === 'td') {
+              if (border) {
+                _td.attrs.style = "border:".concat(border, "px ").concat(borderstyle || 'solid', " ").concat(bordercolor || 'gray', ";").concat(_td.attrs.style || '');
+              }
+              if (padding) {
+                _td.attrs.style = "padding:".concat(padding, "px;").concat(_td.attrs.style || '');
+              }
+            } else if (_td.children) {
+              traversal(_td.children);
+            }
+          }
+        })(children);
+      }
+    }
+    // 给表格添加一个单独的横向滚动层
+    if (this.options.scrollTable && !(attrs.style || '').includes('inline')) {
+      var table = Object.assign({}, node);
+      node.name = 'div';
+      node.attrs = {
+        style: 'overflow:auto'
+      };
+      node.children = [table];
+      attrs = table.attrs;
+    }
+  } else if ((node.name === 'td' || node.name === 'th') && (attrs.colspan || attrs.rowspan)) {
+    for (var _i7 = this.stack.length; _i7--;) {
+      if (this.stack[_i7].name === 'table') {
+        this.stack[_i7].flag = 1; // 指示含有合并单元格
+        break;
+      }
+    }
+  } else if (node.name === 'ruby') {
+    // 转换 ruby
+    node.name = 'span';
+    for (var _i8 = 0; _i8 < children.length - 1; _i8++) {
+      if (children[_i8].type === 'text' && children[_i8 + 1].name === 'rt') {
+        children[_i8] = {
+          name: 'div',
+          attrs: {
+            style: 'display:inline-block;text-align:center'
+          },
+          children: [{
+            name: 'div',
+            attrs: {
+              style: 'font-size:50%;' + (children[_i8 + 1].attrs.style || '')
+            },
+            children: children[_i8 + 1].children
+          }, children[_i8]]
+        };
+        children.splice(_i8 + 1, 1);
+      }
+    }
+  } else if (node.c) {
+    (function traversal(node) {
+      node.c = 2;
+      for (var _i9 = node.children.length; _i9--;) {
+        var child = node.children[_i9];
+        if (!child.c || child.name === 'table') {
+          node.c = 1;
+        }
+      }
+    })(node);
+  }
+  if ((styleObj.display || '').includes('flex') && !node.c) {
+    for (var _i10 = children.length; _i10--;) {
+      var item = children[_i10];
+      if (item.f) {
+        item.attrs.style = (item.attrs.style || '') + item.f;
+        item.f = undefined;
+      }
+    }
+  }
+  // flex 布局时部分样式需要提取到 rich-text 外层
+  var flex = parent && ((parent.attrs.style || '').includes('flex') || (parent.attrs.style || '').includes('grid'))
+
+  // 检查基础库版本 virtualHost 是否可用
+  && !(node.c && wx.getNFCAdapter); // eslint-disable-line
+
+  if (flex) {
+    node.f = ';max-width:100%';
+  }
+  if (children.length >= 50 && node.c && !(styleObj.display || '').includes('flex')) {
+    mergeNodes(children);
+  }
+  for (var key in styleObj) {
+    if (styleObj[key]) {
+      var _val2 = ";".concat(key, ":").concat(styleObj[key].replace(' !important', ''));
+      if (flex && (key.includes('flex') && key !== 'flex-direction' || key === 'align-self' || key.includes('grid') || styleObj[key][0] === '-' || key.includes('width') && _val2.includes('%'))) {
+        node.f += _val2;
+        if (key === 'width') {
+          attrs.style += ';width:100%';
+        }
+      } else {
+        attrs.style += _val2;
+      }
+    }
+  }
+  attrs.style = attrs.style.substr(1) || undefined;
+};
+
+/**
+ * @description 解析到文本
+ * @param {String} text 文本内容
+ */
+Parser.prototype.onText = function (text) {
+  if (!this.pre) {
+    // 合并空白符
+    var trim = '';
+    var flag;
+    for (var i = 0, len = text.length; i < len; i++) {
+      if (!blankChar[text[i]]) {
+        trim += text[i];
+      } else {
+        if (trim[trim.length - 1] !== ' ') {
+          trim += ' ';
+        }
+        if (text[i] === '\n' && !flag) {
+          flag = true;
+        }
+      }
+    }
+    // 去除含有换行符的空串
+    if (trim === ' ') {
+      if (flag) return;
+    }
+    text = trim;
+  }
+  var node = Object.create(null);
+  node.type = 'text';
+  node.text = decodeEntity(text);
+  if (this.hook(node)) {
+    if (this.options.selectable === 'force' && system.includes('iOS') && !uni.canIUse('rich-text.user-select')) {
+      this.expose();
+    }
+    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
+    siblings.push(node);
+  }
+};
+
+/**
+ * @description html 词法分析器
+ * @param {Object} handler 高层处理器
+ */
+function Lexer(handler) {
+  this.handler = handler;
+}
+
+/**
+ * @description 执行解析
+ * @param {String} content 要解析的文本
+ */
+Lexer.prototype.parse = function (content) {
+  this.content = content || '';
+  this.i = 0; // 标记解析位置
+  this.start = 0; // 标记一个单词的开始位置
+  this.state = this.text; // 当前状态
+  for (var len = this.content.length; this.i !== -1 && this.i < len;) {
+    this.state();
+  }
+};
+
+/**
+ * @description 检查标签是否闭合
+ * @param {String} method 如果闭合要进行的操作
+ * @returns {Boolean} 是否闭合
+ * @private
+ */
+Lexer.prototype.checkClose = function (method) {
+  var selfClose = this.content[this.i] === '/';
+  if (this.content[this.i] === '>' || selfClose && this.content[this.i + 1] === '>') {
+    if (method) {
+      this.handler[method](this.content.substring(this.start, this.i));
+    }
+    this.i += selfClose ? 2 : 1;
+    this.start = this.i;
+    this.handler.onOpenTag(selfClose);
+    if (this.handler.tagName === 'script') {
+      this.i = this.content.indexOf('</', this.i);
+      if (this.i !== -1) {
+        this.i += 2;
+        this.start = this.i;
+      }
+      this.state = this.endTag;
+    } else {
+      this.state = this.text;
+    }
+    return true;
+  }
+  return false;
+};
+
+/**
+ * @description 文本状态
+ * @private
+ */
+Lexer.prototype.text = function () {
+  this.i = this.content.indexOf('<', this.i); // 查找最近的标签
+  if (this.i === -1) {
+    // 没有标签了
+    if (this.start < this.content.length) {
+      this.handler.onText(this.content.substring(this.start, this.content.length));
+    }
+    return;
+  }
+  var c = this.content[this.i + 1];
+  if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
+    // 标签开头
+    if (this.start !== this.i) {
+      this.handler.onText(this.content.substring(this.start, this.i));
+    }
+    this.start = ++this.i;
+    this.state = this.tagName;
+  } else if (c === '/' || c === '!' || c === '?') {
+    if (this.start !== this.i) {
+      this.handler.onText(this.content.substring(this.start, this.i));
+    }
+    var next = this.content[this.i + 2];
+    if (c === '/' && (next >= 'a' && next <= 'z' || next >= 'A' && next <= 'Z')) {
+      // 标签结尾
+      this.i += 2;
+      this.start = this.i;
+      this.state = this.endTag;
+      return;
+    }
+    // 处理注释
+    var end = '-->';
+    if (c !== '!' || this.content[this.i + 2] !== '-' || this.content[this.i + 3] !== '-') {
+      end = '>';
+    }
+    this.i = this.content.indexOf(end, this.i);
+    if (this.i !== -1) {
+      this.i += end.length;
+      this.start = this.i;
+    }
+  } else {
+    this.i++;
+  }
+};
+
+/**
+ * @description 标签名状态
+ * @private
+ */
+Lexer.prototype.tagName = function () {
+  if (blankChar[this.content[this.i]]) {
+    // 解析到标签名
+    this.handler.onTagName(this.content.substring(this.start, this.i));
+    while (blankChar[this.content[++this.i]]) {
+      ;
+    }
+    if (this.i < this.content.length && !this.checkClose()) {
+      this.start = this.i;
+      this.state = this.attrName;
+    }
+  } else if (!this.checkClose('onTagName')) {
+    this.i++;
+  }
+};
+
+/**
+ * @description 属性名状态
+ * @private
+ */
+Lexer.prototype.attrName = function () {
+  var c = this.content[this.i];
+  if (blankChar[c] || c === '=') {
+    // 解析到属性名
+    this.handler.onAttrName(this.content.substring(this.start, this.i));
+    var needVal = c === '=';
+    var len = this.content.length;
+    while (++this.i < len) {
+      c = this.content[this.i];
+      if (!blankChar[c]) {
+        if (this.checkClose()) return;
+        if (needVal) {
+          // 等号后遇到第一个非空字符
+          this.start = this.i;
+          this.state = this.attrVal;
+          return;
+        }
+        if (this.content[this.i] === '=') {
+          needVal = true;
+        } else {
+          this.start = this.i;
+          this.state = this.attrName;
+          return;
+        }
+      }
+    }
+  } else if (!this.checkClose('onAttrName')) {
+    this.i++;
+  }
+};
+
+/**
+ * @description 属性值状态
+ * @private
+ */
+Lexer.prototype.attrVal = function () {
+  var c = this.content[this.i];
+  var len = this.content.length;
+  if (c === '"' || c === "'") {
+    // 有冒号的属性
+    this.start = ++this.i;
+    this.i = this.content.indexOf(c, this.i);
+    if (this.i === -1) return;
+    this.handler.onAttrVal(this.content.substring(this.start, this.i));
+  } else {
+    // 没有冒号的属性
+    for (; this.i < len; this.i++) {
+      if (blankChar[this.content[this.i]]) {
+        this.handler.onAttrVal(this.content.substring(this.start, this.i));
+        break;
+      } else if (this.checkClose('onAttrVal')) return;
+    }
+  }
+  while (blankChar[this.content[++this.i]]) {
+    ;
+  }
+  if (this.i < len && !this.checkClose()) {
+    this.start = this.i;
+    this.state = this.attrName;
+  }
+};
+
+/**
+ * @description 结束标签状态
+ * @returns {String} 结束的标签名
+ * @private
+ */
+Lexer.prototype.endTag = function () {
+  var c = this.content[this.i];
+  if (blankChar[c] || c === '>' || c === '/') {
+    this.handler.onCloseTag(this.content.substring(this.start, this.i));
+    if (c !== '>') {
+      this.i = this.content.indexOf('>', this.i);
+      if (this.i === -1) return;
+    }
+    this.start = ++this.i;
+    this.state = this.text;
+  } else {
+    this.i++;
+  }
+};
+var _default = Parser;
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 208:
+/*!**********************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/audio/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ 209));
+/**
+ * @fileoverview audio 插件
+ */
+
+var index = 0;
+function Audio(vm) {
+  this.vm = vm;
+}
+Audio.prototype.onUpdate = function () {
+  this.audios = [];
+};
+Audio.prototype.onParse = function (node) {
+  if (node.name === 'audio') {
+    if (!node.attrs.id) {
+      node.attrs.id = 'a' + index++;
+    }
+    this.audios.push(node.attrs.id);
+  }
+};
+Audio.prototype.onLoad = function () {
+  var _this = this;
+  setTimeout(function () {
+    for (var i = 0; i < _this.audios.length; i++) {
+      var ctx = _context.default.get(_this.audios[i]);
+      ctx.id = _this.audios[i];
+      _this.vm._videos.push(ctx);
+    }
+  }, 500);
+};
+var _default = Audio;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 209:
+/*!************************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/audio/context.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var ctx = {};
+var _default = {
+  get: function get(id) {
+    return ctx[id];
+  },
+  set: function set(id, vm) {
+    ctx[id] = vm;
+  },
+  remove: function remove(id) {
+    ctx[id] = undefined;
+  }
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 21:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 210:
+/*!**************************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/highlight/index.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _prism = _interopRequireDefault(__webpack_require__(/*! ./prism.min */ 211));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 212));
+var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 207));
+/**
+ * @fileoverview highlight 插件
+ * Include prismjs (https://prismjs.com)
+ */
+
+function Highlight(vm) {
+  this.vm = vm;
+}
+Highlight.prototype.onParse = function (node, vm) {
+  if (node.name === 'pre') {
+    if (vm.options.editable) {
+      node.attrs.class = (node.attrs.class || '') + ' hl-pre';
+      return;
+    }
+    var i;
+    for (i = node.children.length; i--;) {
+      if (node.children[i].name === 'code') break;
+    }
+    if (i === -1) return;
+    var code = node.children[i];
+    var className = code.attrs.class + ' ' + node.attrs.class;
+    i = className.indexOf('language-');
+    if (i === -1) {
+      i = className.indexOf('lang-');
+      if (i === -1) {
+        className = 'language-text';
+        i = 9;
+      } else {
+        i += 5;
+      }
+    } else {
+      i += 9;
+    }
+    var j;
+    for (j = i; j < className.length; j++) {
+      if (className[j] === ' ') break;
+    }
+    var lang = className.substring(i, j);
+    if (code.children.length) {
+      var text = this.vm.getText(code.children).replace(/&amp;/g, '&');
+      if (!text) return;
+      if (node.c) {
+        node.c = undefined;
+      }
+      if (_prism.default.languages[lang]) {
+        code.children = new _parser.default(this.vm).parse(
+        // 加一层 pre 保留空白符
+        '<pre>' + _prism.default.highlight(text, _prism.default.languages[lang], lang).replace(/token /g, 'hl-') + '</pre>')[0].children;
+      }
+      node.attrs.class = 'hl-pre';
+      code.attrs.class = 'hl-code';
+      if (_config.default.showLanguageName) {
+        node.children.push({
+          name: 'div',
+          attrs: {
+            class: 'hl-language',
+            style: 'user-select:none'
+          },
+          children: [{
+            type: 'text',
+            text: lang
+          }]
+        });
+      }
+      if (_config.default.copyByLongPress) {
+        node.attrs.style += (node.attrs.style || '') + ';user-select:none';
+        node.attrs['data-content'] = text;
+        vm.expose();
+      }
+      if (_config.default.showLineNumber) {
+        var line = text.split('\n').length;
+        var children = [];
+        for (var k = line; k--;) {
+          children.push({
+            name: 'span',
+            attrs: {
+              class: 'span'
+            }
+          });
+        }
+        node.children.push({
+          name: 'span',
+          attrs: {
+            class: 'line-numbers-rows'
+          },
+          children: children
+        });
+      }
+    }
+  }
+};
+var _default = Highlight;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 211:
+/*!******************************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/highlight/prism.min.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+/*! PrismJS 1.22.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript */
+var _self = "undefined" != typeof window ? window : "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? self : {},
+  Prism = function (u) {
+    var c = /\blang(?:uage)?-([\w-]+)\b/i,
+      n = 0,
+      M = {
+        manual: u.Prism && u.Prism.manual,
+        disableWorkerMessageHandler: u.Prism && u.Prism.disableWorkerMessageHandler,
+        util: {
+          encode: function e(n) {
+            return n instanceof W ? new W(n.type, e(n.content), n.alias) : Array.isArray(n) ? n.map(e) : n.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
+          },
+          type: function type(e) {
+            return Object.prototype.toString.call(e).slice(8, -1);
+          },
+          objId: function objId(e) {
+            return e.__id || Object.defineProperty(e, "__id", {
+              value: ++n
+            }), e.__id;
+          },
+          clone: function t(e, r) {
+            var a, n;
+            switch (r = r || {}, M.util.type(e)) {
+              case "Object":
+                if (n = M.util.objId(e), r[n]) return r[n];
+                for (var i in a = {}, r[n] = a, e) {
+                  e.hasOwnProperty(i) && (a[i] = t(e[i], r));
+                }
+                return a;
+              case "Array":
+                return n = M.util.objId(e), r[n] ? r[n] : (a = [], r[n] = a, e.forEach(function (e, n) {
+                  a[n] = t(e, r);
+                }), a);
+              default:
+                return e;
+            }
+          },
+          getLanguage: function getLanguage(e) {
+            for (; e && !c.test(e.className);) {
+              e = e.parentElement;
+            }
+            return e ? (e.className.match(c) || [, "none"])[1].toLowerCase() : "none";
+          },
+          currentScript: function currentScript() {
+            if ("undefined" == typeof document) return null;
+            if ("currentScript" in document) return document.currentScript;
+            try {
+              throw new Error();
+            } catch (e) {
+              var n = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(e.stack) || [])[1];
+              if (n) {
+                var t = document.getElementsByTagName("script");
+                for (var r in t) {
+                  if (t[r].src == n) return t[r];
+                }
+              }
+              return null;
+            }
+          },
+          isActive: function isActive(e, n, t) {
+            for (var r = "no-" + n; e;) {
+              var a = e.classList;
+              if (a.contains(n)) return !0;
+              if (a.contains(r)) return !1;
+              e = e.parentElement;
+            }
+            return !!t;
+          }
+        },
+        languages: {
+          extend: function extend(e, n) {
+            var t = M.util.clone(M.languages[e]);
+            for (var r in n) {
+              t[r] = n[r];
+            }
+            return t;
+          },
+          insertBefore: function insertBefore(t, e, n, r) {
+            var a = (r = r || M.languages)[t],
+              i = {};
+            for (var l in a) {
+              if (a.hasOwnProperty(l)) {
+                if (l == e) for (var o in n) {
+                  n.hasOwnProperty(o) && (i[o] = n[o]);
+                }
+                n.hasOwnProperty(l) || (i[l] = a[l]);
+              }
+            }
+            var s = r[t];
+            return r[t] = i, M.languages.DFS(M.languages, function (e, n) {
+              n === s && e != t && (this[e] = i);
+            }), i;
+          },
+          DFS: function e(n, t, r, a) {
+            a = a || {};
+            var i = M.util.objId;
+            for (var l in n) {
+              if (n.hasOwnProperty(l)) {
+                t.call(n, l, n[l], r || l);
+                var o = n[l],
+                  s = M.util.type(o);
+                "Object" !== s || a[i(o)] ? "Array" !== s || a[i(o)] || (a[i(o)] = !0, e(o, t, l, a)) : (a[i(o)] = !0, e(o, t, null, a));
+              }
+            }
+          }
+        },
+        plugins: {},
+        highlightAll: function highlightAll(e, n) {
+          M.highlightAllUnder(document, e, n);
+        },
+        highlightAllUnder: function highlightAllUnder(e, n, t) {
+          var r = {
+            callback: t,
+            container: e,
+            selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
+          };
+          M.hooks.run("before-highlightall", r), r.elements = Array.prototype.slice.apply(r.container.querySelectorAll(r.selector)), M.hooks.run("before-all-elements-highlight", r);
+          for (var a, i = 0; a = r.elements[i++];) {
+            M.highlightElement(a, !0 === n, r.callback);
+          }
+        },
+        highlightElement: function highlightElement(e, n, t) {
+          var r = M.util.getLanguage(e),
+            a = M.languages[r];
+          e.className = e.className.replace(c, "").replace(/\s+/g, " ") + " language-" + r;
+          var i = e.parentElement;
+          i && "pre" === i.nodeName.toLowerCase() && (i.className = i.className.replace(c, "").replace(/\s+/g, " ") + " language-" + r);
+          var l = {
+            element: e,
+            language: r,
+            grammar: a,
+            code: e.textContent
+          };
+          function o(e) {
+            l.highlightedCode = e, M.hooks.run("before-insert", l), l.element.innerHTML = l.highlightedCode, M.hooks.run("after-highlight", l), M.hooks.run("complete", l), t && t.call(l.element);
+          }
+          if (M.hooks.run("before-sanity-check", l), !l.code) return M.hooks.run("complete", l), void (t && t.call(l.element));
+          if (M.hooks.run("before-highlight", l), l.grammar) {
+            if (n && u.Worker) {
+              var s = new Worker(M.filename);
+              s.onmessage = function (e) {
+                o(e.data);
+              }, s.postMessage(JSON.stringify({
+                language: l.language,
+                code: l.code,
+                immediateClose: !0
+              }));
+            } else o(M.highlight(l.code, l.grammar, l.language));
+          } else o(M.util.encode(l.code));
+        },
+        highlight: function highlight(e, n, t) {
+          var r = {
+            code: e,
+            grammar: n,
+            language: t
+          };
+          return M.hooks.run("before-tokenize", r), r.tokens = M.tokenize(r.code, r.grammar), M.hooks.run("after-tokenize", r), W.stringify(M.util.encode(r.tokens), r.language);
+        },
+        tokenize: function tokenize(e, n) {
+          var t = n.rest;
+          if (t) {
+            for (var r in t) {
+              n[r] = t[r];
+            }
+            delete n.rest;
+          }
+          var a = new i();
+          return I(a, a.head, e), function e(n, t, r, a, i, l) {
+            for (var o in r) {
+              if (r.hasOwnProperty(o) && r[o]) {
+                var s = r[o];
+                s = Array.isArray(s) ? s : [s];
+                for (var u = 0; u < s.length; ++u) {
+                  if (l && l.cause == o + "," + u) return;
+                  var c = s[u],
+                    g = c.inside,
+                    f = !!c.lookbehind,
+                    h = !!c.greedy,
+                    d = 0,
+                    v = c.alias;
+                  if (h && !c.pattern.global) {
+                    var p = c.pattern.toString().match(/[imsuy]*$/)[0];
+                    c.pattern = RegExp(c.pattern.source, p + "g");
+                  }
+                  for (var m = c.pattern || c, y = a.next, k = i; y !== t.tail && !(l && k >= l.reach); k += y.value.length, y = y.next) {
+                    var b = y.value;
+                    if (t.length > n.length) return;
+                    if (!(b instanceof W)) {
+                      var x = 1;
+                      if (h && y != t.tail.prev) {
+                        m.lastIndex = k;
+                        var w = m.exec(n);
+                        if (!w) break;
+                        var A = w.index + (f && w[1] ? w[1].length : 0),
+                          P = w.index + w[0].length,
+                          S = k;
+                        for (S += y.value.length; S <= A;) {
+                          y = y.next, S += y.value.length;
+                        }
+                        if (S -= y.value.length, k = S, y.value instanceof W) continue;
+                        for (var E = y; E !== t.tail && (S < P || "string" == typeof E.value); E = E.next) {
+                          x++, S += E.value.length;
+                        }
+                        x--, b = n.slice(k, S), w.index -= k;
+                      } else {
+                        m.lastIndex = 0;
+                        var w = m.exec(b);
+                      }
+                      if (w) {
+                        f && (d = w[1] ? w[1].length : 0);
+                        var A = w.index + d,
+                          O = w[0].slice(d),
+                          P = A + O.length,
+                          L = b.slice(0, A),
+                          N = b.slice(P),
+                          j = k + b.length;
+                        l && j > l.reach && (l.reach = j);
+                        var C = y.prev;
+                        L && (C = I(t, C, L), k += L.length), z(t, C, x);
+                        var _ = new W(o, g ? M.tokenize(O, g) : O, v, O);
+                        y = I(t, C, _), N && I(t, y, N), 1 < x && e(n, t, r, y.prev, k, {
+                          cause: o + "," + u,
+                          reach: j
+                        });
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }(e, a, n, a.head, 0), function (e) {
+            var n = [],
+              t = e.head.next;
+            for (; t !== e.tail;) {
+              n.push(t.value), t = t.next;
+            }
+            return n;
+          }(a);
+        },
+        hooks: {
+          all: {},
+          add: function add(e, n) {
+            var t = M.hooks.all;
+            t[e] = t[e] || [], t[e].push(n);
+          },
+          run: function run(e, n) {
+            var t = M.hooks.all[e];
+            if (t && t.length) for (var r, a = 0; r = t[a++];) {
+              r(n);
+            }
+          }
+        },
+        Token: W
+      };
+    function W(e, n, t, r) {
+      this.type = e, this.content = n, this.alias = t, this.length = 0 | (r || "").length;
+    }
+    function i() {
+      var e = {
+          value: null,
+          prev: null,
+          next: null
+        },
+        n = {
+          value: null,
+          prev: e,
+          next: null
+        };
+      e.next = n, this.head = e, this.tail = n, this.length = 0;
+    }
+    function I(e, n, t) {
+      var r = n.next,
+        a = {
+          value: t,
+          prev: n,
+          next: r
+        };
+      return n.next = a, r.prev = a, e.length++, a;
+    }
+    function z(e, n, t) {
+      for (var r = n.next, a = 0; a < t && r !== e.tail; a++) {
+        r = r.next;
+      }
+      (n.next = r).prev = n, e.length -= a;
+    }
+    if (u.Prism = M, W.stringify = function n(e, t) {
+      if ("string" == typeof e) return e;
+      if (Array.isArray(e)) {
+        var r = "";
+        return e.forEach(function (e) {
+          r += n(e, t);
+        }), r;
+      }
+      var a = {
+          type: e.type,
+          content: n(e.content, t),
+          tag: "span",
+          classes: ["token", e.type],
+          attributes: {},
+          language: t
+        },
+        i = e.alias;
+      i && (Array.isArray(i) ? Array.prototype.push.apply(a.classes, i) : a.classes.push(i)), M.hooks.run("wrap", a);
+      var l = "";
+      for (var o in a.attributes) {
+        l += " " + o + '="' + (a.attributes[o] || "").replace(/"/g, "&quot;") + '"';
+      }
+      return "<" + a.tag + ' class="' + a.classes.join(" ") + '"' + l + ">" + a.content + "</" + a.tag + ">";
+    }, !u.document) return u.addEventListener && (M.disableWorkerMessageHandler || u.addEventListener("message", function (e) {
+      var n = JSON.parse(e.data),
+        t = n.language,
+        r = n.code,
+        a = n.immediateClose;
+      u.postMessage(M.highlight(r, M.languages[t], t)), a && u.close();
+    }, !1)), M;
+    var e = M.util.currentScript();
+    function t() {
+      M.manual || M.highlightAll();
+    }
+    if (e && (M.filename = e.src, e.hasAttribute("data-manual") && (M.manual = !0)), !M.manual) {
+      var r = document.readyState;
+      "loading" === r || "interactive" === r && e && e.defer ? document.addEventListener("DOMContentLoaded", t) : window.requestAnimationFrame ? window.requestAnimationFrame(t) : window.setTimeout(t, 16);
+    }
+    return M;
+  }(_self);
+var _default = Prism;
+exports.default = _default;
+"undefined" != typeof global && (global.Prism = Prism);
+Prism.languages.markup = {
+  comment: /<!--[\s\S]*?-->/,
+  prolog: /<\?[\s\S]+?\?>/,
+  doctype: {
+    pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
+    greedy: !0,
+    inside: {
+      "internal-subset": {
+        pattern: /(\[)[\s\S]+(?=\]>$)/,
+        lookbehind: !0,
+        greedy: !0,
+        inside: null
+      },
+      string: {
+        pattern: /"[^"]*"|'[^']*'/,
+        greedy: !0
+      },
+      punctuation: /^<!|>$|[[\]]/,
+      "doctype-tag": /^DOCTYPE/,
+      name: /[^\s<>'"]+/
+    }
+  },
+  cdata: /<!\[CDATA\[[\s\S]*?]]>/i,
+  tag: {
+    pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
+    greedy: !0,
+    inside: {
+      tag: {
+        pattern: /^<\/?[^\s>\/]+/,
+        inside: {
+          punctuation: /^<\/?/,
+          namespace: /^[^\s>\/:]+:/
+        }
+      },
+      "attr-value": {
+        pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+        inside: {
+          punctuation: [{
+            pattern: /^=/,
+            alias: "attr-equals"
+          }, /"|'/]
+        }
+      },
+      punctuation: /\/?>/,
+      "attr-name": {
+        pattern: /[^\s>\/]+/,
+        inside: {
+          namespace: /^[^\s>\/:]+:/
+        }
+      }
+    }
+  },
+  entity: [{
+    pattern: /&[\da-z]{1,8};/i,
+    alias: "named-entity"
+  }, /&#x?[\da-f]{1,8};/i]
+}, Prism.languages.markup.tag.inside["attr-value"].inside.entity = Prism.languages.markup.entity, Prism.languages.markup.doctype.inside["internal-subset"].inside = Prism.languages.markup, Prism.hooks.add("wrap", function (a) {
+  "entity" === a.type && (a.attributes.title = a.content.replace(/&amp;/, "&"));
+}), Object.defineProperty(Prism.languages.markup.tag, "addInlined", {
+  value: function value(a, e) {
+    var s = {};
+    s["language-" + e] = {
+      pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
+      lookbehind: !0,
+      inside: Prism.languages[e]
+    }, s.cdata = /^<!\[CDATA\[|\]\]>$/i;
+    var n = {
+      "included-cdata": {
+        pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
+        inside: s
+      }
+    };
+    n["language-" + e] = {
+      pattern: /[\s\S]+/,
+      inside: Prism.languages[e]
+    };
+    var t = {};
+    t[a] = {
+      pattern: RegExp("(<__[^]*?>)(?:<!\\[CDATA\\[(?:[^\\]]|\\](?!\\]>))*\\]\\]>|(?!<!\\[CDATA\\[)[^])*?(?=</__>)".replace(/__/g, function () {
+        return a;
+      }), "i"),
+      lookbehind: !0,
+      greedy: !0,
+      inside: n
+    }, Prism.languages.insertBefore("markup", "cdata", t);
+  }
+}), Prism.languages.html = Prism.languages.markup, Prism.languages.mathml = Prism.languages.markup, Prism.languages.svg = Prism.languages.markup, Prism.languages.xml = Prism.languages.extend("markup", {}), Prism.languages.ssml = Prism.languages.xml, Prism.languages.atom = Prism.languages.xml, Prism.languages.rss = Prism.languages.xml;
+!function (e) {
+  var t = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
+  e.languages.css = {
+    comment: /\/\*[\s\S]*?\*\//,
+    atrule: {
+      pattern: /@[\w-]+[\s\S]*?(?:;|(?=\s*\{))/,
+      inside: {
+        rule: /^@[\w-]+/,
+        "selector-function-argument": {
+          pattern: /(\bselector\s*\((?!\s*\))\s*)(?:[^()]|\((?:[^()]|\([^()]*\))*\))+?(?=\s*\))/,
+          lookbehind: !0,
+          alias: "selector"
+        },
+        keyword: {
+          pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
+          lookbehind: !0
+        }
+      }
+    },
+    url: {
+      pattern: RegExp("\\burl\\((?:" + t.source + "|(?:[^\\\\\r\n()\"']|\\\\[^])*)\\)", "i"),
+      greedy: !0,
+      inside: {
+        function: /^url/i,
+        punctuation: /^\(|\)$/,
+        string: {
+          pattern: RegExp("^" + t.source + "$"),
+          alias: "url"
+        }
+      }
+    },
+    selector: RegExp("[^{}\\s](?:[^{};\"']|" + t.source + ")*?(?=\\s*\\{)"),
+    string: {
+      pattern: t,
+      greedy: !0
+    },
+    property: /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
+    important: /!important\b/i,
+    function: /[-a-z0-9]+(?=\()/i,
+    punctuation: /[(){};:,]/
+  }, e.languages.css.atrule.inside.rest = e.languages.css;
+  var s = e.languages.markup;
+  s && (s.tag.addInlined("style", "css"), e.languages.insertBefore("inside", "attr-value", {
+    "style-attr": {
+      pattern: /(^|["'\s])style\s*=\s*(?:"[^"]*"|'[^']*')/i,
+      lookbehind: !0,
+      inside: {
+        "attr-value": {
+          pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+          inside: {
+            style: {
+              pattern: /(["'])[\s\S]+(?=["']$)/,
+              lookbehind: !0,
+              alias: "language-css",
+              inside: e.languages.css
+            },
+            punctuation: [{
+              pattern: /^=/,
+              alias: "attr-equals"
+            }, /"|'/]
+          }
+        },
+        "attr-name": /^style/i
+      }
+    }
+  }, s.tag));
+}(Prism);
+Prism.languages.clike = {
+  comment: [{
+    pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+    lookbehind: !0
+  }, {
+    pattern: /(^|[^\\:])\/\/.*/,
+    lookbehind: !0,
+    greedy: !0
+  }],
+  string: {
+    pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+    greedy: !0
+  },
+  "class-name": {
+    pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new)\s+|\bcatch\s+\()[\w.\\]+/i,
+    lookbehind: !0,
+    inside: {
+      punctuation: /[.\\]/
+    }
+  },
+  keyword: /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
+  boolean: /\b(?:true|false)\b/,
+  function: /\w+(?=\()/,
+  number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
+  operator: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
+  punctuation: /[{}[\];(),.:]/
+};
+Prism.languages.javascript = Prism.languages.extend("clike", {
+  "class-name": [Prism.languages.clike["class-name"], {
+    pattern: /(^|[^$\w\xA0-\uFFFF])[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/,
+    lookbehind: !0
+  }],
+  keyword: [{
+    pattern: /((?:^|})\s*)(?:catch|finally)\b/,
+    lookbehind: !0
+  }, {
+    pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|(?:get|set)(?=\s*[\[$\w\xA0-\uFFFF])|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
+    lookbehind: !0
+  }],
+  number: /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
+  function: /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
+  operator: /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
+}), Prism.languages.javascript["class-name"][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/, Prism.languages.insertBefore("javascript", "keyword", {
+  regex: {
+    pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
+    lookbehind: !0,
+    greedy: !0,
+    inside: {
+      "regex-source": {
+        pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+        lookbehind: !0,
+        alias: "language-regex",
+        inside: Prism.languages.regex
+      },
+      "regex-flags": /[a-z]+$/,
+      "regex-delimiter": /^\/|\/$/
+    }
+  },
+  "function-variable": {
+    pattern: /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/,
+    alias: "function"
+  },
+  parameter: [{
+    pattern: /(function(?:\s+[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\))/,
+    lookbehind: !0,
+    inside: Prism.languages.javascript
+  }, {
+    pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/i,
+    inside: Prism.languages.javascript
+  }, {
+    pattern: /(\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*=>)/,
+    lookbehind: !0,
+    inside: Prism.languages.javascript
+  }, {
+    pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*\{)/,
+    lookbehind: !0,
+    inside: Prism.languages.javascript
+  }],
+  constant: /\b[A-Z](?:[A-Z_]|\dx?)*\b/
+}), Prism.languages.insertBefore("javascript", "string", {
+  "template-string": {
+    pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
+    greedy: !0,
+    inside: {
+      "template-punctuation": {
+        pattern: /^`|`$/,
+        alias: "string"
+      },
+      interpolation: {
+        pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+        lookbehind: !0,
+        inside: {
+          "interpolation-punctuation": {
+            pattern: /^\${|}$/,
+            alias: "punctuation"
+          },
+          rest: Prism.languages.javascript
+        }
+      },
+      string: /[\s\S]+/
+    }
+  }
+}), Prism.languages.markup && Prism.languages.markup.tag.addInlined("script", "javascript"), Prism.languages.js = Prism.languages.javascript;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 212:
+/*!***************************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/highlight/config.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  copyByLongPress: true,
+  // 是否需要长按代码块时显示复制代码内容菜单
+  showLanguageName: true,
+  // 是否在代码块右上角显示语言的名称
+  showLineNumber: true // 是否显示行号
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 22:
+/*!*************************************************************!*\
+  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni, global) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;
+exports.compileI18nJsonStr = compileI18nJsonStr;
+exports.hasI18nJson = hasI18nJson;
+exports.initVueI18n = initVueI18n;
+exports.isI18nStr = isI18nStr;
+exports.isString = void 0;
+exports.normalizeLocale = normalizeLocale;
+exports.parseI18nJson = parseI18nJson;
+exports.resolveLocale = resolveLocale;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var isObject = function isObject(val) {
+  return val !== null && (0, _typeof2.default)(val) === 'object';
+};
+var defaultDelimiters = ['{', '}'];
+var BaseFormatter = /*#__PURE__*/function () {
+  function BaseFormatter() {
+    (0, _classCallCheck2.default)(this, BaseFormatter);
+    this._caches = Object.create(null);
+  }
+  (0, _createClass2.default)(BaseFormatter, [{
+    key: "interpolate",
+    value: function interpolate(message, values) {
+      var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
+      if (!values) {
+        return [message];
+      }
+      var tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message, delimiters);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    }
+  }]);
+  return BaseFormatter;
+}();
+exports.Formatter = BaseFormatter;
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+function parse(format, _ref) {
+  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+    startDelimiter = _ref2[0],
+    endDelimiter = _ref2[1];
+  var tokens = [];
+  var position = 0;
+  var text = '';
+  while (position < format.length) {
+    var char = format[position++];
+    if (char === startDelimiter) {
+      if (text) {
+        tokens.push({
+          type: 'text',
+          value: text
+        });
+      }
+      text = '';
+      var sub = '';
+      char = format[position++];
+      while (char !== undefined && char !== endDelimiter) {
+        sub += char;
+        char = format[position++];
+      }
+      var isClosed = char === endDelimiter;
+      var type = RE_TOKEN_LIST_VALUE.test(sub) ? 'list' : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? 'named' : 'unknown';
+      tokens.push({
+        value: sub,
+        type: type
+      });
+    }
+    //  else if (char === '%') {
+    //   // when found rails i18n syntax, skip text capture
+    //   if (format[position] !== '{') {
+    //     text += char
+    //   }
+    // }
+    else {
+      text += char;
+    }
+  }
+  text && tokens.push({
+    type: 'text',
+    value: text
+  });
+  return tokens;
+}
+function compile(tokens, values) {
+  var compiled = [];
+  var index = 0;
+  var mode = Array.isArray(values) ? 'list' : isObject(values) ? 'named' : 'unknown';
+  if (mode === 'unknown') {
+    return compiled;
+  }
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break;
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break;
+      case 'named':
+        if (mode === 'named') {
+          compiled.push(values[token.value]);
+        } else {
+          if (true) {
+            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
+          }
+        }
+        break;
+      case 'unknown':
+        if (true) {
+          console.warn("Detect 'unknown' type of token!");
+        }
+        break;
+    }
+    index++;
+  }
+  return compiled;
+}
+var LOCALE_ZH_HANS = 'zh-Hans';
+exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
+var LOCALE_ZH_HANT = 'zh-Hant';
+exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
+var LOCALE_EN = 'en';
+exports.LOCALE_EN = LOCALE_EN;
+var LOCALE_FR = 'fr';
+exports.LOCALE_FR = LOCALE_FR;
+var LOCALE_ES = 'es';
+exports.LOCALE_ES = LOCALE_ES;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var hasOwn = function hasOwn(val, key) {
+  return hasOwnProperty.call(val, key);
+};
+var defaultFormatter = new BaseFormatter();
+function include(str, parts) {
+  return !!parts.find(function (part) {
+    return str.indexOf(part) !== -1;
+  });
+}
+function startsWith(str, parts) {
+  return parts.find(function (part) {
+    return str.indexOf(part) === 0;
+  });
+}
+function normalizeLocale(locale, messages) {
+  if (!locale) {
+    return;
+  }
+  locale = locale.trim().replace(/_/g, '-');
+  if (messages && messages[locale]) {
+    return locale;
+  }
+  locale = locale.toLowerCase();
+  if (locale === 'chinese') {
+    // 支付宝
+    return LOCALE_ZH_HANS;
+  }
+  if (locale.indexOf('zh') === 0) {
+    if (locale.indexOf('-hans') > -1) {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf('-hant') > -1) {
+      return LOCALE_ZH_HANT;
+    }
+    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
+      return LOCALE_ZH_HANT;
+    }
+    return LOCALE_ZH_HANS;
+  }
+  var locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
+  if (messages && Object.keys(messages).length > 0) {
+    locales = Object.keys(messages);
+  }
+  var lang = startsWith(locale, locales);
+  if (lang) {
+    return lang;
+  }
+}
+var I18n = /*#__PURE__*/function () {
+  function I18n(_ref3) {
+    var locale = _ref3.locale,
+      fallbackLocale = _ref3.fallbackLocale,
+      messages = _ref3.messages,
+      watcher = _ref3.watcher,
+      formater = _ref3.formater;
+    (0, _classCallCheck2.default)(this, I18n);
+    this.locale = LOCALE_EN;
+    this.fallbackLocale = LOCALE_EN;
+    this.message = {};
+    this.messages = {};
+    this.watchers = [];
+    if (fallbackLocale) {
+      this.fallbackLocale = fallbackLocale;
+    }
+    this.formater = formater || defaultFormatter;
+    this.messages = messages || {};
+    this.setLocale(locale || LOCALE_EN);
+    if (watcher) {
+      this.watchLocale(watcher);
+    }
+  }
+  (0, _createClass2.default)(I18n, [{
+    key: "setLocale",
+    value: function setLocale(locale) {
+      var _this = this;
+      var oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      if (!this.messages[this.locale]) {
+        // 可能初始化时不存在
+        this.messages[this.locale] = {};
+      }
+      this.message = this.messages[this.locale];
+      // 仅发生变化时，通知
+      if (oldLocale !== this.locale) {
+        this.watchers.forEach(function (watcher) {
+          watcher(_this.locale, oldLocale);
+        });
+      }
+    }
+  }, {
+    key: "getLocale",
+    value: function getLocale() {
+      return this.locale;
+    }
+  }, {
+    key: "watchLocale",
+    value: function watchLocale(fn) {
+      var _this2 = this;
+      var index = this.watchers.push(fn) - 1;
+      return function () {
+        _this2.watchers.splice(index, 1);
+      };
+    }
+  }, {
+    key: "add",
+    value: function add(locale, message) {
+      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      var curMessages = this.messages[locale];
+      if (curMessages) {
+        if (override) {
+          Object.assign(curMessages, message);
+        } else {
+          Object.keys(message).forEach(function (key) {
+            if (!hasOwn(curMessages, key)) {
+              curMessages[key] = message[key];
+            }
+          });
+        }
+      } else {
+        this.messages[locale] = message;
+      }
+    }
+  }, {
+    key: "f",
+    value: function f(message, values, delimiters) {
+      return this.formater.interpolate(message, values, delimiters).join('');
+    }
+  }, {
+    key: "t",
+    value: function t(key, locale, values) {
+      var message = this.message;
+      if (typeof locale === 'string') {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join('');
+    }
+  }]);
+  return I18n;
+}();
+exports.I18n = I18n;
+function watchAppLocale(appVm, i18n) {
+  // 需要保证 watch 的触发在组件渲染之前
+  if (appVm.$watchLocale) {
+    // vue2
+    appVm.$watchLocale(function (newLocale) {
+      i18n.setLocale(newLocale);
+    });
+  } else {
+    appVm.$watch(function () {
+      return appVm.$locale;
+    }, function (newLocale) {
+      i18n.setLocale(newLocale);
+    });
+  }
+}
+function getDefaultLocale() {
+  if (typeof uni !== 'undefined' && uni.getLocale) {
+    return uni.getLocale();
+  }
+  // 小程序平台，uni 和 uni-i18n 互相引用，导致访问不到 uni，故在 global 上挂了 getLocale
+  if (typeof global !== 'undefined' && global.getLocale) {
+    return global.getLocale();
+  }
+  return LOCALE_EN;
+}
+function initVueI18n(locale) {
+  var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;
+  var watcher = arguments.length > 3 ? arguments[3] : undefined;
+  // 兼容旧版本入参
+  if (typeof locale !== 'string') {
+    var _ref4 = [messages, locale];
+    locale = _ref4[0];
+    messages = _ref4[1];
+  }
+  if (typeof locale !== 'string') {
+    // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
+    locale = getDefaultLocale();
+  }
+  if (typeof fallbackLocale !== 'string') {
+    fallbackLocale = typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale || LOCALE_EN;
+  }
+  var i18n = new I18n({
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    messages: messages,
+    watcher: watcher
+  });
+  var _t = function t(key, values) {
+    if (typeof getApp !== 'function') {
+      // app view
+      /* eslint-disable no-func-assign */
+      _t = function t(key, values) {
+        return i18n.t(key, values);
+      };
+    } else {
+      var isWatchedAppLocale = false;
+      _t = function t(key, values) {
+        var appVm = getApp().$vm;
+        // 可能$vm还不存在，比如在支付宝小程序中，组件定义较早，在props的default里使用了t()函数（如uni-goods-nav），此时app还未初始化
+        // options: {
+        // 	type: Array,
+        // 	default () {
+        // 		return [{
+        // 			icon: 'shop',
+        // 			text: t("uni-goods-nav.options.shop"),
+        // 		}, {
+        // 			icon: 'cart',
+        // 			text: t("uni-goods-nav.options.cart")
+        // 		}]
+        // 	}
+        // },
+        if (appVm) {
+          // 触发响应式
+          appVm.$locale;
+          if (!isWatchedAppLocale) {
+            isWatchedAppLocale = true;
+            watchAppLocale(appVm, i18n);
+          }
+        }
+        return i18n.t(key, values);
+      };
+    }
+    return _t(key, values);
+  };
+  return {
+    i18n: i18n,
+    f: function f(message, values, delimiters) {
+      return i18n.f(message, values, delimiters);
+    },
+    t: function t(key, values) {
+      return _t(key, values);
+    },
+    add: function add(locale, message) {
+      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+      return i18n.add(locale, message, override);
+    },
+    watch: function watch(fn) {
+      return i18n.watchLocale(fn);
+    },
+    getLocale: function getLocale() {
+      return i18n.getLocale();
+    },
+    setLocale: function setLocale(newLocale) {
+      return i18n.setLocale(newLocale);
+    }
+  };
+}
+var isString = function isString(val) {
+  return typeof val === 'string';
+};
+exports.isString = isString;
+var formater;
+function hasI18nJson(jsonObj, delimiters) {
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  return walkJsonObj(jsonObj, function (jsonObj, key) {
+    var value = jsonObj[key];
+    if (isString(value)) {
+      if (isI18nStr(value, delimiters)) {
+        return true;
+      }
+    } else {
+      return hasI18nJson(value, delimiters);
+    }
+  });
+}
+function parseI18nJson(jsonObj, values, delimiters) {
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  walkJsonObj(jsonObj, function (jsonObj, key) {
+    var value = jsonObj[key];
+    if (isString(value)) {
+      if (isI18nStr(value, delimiters)) {
+        jsonObj[key] = compileStr(value, values, delimiters);
+      }
+    } else {
+      parseI18nJson(value, values, delimiters);
+    }
+  });
+  return jsonObj;
+}
+function compileI18nJsonStr(jsonStr, _ref5) {
+  var locale = _ref5.locale,
+    locales = _ref5.locales,
+    delimiters = _ref5.delimiters;
+  if (!isI18nStr(jsonStr, delimiters)) {
+    return jsonStr;
+  }
+  if (!formater) {
+    formater = new BaseFormatter();
+  }
+  var localeValues = [];
+  Object.keys(locales).forEach(function (name) {
+    if (name !== locale) {
+      localeValues.push({
+        locale: name,
+        values: locales[name]
+      });
+    }
+  });
+  localeValues.unshift({
+    locale: locale,
+    values: locales[locale]
+  });
+  try {
+    return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
+  } catch (e) {}
+  return jsonStr;
+}
+function isI18nStr(value, delimiters) {
+  return value.indexOf(delimiters[0]) > -1;
+}
+function compileStr(value, values, delimiters) {
+  return formater.interpolate(value, values, delimiters).join('');
+}
+function compileValue(jsonObj, key, localeValues, delimiters) {
+  var value = jsonObj[key];
+  if (isString(value)) {
+    // 存在国际化
+    if (isI18nStr(value, delimiters)) {
+      jsonObj[key] = compileStr(value, localeValues[0].values, delimiters);
+      if (localeValues.length > 1) {
+        // 格式化国际化语言
+        var valueLocales = jsonObj[key + 'Locales'] = {};
+        localeValues.forEach(function (localValue) {
+          valueLocales[localValue.locale] = compileStr(value, localValue.values, delimiters);
+        });
+      }
+    }
+  } else {
+    compileJsonObj(value, localeValues, delimiters);
+  }
+}
+function compileJsonObj(jsonObj, localeValues, delimiters) {
+  walkJsonObj(jsonObj, function (jsonObj, key) {
+    compileValue(jsonObj, key, localeValues, delimiters);
+  });
+  return jsonObj;
+}
+function walkJsonObj(jsonObj, walk) {
+  if (Array.isArray(jsonObj)) {
+    for (var i = 0; i < jsonObj.length; i++) {
+      if (walk(jsonObj, i)) {
+        return true;
+      }
+    }
+  } else if (isObject(jsonObj)) {
+    for (var key in jsonObj) {
+      if (walk(jsonObj, key)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+function resolveLocale(locales) {
+  return function (locale) {
+    if (!locale) {
+      return locale;
+    }
+    locale = normalizeLocale(locale) || locale;
+    return resolveLocaleChain(locale).find(function (locale) {
+      return locales.indexOf(locale) > -1;
+    });
+  };
+}
+function resolveLocaleChain(locale) {
+  var chain = [];
+  var tokens = locale.split('-');
+  while (tokens.length) {
+    chain.push(tokens.join('-'));
+    tokens.pop();
+  }
+  return chain;
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 220:
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -4825,12 +5376,12 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 205)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 221)();
 module.exports = runtime;
 
 /***/ }),
 
-/***/ 205:
+/***/ 221:
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -5152,7 +5703,7 @@ module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.e
 
 /***/ }),
 
-/***/ 206:
+/***/ 222:
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -5193,7 +5744,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
-/***/ 207:
+/***/ 223:
 /*!**********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/utils.js ***!
   \**********************************************************************************/
@@ -5214,8 +5765,8 @@ exports.isNumber = isNumber;
 exports.pathToBase64 = pathToBase64;
 exports.sleep = sleep;
 exports.toPx = toPx;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 204));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 206));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 220));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 222));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var networkReg = /^(http|\/\/)/;
 function sleep(delay) {
@@ -5411,7 +5962,7 @@ function getImageInfo(img, isH5PathToBase64) {
 
 /***/ }),
 
-/***/ 208:
+/***/ 224:
 /*!*********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/draw.js ***!
   \*********************************************************************************/
@@ -5426,15 +5977,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Draw = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 204));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 206));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 220));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 222));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = __webpack_require__(/*! ./utils */ 207);
-var _gradient = __webpack_require__(/*! ./gradient */ 209);
-var _qrcode = _interopRequireDefault(__webpack_require__(/*! ./qrcode */ 210));
+var _utils = __webpack_require__(/*! ./utils */ 223);
+var _gradient = __webpack_require__(/*! ./gradient */ 225);
+var _qrcode = _interopRequireDefault(__webpack_require__(/*! ./qrcode */ 226));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
@@ -6326,7 +6877,7 @@ exports.Draw = Draw;
 
 /***/ }),
 
-/***/ 209:
+/***/ 225:
 /*!*************************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/gradient.js ***!
   \*************************************************************************************/
@@ -6455,21 +7006,7 @@ function linearEffect(width, height, bg, ctx) {
 
 /***/ }),
 
-/***/ 21:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 210:
+/***/ 226:
 /*!***********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/qrcode.js ***!
   \***********************************************************************************/
@@ -6480,7 +7017,7 @@ module.exports = _nonIterableSpread, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
-/***/ 211:
+/***/ 227:
 /*!***********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/layout.js ***!
   \***********************************************************************************/
@@ -6495,14 +7032,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Layout = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 204));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 220));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 206));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 222));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = __webpack_require__(/*! ./utils */ 207);
+var _utils = __webpack_require__(/*! ./utils */ 223);
 var Layout = /*#__PURE__*/function () {
   function Layout() {
     (0, _classCallCheck2.default)(this, Layout);
@@ -7069,7 +7606,7 @@ exports.Layout = Layout;
 
 /***/ }),
 
-/***/ 212:
+/***/ 228:
 /*!***********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/canvas.js ***!
   \***********************************************************************************/
@@ -7146,543 +7683,6 @@ function adaptor(ctx) {
     draw: function draw() {}
   });
 }
-
-/***/ }),
-
-/***/ 22:
-/*!*************************************************************!*\
-  !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni, global) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;
-exports.compileI18nJsonStr = compileI18nJsonStr;
-exports.hasI18nJson = hasI18nJson;
-exports.initVueI18n = initVueI18n;
-exports.isI18nStr = isI18nStr;
-exports.isString = void 0;
-exports.normalizeLocale = normalizeLocale;
-exports.parseI18nJson = parseI18nJson;
-exports.resolveLocale = resolveLocale;
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var isObject = function isObject(val) {
-  return val !== null && (0, _typeof2.default)(val) === 'object';
-};
-var defaultDelimiters = ['{', '}'];
-var BaseFormatter = /*#__PURE__*/function () {
-  function BaseFormatter() {
-    (0, _classCallCheck2.default)(this, BaseFormatter);
-    this._caches = Object.create(null);
-  }
-  (0, _createClass2.default)(BaseFormatter, [{
-    key: "interpolate",
-    value: function interpolate(message, values) {
-      var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
-      if (!values) {
-        return [message];
-      }
-      var tokens = this._caches[message];
-      if (!tokens) {
-        tokens = parse(message, delimiters);
-        this._caches[message] = tokens;
-      }
-      return compile(tokens, values);
-    }
-  }]);
-  return BaseFormatter;
-}();
-exports.Formatter = BaseFormatter;
-var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-function parse(format, _ref) {
-  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
-    startDelimiter = _ref2[0],
-    endDelimiter = _ref2[1];
-  var tokens = [];
-  var position = 0;
-  var text = '';
-  while (position < format.length) {
-    var char = format[position++];
-    if (char === startDelimiter) {
-      if (text) {
-        tokens.push({
-          type: 'text',
-          value: text
-        });
-      }
-      text = '';
-      var sub = '';
-      char = format[position++];
-      while (char !== undefined && char !== endDelimiter) {
-        sub += char;
-        char = format[position++];
-      }
-      var isClosed = char === endDelimiter;
-      var type = RE_TOKEN_LIST_VALUE.test(sub) ? 'list' : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? 'named' : 'unknown';
-      tokens.push({
-        value: sub,
-        type: type
-      });
-    }
-    //  else if (char === '%') {
-    //   // when found rails i18n syntax, skip text capture
-    //   if (format[position] !== '{') {
-    //     text += char
-    //   }
-    // }
-    else {
-      text += char;
-    }
-  }
-  text && tokens.push({
-    type: 'text',
-    value: text
-  });
-  return tokens;
-}
-function compile(tokens, values) {
-  var compiled = [];
-  var index = 0;
-  var mode = Array.isArray(values) ? 'list' : isObject(values) ? 'named' : 'unknown';
-  if (mode === 'unknown') {
-    return compiled;
-  }
-  while (index < tokens.length) {
-    var token = tokens[index];
-    switch (token.type) {
-      case 'text':
-        compiled.push(token.value);
-        break;
-      case 'list':
-        compiled.push(values[parseInt(token.value, 10)]);
-        break;
-      case 'named':
-        if (mode === 'named') {
-          compiled.push(values[token.value]);
-        } else {
-          if (true) {
-            console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
-          }
-        }
-        break;
-      case 'unknown':
-        if (true) {
-          console.warn("Detect 'unknown' type of token!");
-        }
-        break;
-    }
-    index++;
-  }
-  return compiled;
-}
-var LOCALE_ZH_HANS = 'zh-Hans';
-exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
-var LOCALE_ZH_HANT = 'zh-Hant';
-exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
-var LOCALE_EN = 'en';
-exports.LOCALE_EN = LOCALE_EN;
-var LOCALE_FR = 'fr';
-exports.LOCALE_FR = LOCALE_FR;
-var LOCALE_ES = 'es';
-exports.LOCALE_ES = LOCALE_ES;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var hasOwn = function hasOwn(val, key) {
-  return hasOwnProperty.call(val, key);
-};
-var defaultFormatter = new BaseFormatter();
-function include(str, parts) {
-  return !!parts.find(function (part) {
-    return str.indexOf(part) !== -1;
-  });
-}
-function startsWith(str, parts) {
-  return parts.find(function (part) {
-    return str.indexOf(part) === 0;
-  });
-}
-function normalizeLocale(locale, messages) {
-  if (!locale) {
-    return;
-  }
-  locale = locale.trim().replace(/_/g, '-');
-  if (messages && messages[locale]) {
-    return locale;
-  }
-  locale = locale.toLowerCase();
-  if (locale === 'chinese') {
-    // 支付宝
-    return LOCALE_ZH_HANS;
-  }
-  if (locale.indexOf('zh') === 0) {
-    if (locale.indexOf('-hans') > -1) {
-      return LOCALE_ZH_HANS;
-    }
-    if (locale.indexOf('-hant') > -1) {
-      return LOCALE_ZH_HANT;
-    }
-    if (include(locale, ['-tw', '-hk', '-mo', '-cht'])) {
-      return LOCALE_ZH_HANT;
-    }
-    return LOCALE_ZH_HANS;
-  }
-  var locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
-  if (messages && Object.keys(messages).length > 0) {
-    locales = Object.keys(messages);
-  }
-  var lang = startsWith(locale, locales);
-  if (lang) {
-    return lang;
-  }
-}
-var I18n = /*#__PURE__*/function () {
-  function I18n(_ref3) {
-    var locale = _ref3.locale,
-      fallbackLocale = _ref3.fallbackLocale,
-      messages = _ref3.messages,
-      watcher = _ref3.watcher,
-      formater = _ref3.formater;
-    (0, _classCallCheck2.default)(this, I18n);
-    this.locale = LOCALE_EN;
-    this.fallbackLocale = LOCALE_EN;
-    this.message = {};
-    this.messages = {};
-    this.watchers = [];
-    if (fallbackLocale) {
-      this.fallbackLocale = fallbackLocale;
-    }
-    this.formater = formater || defaultFormatter;
-    this.messages = messages || {};
-    this.setLocale(locale || LOCALE_EN);
-    if (watcher) {
-      this.watchLocale(watcher);
-    }
-  }
-  (0, _createClass2.default)(I18n, [{
-    key: "setLocale",
-    value: function setLocale(locale) {
-      var _this = this;
-      var oldLocale = this.locale;
-      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
-      if (!this.messages[this.locale]) {
-        // 可能初始化时不存在
-        this.messages[this.locale] = {};
-      }
-      this.message = this.messages[this.locale];
-      // 仅发生变化时，通知
-      if (oldLocale !== this.locale) {
-        this.watchers.forEach(function (watcher) {
-          watcher(_this.locale, oldLocale);
-        });
-      }
-    }
-  }, {
-    key: "getLocale",
-    value: function getLocale() {
-      return this.locale;
-    }
-  }, {
-    key: "watchLocale",
-    value: function watchLocale(fn) {
-      var _this2 = this;
-      var index = this.watchers.push(fn) - 1;
-      return function () {
-        _this2.watchers.splice(index, 1);
-      };
-    }
-  }, {
-    key: "add",
-    value: function add(locale, message) {
-      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      var curMessages = this.messages[locale];
-      if (curMessages) {
-        if (override) {
-          Object.assign(curMessages, message);
-        } else {
-          Object.keys(message).forEach(function (key) {
-            if (!hasOwn(curMessages, key)) {
-              curMessages[key] = message[key];
-            }
-          });
-        }
-      } else {
-        this.messages[locale] = message;
-      }
-    }
-  }, {
-    key: "f",
-    value: function f(message, values, delimiters) {
-      return this.formater.interpolate(message, values, delimiters).join('');
-    }
-  }, {
-    key: "t",
-    value: function t(key, locale, values) {
-      var message = this.message;
-      if (typeof locale === 'string') {
-        locale = normalizeLocale(locale, this.messages);
-        locale && (message = this.messages[locale]);
-      } else {
-        values = locale;
-      }
-      if (!hasOwn(message, key)) {
-        console.warn("Cannot translate the value of keypath ".concat(key, ". Use the value of keypath as default."));
-        return key;
-      }
-      return this.formater.interpolate(message[key], values).join('');
-    }
-  }]);
-  return I18n;
-}();
-exports.I18n = I18n;
-function watchAppLocale(appVm, i18n) {
-  // 需要保证 watch 的触发在组件渲染之前
-  if (appVm.$watchLocale) {
-    // vue2
-    appVm.$watchLocale(function (newLocale) {
-      i18n.setLocale(newLocale);
-    });
-  } else {
-    appVm.$watch(function () {
-      return appVm.$locale;
-    }, function (newLocale) {
-      i18n.setLocale(newLocale);
-    });
-  }
-}
-function getDefaultLocale() {
-  if (typeof uni !== 'undefined' && uni.getLocale) {
-    return uni.getLocale();
-  }
-  // 小程序平台，uni 和 uni-i18n 互相引用，导致访问不到 uni，故在 global 上挂了 getLocale
-  if (typeof global !== 'undefined' && global.getLocale) {
-    return global.getLocale();
-  }
-  return LOCALE_EN;
-}
-function initVueI18n(locale) {
-  var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;
-  var watcher = arguments.length > 3 ? arguments[3] : undefined;
-  // 兼容旧版本入参
-  if (typeof locale !== 'string') {
-    var _ref4 = [messages, locale];
-    locale = _ref4[0];
-    messages = _ref4[1];
-  }
-  if (typeof locale !== 'string') {
-    // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
-    locale = getDefaultLocale();
-  }
-  if (typeof fallbackLocale !== 'string') {
-    fallbackLocale = typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale || LOCALE_EN;
-  }
-  var i18n = new I18n({
-    locale: locale,
-    fallbackLocale: fallbackLocale,
-    messages: messages,
-    watcher: watcher
-  });
-  var _t = function t(key, values) {
-    if (typeof getApp !== 'function') {
-      // app view
-      /* eslint-disable no-func-assign */
-      _t = function t(key, values) {
-        return i18n.t(key, values);
-      };
-    } else {
-      var isWatchedAppLocale = false;
-      _t = function t(key, values) {
-        var appVm = getApp().$vm;
-        // 可能$vm还不存在，比如在支付宝小程序中，组件定义较早，在props的default里使用了t()函数（如uni-goods-nav），此时app还未初始化
-        // options: {
-        // 	type: Array,
-        // 	default () {
-        // 		return [{
-        // 			icon: 'shop',
-        // 			text: t("uni-goods-nav.options.shop"),
-        // 		}, {
-        // 			icon: 'cart',
-        // 			text: t("uni-goods-nav.options.cart")
-        // 		}]
-        // 	}
-        // },
-        if (appVm) {
-          // 触发响应式
-          appVm.$locale;
-          if (!isWatchedAppLocale) {
-            isWatchedAppLocale = true;
-            watchAppLocale(appVm, i18n);
-          }
-        }
-        return i18n.t(key, values);
-      };
-    }
-    return _t(key, values);
-  };
-  return {
-    i18n: i18n,
-    f: function f(message, values, delimiters) {
-      return i18n.f(message, values, delimiters);
-    },
-    t: function t(key, values) {
-      return _t(key, values);
-    },
-    add: function add(locale, message) {
-      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      return i18n.add(locale, message, override);
-    },
-    watch: function watch(fn) {
-      return i18n.watchLocale(fn);
-    },
-    getLocale: function getLocale() {
-      return i18n.getLocale();
-    },
-    setLocale: function setLocale(newLocale) {
-      return i18n.setLocale(newLocale);
-    }
-  };
-}
-var isString = function isString(val) {
-  return typeof val === 'string';
-};
-exports.isString = isString;
-var formater;
-function hasI18nJson(jsonObj, delimiters) {
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  return walkJsonObj(jsonObj, function (jsonObj, key) {
-    var value = jsonObj[key];
-    if (isString(value)) {
-      if (isI18nStr(value, delimiters)) {
-        return true;
-      }
-    } else {
-      return hasI18nJson(value, delimiters);
-    }
-  });
-}
-function parseI18nJson(jsonObj, values, delimiters) {
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  walkJsonObj(jsonObj, function (jsonObj, key) {
-    var value = jsonObj[key];
-    if (isString(value)) {
-      if (isI18nStr(value, delimiters)) {
-        jsonObj[key] = compileStr(value, values, delimiters);
-      }
-    } else {
-      parseI18nJson(value, values, delimiters);
-    }
-  });
-  return jsonObj;
-}
-function compileI18nJsonStr(jsonStr, _ref5) {
-  var locale = _ref5.locale,
-    locales = _ref5.locales,
-    delimiters = _ref5.delimiters;
-  if (!isI18nStr(jsonStr, delimiters)) {
-    return jsonStr;
-  }
-  if (!formater) {
-    formater = new BaseFormatter();
-  }
-  var localeValues = [];
-  Object.keys(locales).forEach(function (name) {
-    if (name !== locale) {
-      localeValues.push({
-        locale: name,
-        values: locales[name]
-      });
-    }
-  });
-  localeValues.unshift({
-    locale: locale,
-    values: locales[locale]
-  });
-  try {
-    return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
-  } catch (e) {}
-  return jsonStr;
-}
-function isI18nStr(value, delimiters) {
-  return value.indexOf(delimiters[0]) > -1;
-}
-function compileStr(value, values, delimiters) {
-  return formater.interpolate(value, values, delimiters).join('');
-}
-function compileValue(jsonObj, key, localeValues, delimiters) {
-  var value = jsonObj[key];
-  if (isString(value)) {
-    // 存在国际化
-    if (isI18nStr(value, delimiters)) {
-      jsonObj[key] = compileStr(value, localeValues[0].values, delimiters);
-      if (localeValues.length > 1) {
-        // 格式化国际化语言
-        var valueLocales = jsonObj[key + 'Locales'] = {};
-        localeValues.forEach(function (localValue) {
-          valueLocales[localValue.locale] = compileStr(value, localValue.values, delimiters);
-        });
-      }
-    }
-  } else {
-    compileJsonObj(value, localeValues, delimiters);
-  }
-}
-function compileJsonObj(jsonObj, localeValues, delimiters) {
-  walkJsonObj(jsonObj, function (jsonObj, key) {
-    compileValue(jsonObj, key, localeValues, delimiters);
-  });
-  return jsonObj;
-}
-function walkJsonObj(jsonObj, walk) {
-  if (Array.isArray(jsonObj)) {
-    for (var i = 0; i < jsonObj.length; i++) {
-      if (walk(jsonObj, i)) {
-        return true;
-      }
-    }
-  } else if (isObject(jsonObj)) {
-    for (var key in jsonObj) {
-      if (walk(jsonObj, key)) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
-function resolveLocale(locales) {
-  return function (locale) {
-    if (!locale) {
-      return locale;
-    }
-    locale = normalizeLocale(locale) || locale;
-    return resolveLocaleChain(locale).find(function (locale) {
-      return locales.indexOf(locale) > -1;
-    });
-  };
-}
-function resolveLocaleChain(locale) {
-  var chain = [];
-  var tokens = locale.split('-');
-  while (tokens.length) {
-    chain.push(tokens.join('-'));
-    tokens.pop();
-  }
-  return chain;
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
 
@@ -13270,7 +13270,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -13291,14 +13291,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -13394,7 +13394,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"jiangqie_xcx_free","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));

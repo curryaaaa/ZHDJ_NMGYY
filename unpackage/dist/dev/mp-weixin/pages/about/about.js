@@ -24,22 +24,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
+/* WEBPACK VAR INJECTION */(function(wx, uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -90,6 +80,22 @@ var _default = {
     };
   },
   methods: {
+    showFile: function showFile() {
+      wx.openDocument({
+        filePath: 'static/ceshi.pdf',
+        fileType: 'pdf',
+        showMenu: true,
+        success: function success(res) {
+          console.log('打开文档成功');
+        },
+        fail: function fail(error) {
+          wx.showToast({
+            icon: 'none',
+            title: '打开文件失败'
+          });
+        }
+      });
+    },
     /**
      * 点击复制网址
      */
@@ -120,7 +126,7 @@ var _default = {
   }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

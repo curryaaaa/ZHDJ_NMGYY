@@ -101,10 +101,10 @@ var components
 try {
   components = {
     uniNavBar: function () {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 150))
+      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 166))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 157))
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 173))
     },
   }
 } catch (e) {
@@ -417,17 +417,17 @@ var Util = __webpack_require__(/*! @/utils/util.js */ 43);
 var Rest = __webpack_require__(/*! @/utils/rest.js */ 44);
 var JiangqieLoadmore = function JiangqieLoadmore() {
   __webpack_require__.e(/*! require.ensure | components/loadmore/loadmore */ "components/loadmore/loadmore").then((function () {
-    return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 165));
+    return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 181));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var JiangqieNomore = function JiangqieNomore() {
   __webpack_require__.e(/*! require.ensure | components/nomore/nomore */ "components/nomore/nomore").then((function () {
-    return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 172));
+    return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 188));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniNavBar = function uniNavBar() {
   __webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {
-    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 150));
+    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 166));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -651,6 +651,7 @@ var _default = {
       }).then(function (res) {
         _this2.loaddingLast = false;
         _this2.postsLast = refresh ? res.data : _this2.postsLast.concat(res.data);
+        console.log(_this2.postsLast);
         _this2.pullUpOnLast = res.data.length >= Constants.JQ_PER_PAGE_COUNT;
       });
     },
