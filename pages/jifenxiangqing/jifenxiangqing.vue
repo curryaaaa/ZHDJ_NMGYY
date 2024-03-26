@@ -1,5 +1,5 @@
 <template>
-  <view class="jiangqie-top-bg" style="background-color: #faecec">
+  <view class="jiangqie-top-bg" style="background-image: url(static/images/mianbackground.png)">
 
     <view class="jifen ">
 

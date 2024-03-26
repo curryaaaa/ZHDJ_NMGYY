@@ -59,15 +59,15 @@
 		{
 			"path": "pages/wodeintegral/wodeintegral",
 			"style": {
-				"navigationBarTitleText": "我的积分",
-				"navigationBarBackgroundColor": "#fbaf6b"
+				"navigationBarTitleText": "我的积分"
+
 			}
 		},
 		{
 			"path": "pages/jifenxiangqing/jifenxiangqing",
 			"style": {
-				"navigationBarTitleText": "积分明细",
-				"navigationBarBackgroundColor": "#fbaf6b"
+				"navigationBarTitleText": "积分明细"
+
 			}
 		},
 		{
