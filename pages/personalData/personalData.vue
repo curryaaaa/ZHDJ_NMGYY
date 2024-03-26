@@ -1,5 +1,5 @@
 <template>
-  <view v-if="setting" class="jiangqie-top-bg" style="background-image: url(../../static/images/mianbackground.png)">
+  <view v-if="setting" class="jiangqie-top-bg" style="background-image: url(static/images/mianbackground.png)">
 
     <view class="jiangqie-userbox">
       <view class="jiangqie-usersetup">
@@ -29,138 +29,138 @@
           </view>
           <view class="form-item">
             <text class="label">出生日期</text>
-            <view class="data"><input v-model="formData.birthday" name="birthday" :disabled="state" placeholder=""/></view>
+            <view class="data"><input v-model="formData.birthday" name="birthday" :disabled="state" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">性别</text>
-            <view class="data"><input v-model="formData.gender" name="birthday" :disabled="state" placeholder=""/></view>
+            <view class="data"><input v-model="formData.gender" name="birthday" :disabled="state" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">民族</text>
-            <view class="data"><input v-model="formData.minzu" name="minzu" :disabled="state" placeholder=""/></view>
+            <view class="data"><input v-model="formData.minzu" name="minzu" :disabled="state" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">入党日期</text>
-            <view class="data"><input v-model="formData.rudangday" :disabled="state" name="rudangday" placeholder=""/>
+            <view class="data"><input v-model="formData.rudangday" :disabled="state" name="rudangday" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">转正日期</text>
             <view class="data"><input v-model="formData.zhuanzhengday" :disabled="state" name="zhuanzhengday"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">所在党支部</text>
             <view class="data"><input v-model="formData.suozaidangzhibu" :disabled="state" name="suozaidangzhibu"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">入党介绍人</text>
             <view class="data"><input v-model="formData.rudangjieshaoren" :disabled="state" name="rudangjieshaoren"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">上级党委通过日期</text>
-            <view class="data"><input v-model="formData.tongguoday" :disabled="state" name="tongguoday" placeholder=""/>
+            <view class="data"><input v-model="formData.tongguoday" :disabled="state" name="tongguoday" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">学历</text>
-            <view class="data"><input v-model="formData.xueli" :disabled="state" name="xueli" placeholder=""/></view>
+            <view class="data"><input v-model="formData.xueli" :disabled="state" name="xueli" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">入学日期</text>
-            <view class="data"><input v-model="formData.ruxueriqi" :disabled="state" name="ruxueriqi" placeholder=""/>
+            <view class="data"><input v-model="formData.ruxueriqi" :disabled="state" name="ruxueriqi" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">毕业日期</text>
-            <view class="data"><input v-model="formData.biyeriqi" :disabled="state" name="biyeriqi" placeholder=""/></view>
+            <view class="data"><input v-model="formData.biyeriqi" :disabled="state" name="biyeriqi" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">学位</text>
-            <view class="data"><input v-model="formData.xuewei" :disabled="state" name="xuewei" placeholder=""/></view>
+            <view class="data"><input v-model="formData.xuewei" :disabled="state" name="xuewei" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">教育类别</text>
-            <view class="data"><input v-model="formData.jiaoyuleibie" :disabled="state" name="jiaoyuleibie" placeholder=""/>
+            <view class="data"><input v-model="formData.jiaoyuleibie" :disabled="state" name="jiaoyuleibie" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">专业技术资格</text>
             <view class="data"><input v-model="formData.jiaoyuleibie" :disabled="state" name="jiaoyuleibie"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">获得资格日期</text>
             <view class="data"><input v-model="formData.huodezizhiriqi" :disabled="state" name="huodezizhiriqi"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">专业技术职称聘任时间</text>
-            <view class="data"><input v-model="formData.jiaoyuleibie" :disabled="state" name="jiaoyuleibie" placeholder=""/></view>
+            <view class="data"><input v-model="formData.jiaoyuleibie" :disabled="state" name="jiaoyuleibie" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">籍贯</text>
-            <view class="data"><input v-model="formData.jiguan" :disabled="state" name="jiguan" placeholder=""/></view>
+            <view class="data"><input v-model="formData.jiguan" :disabled="state" name="jiguan" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">家庭住址</text>
             <view class="data"><input v-model="formData.jiatingzhuzhi" :disabled="state" name="jiatingzhuzhi"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">联系电话</text>
-            <view class="data"><input v-model="formData.phone" :disabled="state" name="phone" placeholder=""/></view>
+            <view class="data"><input v-model="formData.phone" :disabled="state" name="phone" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">参加工作时间</text>
             <view class="data"><input v-model="formData.canjiagongzuoshijian" :disabled="state" name="canjiagongzuoshijian"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">现工作岗位开始时间</text>
             <view class="data"><input v-model="formData.gongzuokaishishijian" :disabled="state" name="gongzuokaishishijian"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">工号</text>
-            <view class="data"><input v-model="formData.gonghao" :disabled="state" name="gonghao" placeholder=""/></view>
+            <view class="data"><input v-model="formData.gonghao" :disabled="state" name="gonghao" placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">所在科室</text>
-            <view class="data"><input v-model="formData.suozaikeshi" :disabled="state" name="suozaikeshi" placeholder=""/>
+            <view class="data"><input v-model="formData.suozaikeshi" :disabled="state" name="suozaikeshi" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">现工作岗位类型</text>
             <view class="data"><input v-model="formData.xiangangweileixing" :disabled="state" name="xiangangweileixing"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">参加民主评选时间</text>
             <view class="data"><input v-model="formData.pingxuanshijia" :disabled="state" name="pingxuanshijia"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">民主评议结果</text>
-            <view class="data"><input v-model="formData.minzhupingyi" :disabled="state" name="minzhupingyi" placeholder=""/>
+            <view class="data"><input v-model="formData.minzhupingyi" :disabled="state" name="minzhupingyi" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">进入现支部方式</text>
-            <view class="data"><input v-model="formData.jinrufangshi" :disabled="state" name="jinrufangshi" placeholder=""/>
+            <view class="data"><input v-model="formData.jinrufangshi" :disabled="state" name="jinrufangshi" placeholder="请输入"/>
             </view>
           </view>
           <view class="form-item">
             <text class="label">进入现支部时间</text>
             <view class="data"><input v-model="formData.jinrufangshitime" :disabled="state" name="jinrufangshitime"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
           <view class="form-item">
             <text class="label">原组织关系所在地</text>
             <view class="data"><input v-model="formData.gaunxisuozaidi" :disabled="state" name="gaunxisuozaidi"
-                                      placeholder=""/></view>
+                                      placeholder="请输入"/></view>
           </view>
 
 

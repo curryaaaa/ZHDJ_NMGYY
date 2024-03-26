@@ -44,14 +44,7 @@
 
 
 /*每个页面公共css */
-.active-form {
-.u-radio-group--row, .u-checkbox-group--row {
-	flex-wrap: wrap;
-}
-.u-radio, .u-checkbox {
-	margin: 10rpx;
-}
-}
+
 .flex-row-sb-c {
     display: flex;
     flex-direction: row;

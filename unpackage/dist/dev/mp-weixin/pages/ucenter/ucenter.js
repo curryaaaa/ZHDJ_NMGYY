@@ -344,6 +344,11 @@ var _default = {
         url: '/pages/personalData/personalData'
       });
     },
+    Wodezuzhi: function Wodezuzhi(e) {
+      uni.navigateTo({
+        url: '/pages/wodezuzhi/wodezuzhi'
+      });
+    },
     /**
      * 点击打开链接
      */

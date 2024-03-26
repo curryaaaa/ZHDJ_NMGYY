@@ -505,8 +505,249 @@ var render = function () {
                           _vm._$s(23, "f", { forItems: _vm.postsLast }),
                           function (item, index, $22, $32) {
                             return [
+                              _c(
+                                "view",
+                                {
+                                  key: _vm._$s(23, "f", {
+                                    forIndex: $22,
+                                    keyIndex: 0,
+                                    key: index,
+                                  }),
+                                  staticClass: _vm._$s(
+                                    "24-" + $32,
+                                    "sc",
+                                    "jiangqie-news-block"
+                                  ),
+                                  attrs: {
+                                    "data-id": _vm._$s(
+                                      "24-" + $32,
+                                      "a-data-id",
+                                      item.id
+                                    ),
+                                    _i: "24-" + $32,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.stopPropagation()
+                                      return _vm.handlerArticleClick($event)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("image", {
+                                    staticClass: _vm._$s(
+                                      "25-" + $32,
+                                      "sc",
+                                      "jiangqie-news-image"
+                                    ),
+                                    attrs: {
+                                      src: _vm._$s(
+                                        "25-" + $32,
+                                        "a-src",
+                                        item.thumbnail
+                                      ),
+                                      _i: "25-" + $32,
+                                    },
+                                  }),
+                                  _c(
+                                    "view",
+                                    {
+                                      staticClass: _vm._$s(
+                                        "26-" + $32,
+                                        "sc",
+                                        "jiangqie-news-text"
+                                      ),
+                                      attrs: { _i: "26-" + $32 },
+                                    },
+                                    [
+                                      _c(
+                                        "view",
+                                        {
+                                          class: _vm._$s(
+                                            "27-" + $32,
+                                            "c",
+                                            "jiangqie-news-title " +
+                                              (item.excerpt
+                                                ? ""
+                                                : "jiangqie-news-no-excerpt")
+                                          ),
+                                          attrs: { _i: "27-" + $32 },
+                                        },
+                                        [
+                                          _vm._$s(
+                                            "28-" + $32,
+                                            "i",
+                                            item.stick == 1
+                                          )
+                                            ? _c("text")
+                                            : _vm._e(),
+                                          _vm._v(
+                                            _vm._$s(
+                                              "27-" + $32,
+                                              "t1-0",
+                                              _vm._s(item.title)
+                                            )
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._$s("29-" + $32, "i", item.excerpt)
+                                        ? _c(
+                                            "view",
+                                            {
+                                              staticClass: _vm._$s(
+                                                "29-" + $32,
+                                                "sc",
+                                                "jiangqie-news-describe"
+                                              ),
+                                              attrs: { _i: "29-" + $32 },
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._$s(
+                                                  "29-" + $32,
+                                                  "t0-0",
+                                                  _vm._s(item.excerpt)
+                                                )
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _c(
+                                        "view",
+                                        {
+                                          staticClass: _vm._$s(
+                                            "30-" + $32,
+                                            "sc",
+                                            "jiangqie-news-info"
+                                          ),
+                                          attrs: { _i: "30-" + $32 },
+                                        },
+                                        [
+                                          _vm._l(
+                                            _vm._$s(31 + "-" + $32, "f", {
+                                              forItems: item.tags,
+                                            }),
+                                            function (item, index2, $23, $33) {
+                                              return _c(
+                                                "text",
+                                                {
+                                                  key: _vm._$s(
+                                                    31 + "-" + $32,
+                                                    "f",
+                                                    {
+                                                      forIndex: $23,
+                                                      key: index2,
+                                                    }
+                                                  ),
+                                                  staticClass: _vm._$s(
+                                                    "31-" + $32 + "-" + $33,
+                                                    "sc",
+                                                    "jiangqie-news-tag"
+                                                  ),
+                                                  attrs: {
+                                                    _i: "31-" + $32 + "-" + $33,
+                                                  },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._$s(
+                                                      "31-" + $32 + "-" + $33,
+                                                      "t0-0",
+                                                      _vm._s(item.name)
+                                                    )
+                                                  ),
+                                                ]
+                                              )
+                                            }
+                                          ),
+                                          _c(
+                                            "text",
+                                            {
+                                              staticClass: _vm._$s(
+                                                "32-" + $32,
+                                                "sc",
+                                                "jiangqie-news-time"
+                                              ),
+                                              attrs: { _i: "32-" + $32 },
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._$s(
+                                                  "32-" + $32,
+                                                  "t0-0",
+                                                  _vm._s(item.time)
+                                                )
+                                              ),
+                                            ]
+                                          ),
+                                          _c(
+                                            "view",
+                                            {
+                                              staticClass: _vm._$s(
+                                                "33-" + $32,
+                                                "sc",
+                                                "jiangqie-news-cmt"
+                                              ),
+                                              attrs: { _i: "33-" + $32 },
+                                            },
+                                            [
+                                              _c("image", {
+                                                attrs: { _i: "34-" + $32 },
+                                              }),
+                                              _c("text", [
+                                                _vm._v(
+                                                  _vm._$s(
+                                                    "35-" + $32,
+                                                    "t0-0",
+                                                    _vm._s(item.views)
+                                                  )
+                                                ),
+                                              ]),
+                                            ]
+                                          ),
+                                        ],
+                                        2
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          }
+                        ),
+                      ],
+                      2
+                    ),
+                  ]
+                ),
+                _c("jiangqie-loadmore", {
+                  attrs: { visible: _vm.loaddingLast, _i: 36 },
+                }),
+                _c("jiangqie-nomore", {
+                  attrs: { visible: !_vm.pullUpOnLast, _i: 37 },
+                }),
+              ]
+            : [
+                _c(
+                  "view",
+                  {
+                    staticClass: _vm._$s(39, "sc", "container"),
+                    attrs: { _i: 39 },
+                  },
+                  [
+                    _c(
+                      "view",
+                      {
+                        staticClass: _vm._$s(40, "sc", "jiangqie-news-view"),
+                        attrs: { _i: 40 },
+                      },
+                      [
+                        _vm._l(
+                          _vm._$s(41, "f", { forItems: _vm.posts }),
+                          function (item, index, $24, $34) {
+                            return [
                               _vm._$s(
-                                "24-" + $32,
+                                "42-" + $34,
                                 "i",
                                 (_vm.listMode == 1 && false) ||
                                   _vm.listMode == 2 ||
@@ -515,23 +756,23 @@ var render = function () {
                                 ? _c(
                                     "view",
                                     {
-                                      key: _vm._$s(23, "f", {
-                                        forIndex: $22,
+                                      key: _vm._$s(41, "f", {
+                                        forIndex: $24,
                                         keyIndex: 0,
                                         key: index,
                                       }),
                                       staticClass: _vm._$s(
-                                        "24-" + $32,
+                                        "42-" + $34,
                                         "sc",
                                         "jiangqie-news-block image-wide"
                                       ),
                                       attrs: {
                                         "data-id": _vm._$s(
-                                          "24-" + $32,
+                                          "42-" + $34,
                                           "a-data-id",
                                           item.id
                                         ),
-                                        _i: "24-" + $32,
+                                        _i: "42-" + $34,
                                       },
                                       on: {
                                         click: function ($event) {
@@ -545,21 +786,21 @@ var render = function () {
                                         "view",
                                         {
                                           staticClass: _vm._$s(
-                                            "25-" + $32,
+                                            "43-" + $34,
                                             "sc",
                                             "jiangqie-news-image"
                                           ),
-                                          attrs: { _i: "25-" + $32 },
+                                          attrs: { _i: "43-" + $34 },
                                         },
                                         [
                                           _c("image", {
                                             attrs: {
                                               src: _vm._$s(
-                                                "26-" + $32,
+                                                "44-" + $34,
                                                 "a-src",
                                                 item.thumbnail
                                               ),
-                                              _i: "26-" + $32,
+                                              _i: "44-" + $34,
                                             },
                                           }),
                                         ]
@@ -568,45 +809,38 @@ var render = function () {
                                         "view",
                                         {
                                           staticClass: _vm._$s(
-                                            "27-" + $32,
+                                            "45-" + $34,
                                             "sc",
                                             "jiangqie-news-text"
                                           ),
-                                          attrs: { _i: "27-" + $32 },
+                                          attrs: { _i: "45-" + $34 },
                                         },
                                         [
                                           _c(
                                             "view",
                                             {
                                               class: _vm._$s(
-                                                "28-" + $32,
+                                                "46-" + $34,
                                                 "c",
                                                 "jiangqie-news-title " +
                                                   (item.excerpt
                                                     ? ""
                                                     : "jiangqie-news-no-excerpt")
                                               ),
-                                              attrs: { _i: "28-" + $32 },
+                                              attrs: { _i: "46-" + $34 },
                                             },
                                             [
-                                              _vm._$s(
-                                                "29-" + $32,
-                                                "i",
-                                                item.stick == 1
-                                              )
-                                                ? _c("text")
-                                                : _vm._e(),
                                               _vm._v(
                                                 _vm._$s(
-                                                  "28-" + $32,
-                                                  "t1-0",
+                                                  "46-" + $34,
+                                                  "t0-0",
                                                   _vm._s(item.title)
                                                 )
                                               ),
                                             ]
                                           ),
                                           _vm._$s(
-                                            "30-" + $32,
+                                            "47-" + $34,
                                             "i",
                                             item.excerpt
                                           )
@@ -614,16 +848,16 @@ var render = function () {
                                                 "view",
                                                 {
                                                   staticClass: _vm._$s(
-                                                    "30-" + $32,
+                                                    "47-" + $34,
                                                     "sc",
                                                     "jiangqie-news-describe"
                                                   ),
-                                                  attrs: { _i: "30-" + $32 },
+                                                  attrs: { _i: "47-" + $34 },
                                                 },
                                                 [
                                                   _vm._v(
                                                     _vm._$s(
-                                                      "30-" + $32,
+                                                      "47-" + $34,
                                                       "t0-0",
                                                       _vm._s(item.excerpt)
                                                     )
@@ -635,54 +869,54 @@ var render = function () {
                                             "view",
                                             {
                                               staticClass: _vm._$s(
-                                                "31-" + $32,
+                                                "48-" + $34,
                                                 "sc",
                                                 "jiangqie-news-info"
                                               ),
-                                              attrs: { _i: "31-" + $32 },
+                                              attrs: { _i: "48-" + $34 },
                                             },
                                             [
                                               _vm._l(
-                                                _vm._$s(32 + "-" + $32, "f", {
+                                                _vm._$s(49 + "-" + $34, "f", {
                                                   forItems: item.tags,
                                                 }),
                                                 function (
                                                   item,
                                                   index2,
-                                                  $23,
-                                                  $33
+                                                  $25,
+                                                  $35
                                                 ) {
                                                   return _c(
                                                     "text",
                                                     {
                                                       key: _vm._$s(
-                                                        32 + "-" + $32,
+                                                        49 + "-" + $34,
                                                         "f",
                                                         {
-                                                          forIndex: $23,
+                                                          forIndex: $25,
                                                           key: index2,
                                                         }
                                                       ),
                                                       staticClass: _vm._$s(
-                                                        "32-" + $32 + "-" + $33,
+                                                        "49-" + $34 + "-" + $35,
                                                         "sc",
                                                         "jiangqie-news-tag"
                                                       ),
                                                       attrs: {
                                                         _i:
-                                                          "32-" +
-                                                          $32 +
+                                                          "49-" +
+                                                          $34 +
                                                           "-" +
-                                                          $33,
+                                                          $35,
                                                       },
                                                     },
                                                     [
                                                       _vm._v(
                                                         _vm._$s(
-                                                          "32-" +
-                                                            $32 +
+                                                          "49-" +
+                                                            $34 +
                                                             "-" +
-                                                            $33,
+                                                            $35,
                                                           "t0-0",
                                                           _vm._s(item.name)
                                                         )
@@ -695,16 +929,16 @@ var render = function () {
                                                 "text",
                                                 {
                                                   staticClass: _vm._$s(
-                                                    "33-" + $32,
+                                                    "50-" + $34,
                                                     "sc",
                                                     "jiangqie-news-time"
                                                   ),
-                                                  attrs: { _i: "33-" + $32 },
+                                                  attrs: { _i: "50-" + $34 },
                                                 },
                                                 [
                                                   _vm._v(
                                                     _vm._$s(
-                                                      "33-" + $32,
+                                                      "50-" + $34,
                                                       "t0-0",
                                                       _vm._s(item.time)
                                                     )
@@ -715,20 +949,20 @@ var render = function () {
                                                 "view",
                                                 {
                                                   staticClass: _vm._$s(
-                                                    "34-" + $32,
+                                                    "51-" + $34,
                                                     "sc",
                                                     "jiangqie-news-cmt"
                                                   ),
-                                                  attrs: { _i: "34-" + $32 },
+                                                  attrs: { _i: "51-" + $34 },
                                                 },
                                                 [
                                                   _c("image", {
-                                                    attrs: { _i: "35-" + $32 },
+                                                    attrs: { _i: "52-" + $34 },
                                                   }),
                                                   _c("text", [
                                                     _vm._v(
                                                       _vm._$s(
-                                                        "36-" + $32,
+                                                        "53-" + $34,
                                                         "t0-0",
                                                         _vm._s(item.views)
                                                       )
@@ -746,287 +980,23 @@ var render = function () {
                                 : _c(
                                     "view",
                                     {
-                                      key: _vm._$s(23, "f", {
-                                        forIndex: $22,
+                                      key: _vm._$s(41, "f", {
+                                        forIndex: $24,
                                         keyIndex: -1,
                                         key: index,
                                       }),
                                       staticClass: _vm._$s(
-                                        "37-" + $32,
+                                        "54-" + $34,
                                         "sc",
                                         "jiangqie-news-block"
                                       ),
                                       attrs: {
                                         "data-id": _vm._$s(
-                                          "37-" + $32,
+                                          "54-" + $34,
                                           "a-data-id",
                                           item.id
                                         ),
-                                        _i: "37-" + $32,
-                                      },
-                                      on: {
-                                        click: function ($event) {
-                                          $event.stopPropagation()
-                                          return _vm.handlerArticleClick($event)
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("image", {
-                                        staticClass: _vm._$s(
-                                          "38-" + $32,
-                                          "sc",
-                                          "jiangqie-news-image"
-                                        ),
-                                        attrs: {
-                                          src: _vm._$s(
-                                            "38-" + $32,
-                                            "a-src",
-                                            item.thumbnail
-                                          ),
-                                          _i: "38-" + $32,
-                                        },
-                                      }),
-                                      _c(
-                                        "view",
-                                        {
-                                          staticClass: _vm._$s(
-                                            "39-" + $32,
-                                            "sc",
-                                            "jiangqie-news-text"
-                                          ),
-                                          attrs: { _i: "39-" + $32 },
-                                        },
-                                        [
-                                          _c(
-                                            "view",
-                                            {
-                                              class: _vm._$s(
-                                                "40-" + $32,
-                                                "c",
-                                                "jiangqie-news-title " +
-                                                  (item.excerpt
-                                                    ? ""
-                                                    : "jiangqie-news-no-excerpt")
-                                              ),
-                                              attrs: { _i: "40-" + $32 },
-                                            },
-                                            [
-                                              _vm._$s(
-                                                "41-" + $32,
-                                                "i",
-                                                item.stick == 1
-                                              )
-                                                ? _c("text")
-                                                : _vm._e(),
-                                              _vm._v(
-                                                _vm._$s(
-                                                  "40-" + $32,
-                                                  "t1-0",
-                                                  _vm._s(item.title)
-                                                )
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._$s(
-                                            "42-" + $32,
-                                            "i",
-                                            item.excerpt
-                                          )
-                                            ? _c(
-                                                "view",
-                                                {
-                                                  staticClass: _vm._$s(
-                                                    "42-" + $32,
-                                                    "sc",
-                                                    "jiangqie-news-describe"
-                                                  ),
-                                                  attrs: { _i: "42-" + $32 },
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._$s(
-                                                      "42-" + $32,
-                                                      "t0-0",
-                                                      _vm._s(item.excerpt)
-                                                    )
-                                                  ),
-                                                ]
-                                              )
-                                            : _vm._e(),
-                                          _c(
-                                            "view",
-                                            {
-                                              staticClass: _vm._$s(
-                                                "43-" + $32,
-                                                "sc",
-                                                "jiangqie-news-info"
-                                              ),
-                                              attrs: { _i: "43-" + $32 },
-                                            },
-                                            [
-                                              _vm._l(
-                                                _vm._$s(44 + "-" + $32, "f", {
-                                                  forItems: item.tags,
-                                                }),
-                                                function (
-                                                  item,
-                                                  index2,
-                                                  $24,
-                                                  $34
-                                                ) {
-                                                  return _c(
-                                                    "text",
-                                                    {
-                                                      key: _vm._$s(
-                                                        44 + "-" + $32,
-                                                        "f",
-                                                        {
-                                                          forIndex: $24,
-                                                          key: index2,
-                                                        }
-                                                      ),
-                                                      staticClass: _vm._$s(
-                                                        "44-" + $32 + "-" + $34,
-                                                        "sc",
-                                                        "jiangqie-news-tag"
-                                                      ),
-                                                      attrs: {
-                                                        _i:
-                                                          "44-" +
-                                                          $32 +
-                                                          "-" +
-                                                          $34,
-                                                      },
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._$s(
-                                                          "44-" +
-                                                            $32 +
-                                                            "-" +
-                                                            $34,
-                                                          "t0-0",
-                                                          _vm._s(item.name)
-                                                        )
-                                                      ),
-                                                    ]
-                                                  )
-                                                }
-                                              ),
-                                              _c(
-                                                "text",
-                                                {
-                                                  staticClass: _vm._$s(
-                                                    "45-" + $32,
-                                                    "sc",
-                                                    "jiangqie-news-time"
-                                                  ),
-                                                  attrs: { _i: "45-" + $32 },
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._$s(
-                                                      "45-" + $32,
-                                                      "t0-0",
-                                                      _vm._s(item.time)
-                                                    )
-                                                  ),
-                                                ]
-                                              ),
-                                              _c(
-                                                "view",
-                                                {
-                                                  staticClass: _vm._$s(
-                                                    "46-" + $32,
-                                                    "sc",
-                                                    "jiangqie-news-cmt"
-                                                  ),
-                                                  attrs: { _i: "46-" + $32 },
-                                                },
-                                                [
-                                                  _c("image", {
-                                                    attrs: { _i: "47-" + $32 },
-                                                  }),
-                                                  _c("text", [
-                                                    _vm._v(
-                                                      _vm._$s(
-                                                        "48-" + $32,
-                                                        "t0-0",
-                                                        _vm._s(item.views)
-                                                      )
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                            ],
-                                            2
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                            ]
-                          }
-                        ),
-                      ],
-                      2
-                    ),
-                  ]
-                ),
-                _c("jiangqie-loadmore", {
-                  attrs: { visible: _vm.loaddingLast, _i: 49 },
-                }),
-                _c("jiangqie-nomore", {
-                  attrs: { visible: !_vm.pullUpOnLast, _i: 50 },
-                }),
-              ]
-            : [
-                _c(
-                  "view",
-                  {
-                    staticClass: _vm._$s(52, "sc", "container"),
-                    attrs: { _i: 52 },
-                  },
-                  [
-                    _c(
-                      "view",
-                      {
-                        staticClass: _vm._$s(53, "sc", "jiangqie-news-view"),
-                        attrs: { _i: 53 },
-                      },
-                      [
-                        _vm._l(
-                          _vm._$s(54, "f", { forItems: _vm.posts }),
-                          function (item, index, $25, $35) {
-                            return [
-                              _vm._$s(
-                                "55-" + $35,
-                                "i",
-                                (_vm.listMode == 1 && false) ||
-                                  _vm.listMode == 2 ||
-                                  (_vm.listMode == 3 && index % 5 == 4)
-                              )
-                                ? _c(
-                                    "view",
-                                    {
-                                      key: _vm._$s(54, "f", {
-                                        forIndex: $25,
-                                        keyIndex: 0,
-                                        key: index,
-                                      }),
-                                      staticClass: _vm._$s(
-                                        "55-" + $35,
-                                        "sc",
-                                        "jiangqie-news-block image-wide"
-                                      ),
-                                      attrs: {
-                                        "data-id": _vm._$s(
-                                          "55-" + $35,
-                                          "a-data-id",
-                                          item.id
-                                        ),
-                                        _i: "55-" + $35,
+                                        _i: "54-" + $34,
                                       },
                                       on: {
                                         click: function ($event) {
@@ -1040,21 +1010,21 @@ var render = function () {
                                         "view",
                                         {
                                           staticClass: _vm._$s(
-                                            "56-" + $35,
+                                            "55-" + $34,
                                             "sc",
                                             "jiangqie-news-image"
                                           ),
-                                          attrs: { _i: "56-" + $35 },
+                                          attrs: { _i: "55-" + $34 },
                                         },
                                         [
                                           _c("image", {
                                             attrs: {
                                               src: _vm._$s(
-                                                "57-" + $35,
+                                                "56-" + $34,
                                                 "a-src",
                                                 item.thumbnail
                                               ),
-                                              _i: "57-" + $35,
+                                              _i: "56-" + $34,
                                             },
                                           }),
                                         ]
@@ -1063,30 +1033,30 @@ var render = function () {
                                         "view",
                                         {
                                           staticClass: _vm._$s(
-                                            "58-" + $35,
+                                            "57-" + $34,
                                             "sc",
                                             "jiangqie-news-text"
                                           ),
-                                          attrs: { _i: "58-" + $35 },
+                                          attrs: { _i: "57-" + $34 },
                                         },
                                         [
                                           _c(
                                             "view",
                                             {
                                               class: _vm._$s(
-                                                "59-" + $35,
+                                                "58-" + $34,
                                                 "c",
                                                 "jiangqie-news-title " +
                                                   (item.excerpt
                                                     ? ""
                                                     : "jiangqie-news-no-excerpt")
                                               ),
-                                              attrs: { _i: "59-" + $35 },
+                                              attrs: { _i: "58-" + $34 },
                                             },
                                             [
                                               _vm._v(
                                                 _vm._$s(
-                                                  "59-" + $35,
+                                                  "58-" + $34,
                                                   "t0-0",
                                                   _vm._s(item.title)
                                                 )
@@ -1094,7 +1064,7 @@ var render = function () {
                                             ]
                                           ),
                                           _vm._$s(
-                                            "60-" + $35,
+                                            "59-" + $34,
                                             "i",
                                             item.excerpt
                                           )
@@ -1102,16 +1072,16 @@ var render = function () {
                                                 "view",
                                                 {
                                                   staticClass: _vm._$s(
-                                                    "60-" + $35,
+                                                    "59-" + $34,
                                                     "sc",
                                                     "jiangqie-news-describe"
                                                   ),
-                                                  attrs: { _i: "60-" + $35 },
+                                                  attrs: { _i: "59-" + $34 },
                                                 },
                                                 [
                                                   _vm._v(
                                                     _vm._$s(
-                                                      "60-" + $35,
+                                                      "59-" + $34,
                                                       "t0-0",
                                                       _vm._s(item.excerpt)
                                                     )
@@ -1123,15 +1093,15 @@ var render = function () {
                                             "view",
                                             {
                                               staticClass: _vm._$s(
-                                                "61-" + $35,
+                                                "60-" + $34,
                                                 "sc",
                                                 "jiangqie-news-info"
                                               ),
-                                              attrs: { _i: "61-" + $35 },
+                                              attrs: { _i: "60-" + $34 },
                                             },
                                             [
                                               _vm._l(
-                                                _vm._$s(62 + "-" + $35, "f", {
+                                                _vm._$s(61 + "-" + $34, "f", {
                                                   forItems: item.tags,
                                                 }),
                                                 function (
@@ -1144,7 +1114,7 @@ var render = function () {
                                                     "text",
                                                     {
                                                       key: _vm._$s(
-                                                        62 + "-" + $35,
+                                                        61 + "-" + $34,
                                                         "f",
                                                         {
                                                           forIndex: $26,
@@ -1152,14 +1122,14 @@ var render = function () {
                                                         }
                                                       ),
                                                       staticClass: _vm._$s(
-                                                        "62-" + $35 + "-" + $36,
+                                                        "61-" + $34 + "-" + $36,
                                                         "sc",
                                                         "jiangqie-news-tag"
                                                       ),
                                                       attrs: {
                                                         _i:
-                                                          "62-" +
-                                                          $35 +
+                                                          "61-" +
+                                                          $34 +
                                                           "-" +
                                                           $36,
                                                       },
@@ -1167,8 +1137,8 @@ var render = function () {
                                                     [
                                                       _vm._v(
                                                         _vm._$s(
-                                                          "62-" +
-                                                            $35 +
+                                                          "61-" +
+                                                            $34 +
                                                             "-" +
                                                             $36,
                                                           "t0-0",
@@ -1183,16 +1153,16 @@ var render = function () {
                                                 "text",
                                                 {
                                                   staticClass: _vm._$s(
-                                                    "63-" + $35,
+                                                    "62-" + $34,
                                                     "sc",
                                                     "jiangqie-news-time"
                                                   ),
-                                                  attrs: { _i: "63-" + $35 },
+                                                  attrs: { _i: "62-" + $34 },
                                                 },
                                                 [
                                                   _vm._v(
                                                     _vm._$s(
-                                                      "63-" + $35,
+                                                      "62-" + $34,
                                                       "t0-0",
                                                       _vm._s(item.time)
                                                     )
@@ -1203,244 +1173,20 @@ var render = function () {
                                                 "view",
                                                 {
                                                   staticClass: _vm._$s(
-                                                    "64-" + $35,
+                                                    "63-" + $34,
                                                     "sc",
                                                     "jiangqie-news-cmt"
                                                   ),
-                                                  attrs: { _i: "64-" + $35 },
+                                                  attrs: { _i: "63-" + $34 },
                                                 },
                                                 [
                                                   _c("image", {
-                                                    attrs: { _i: "65-" + $35 },
+                                                    attrs: { _i: "64-" + $34 },
                                                   }),
                                                   _c("text", [
                                                     _vm._v(
                                                       _vm._$s(
-                                                        "66-" + $35,
-                                                        "t0-0",
-                                                        _vm._s(item.views)
-                                                      )
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                            ],
-                                            2
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  )
-                                : _c(
-                                    "view",
-                                    {
-                                      key: _vm._$s(54, "f", {
-                                        forIndex: $25,
-                                        keyIndex: -1,
-                                        key: index,
-                                      }),
-                                      staticClass: _vm._$s(
-                                        "67-" + $35,
-                                        "sc",
-                                        "jiangqie-news-block"
-                                      ),
-                                      attrs: {
-                                        "data-id": _vm._$s(
-                                          "67-" + $35,
-                                          "a-data-id",
-                                          item.id
-                                        ),
-                                        _i: "67-" + $35,
-                                      },
-                                      on: {
-                                        click: function ($event) {
-                                          $event.stopPropagation()
-                                          return _vm.handlerArticleClick($event)
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c(
-                                        "view",
-                                        {
-                                          staticClass: _vm._$s(
-                                            "68-" + $35,
-                                            "sc",
-                                            "jiangqie-news-image"
-                                          ),
-                                          attrs: { _i: "68-" + $35 },
-                                        },
-                                        [
-                                          _c("image", {
-                                            attrs: {
-                                              src: _vm._$s(
-                                                "69-" + $35,
-                                                "a-src",
-                                                item.thumbnail
-                                              ),
-                                              _i: "69-" + $35,
-                                            },
-                                          }),
-                                        ]
-                                      ),
-                                      _c(
-                                        "view",
-                                        {
-                                          staticClass: _vm._$s(
-                                            "70-" + $35,
-                                            "sc",
-                                            "jiangqie-news-text"
-                                          ),
-                                          attrs: { _i: "70-" + $35 },
-                                        },
-                                        [
-                                          _c(
-                                            "view",
-                                            {
-                                              class: _vm._$s(
-                                                "71-" + $35,
-                                                "c",
-                                                "jiangqie-news-title " +
-                                                  (item.excerpt
-                                                    ? ""
-                                                    : "jiangqie-news-no-excerpt")
-                                              ),
-                                              attrs: { _i: "71-" + $35 },
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._$s(
-                                                  "71-" + $35,
-                                                  "t0-0",
-                                                  _vm._s(item.title)
-                                                )
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._$s(
-                                            "72-" + $35,
-                                            "i",
-                                            item.excerpt
-                                          )
-                                            ? _c(
-                                                "view",
-                                                {
-                                                  staticClass: _vm._$s(
-                                                    "72-" + $35,
-                                                    "sc",
-                                                    "jiangqie-news-describe"
-                                                  ),
-                                                  attrs: { _i: "72-" + $35 },
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._$s(
-                                                      "72-" + $35,
-                                                      "t0-0",
-                                                      _vm._s(item.excerpt)
-                                                    )
-                                                  ),
-                                                ]
-                                              )
-                                            : _vm._e(),
-                                          _c(
-                                            "view",
-                                            {
-                                              staticClass: _vm._$s(
-                                                "73-" + $35,
-                                                "sc",
-                                                "jiangqie-news-info"
-                                              ),
-                                              attrs: { _i: "73-" + $35 },
-                                            },
-                                            [
-                                              _vm._l(
-                                                _vm._$s(74 + "-" + $35, "f", {
-                                                  forItems: item.tags,
-                                                }),
-                                                function (
-                                                  item,
-                                                  index2,
-                                                  $27,
-                                                  $37
-                                                ) {
-                                                  return _c(
-                                                    "text",
-                                                    {
-                                                      key: _vm._$s(
-                                                        74 + "-" + $35,
-                                                        "f",
-                                                        {
-                                                          forIndex: $27,
-                                                          key: index2,
-                                                        }
-                                                      ),
-                                                      staticClass: _vm._$s(
-                                                        "74-" + $35 + "-" + $37,
-                                                        "sc",
-                                                        "jiangqie-news-tag"
-                                                      ),
-                                                      attrs: {
-                                                        _i:
-                                                          "74-" +
-                                                          $35 +
-                                                          "-" +
-                                                          $37,
-                                                      },
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._$s(
-                                                          "74-" +
-                                                            $35 +
-                                                            "-" +
-                                                            $37,
-                                                          "t0-0",
-                                                          _vm._s(item.name)
-                                                        )
-                                                      ),
-                                                    ]
-                                                  )
-                                                }
-                                              ),
-                                              _c(
-                                                "text",
-                                                {
-                                                  staticClass: _vm._$s(
-                                                    "75-" + $35,
-                                                    "sc",
-                                                    "jiangqie-news-time"
-                                                  ),
-                                                  attrs: { _i: "75-" + $35 },
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._$s(
-                                                      "75-" + $35,
-                                                      "t0-0",
-                                                      _vm._s(item.time)
-                                                    )
-                                                  ),
-                                                ]
-                                              ),
-                                              _c(
-                                                "view",
-                                                {
-                                                  staticClass: _vm._$s(
-                                                    "76-" + $35,
-                                                    "sc",
-                                                    "jiangqie-news-cmt"
-                                                  ),
-                                                  attrs: { _i: "76-" + $35 },
-                                                },
-                                                [
-                                                  _c("image", {
-                                                    attrs: { _i: "77-" + $35 },
-                                                  }),
-                                                  _c("text", [
-                                                    _vm._v(
-                                                      _vm._$s(
-                                                        "78-" + $35,
+                                                        "65-" + $34,
                                                         "t0-0",
                                                         _vm._s(item.views)
                                                       )
@@ -1464,35 +1210,35 @@ var render = function () {
                   ]
                 ),
                 _c("jiangqie-loadmore", {
-                  attrs: { visible: _vm.loadding, _i: 79 },
+                  attrs: { visible: _vm.loadding, _i: 66 },
                 }),
                 _c("jiangqie-nomore", {
-                  attrs: { visible: !_vm.pullUpOn, _i: 80 },
+                  attrs: { visible: !_vm.pullUpOn, _i: 67 },
                 }),
               ],
         ],
         2
       ),
-      _vm._$s(81, "i", _vm.pop_ad)
+      _vm._$s(68, "i", _vm.pop_ad)
         ? _c(
             "view",
             {
-              staticClass: _vm._$s(81, "sc", "zhugie-pop-cover"),
-              attrs: { _i: 81 },
+              staticClass: _vm._$s(68, "sc", "zhugie-pop-cover"),
+              attrs: { _i: 68 },
             },
             [
               _c(
                 "view",
                 {
-                  staticClass: _vm._$s(82, "sc", "zhuige-pop-box"),
-                  attrs: { _i: 82 },
+                  staticClass: _vm._$s(69, "sc", "zhuige-pop-box"),
+                  attrs: { _i: 69 },
                   on: { click: _vm.clickPopAd },
                 },
                 [
                   _c("image", {
                     attrs: {
-                      src: _vm._$s(83, "a-src", _vm.pop_ad.image),
-                      _i: 83,
+                      src: _vm._$s(70, "a-src", _vm.pop_ad.image),
+                      _i: 70,
                     },
                   }),
                   _c(
@@ -1503,7 +1249,7 @@ var render = function () {
                           type: "close",
                           size: "32",
                           color: "#FFFFFF",
-                          _i: 85,
+                          _i: 72,
                         },
                         on: { click: _vm.clickPopAdClose },
                       }),
@@ -2222,7 +1968,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _C_U
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(__f__, wx) {\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 1);\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _loadmore = _interopRequireDefault(__webpack_require__(/*! @/components/loadmore/loadmore */ 38));\nvar _nomore = _interopRequireDefault(__webpack_require__(/*! @/components/nomore/nomore */ 43));\nvar _uniNavBar = _interopRequireDefault(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 10));\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar Constants = __webpack_require__(/*! @/utils/constants.js */ 48);\nvar Api = __webpack_require__(/*! @/utils/api.js */ 49);\nvar Util = __webpack_require__(/*! @/utils/util.js */ 51);\nvar Rest = __webpack_require__(/*! @/utils/rest.js */ 52);\nvar _default = {\n  components: {\n    JiangqieLoadmore: _loadmore.default,\n    JiangqieNomore: _nomore.default,\n    uniNavBar: _uniNavBar.default\n  },\n  data: function data() {\n    this.bd_title = undefined;\n    this.bd_description = undefined;\n    this.bd_keywords = undefined;\n    this.interstitialAd = undefined;\n    return {\n      logo: '',\n      background: undefined,\n      //顶部导航\n      topNav: [{\n        id: 0,\n        name: '头条'\n      }],\n      currentTab: 0,\n      //幻灯片\n      slide: [],\n      //图片导航\n      // iconNav: [],\n\n      //热门文章\n      // hot: [],\n\n      //热门tab\n      postsLast: [],\n      loaddingLast: false,\n      pullUpOnLast: true,\n      //其他tab\n      posts: [],\n      loadding: false,\n      pullUpOn: true,\n      //列表模式\n      listMode: 3,\n      scrollLeft: \"\",\n      current: \"\",\n      // actives: undefined,\n\n      // 弹窗广告\n      pop_ad: undefined,\n      // 分享标题\n      share_title: undefined,\n      // 分享缩略图\n      share_thumb: undefined\n    };\n  },\n  onLoad: function onLoad(options) {\n    var _this = this;\n    Rest.get(Api.JIANGQIE_SETTING_HOME).then(function (res) {\n      var logo = \"/static/images/logo.png\";\n      if (res.data.logo && res.data.logo.length > 0) {\n        logo = res.data.logo;\n      }\n      _this.logo = logo;\n      _this.topNav = _this.topNav.concat(res.data.top_nav);\n      _this.slide = res.data.home_slide;\n      // this.iconNav = res.data.icon_nav;\n      // this.actives = res.data.actives;\n      // this.hot = res.data.hot;\n      _this.listMode = res.data.list_mode;\n      _this.background = _this.slide && _this.slide.length > 0 ? res.data.background : '';\n      if (res.data.title && res.data.title.length > 0) {\n        getApp().globalData.appName = res.data.title;\n      }\n\n      //插屏广告\n\n      // 弹框\n      _this.pop_ad = Util.getPopAd(res.data.pop_ad, Constants.ZHUIGE_INDEX_MAXAD_LAST_TIME);\n      if (res.data.share_title) {\n        _this.share_title = res.data.share_title;\n      }\n      if (res.data.share_thumb) {\n        _this.share_thumb = res.data.share_thumb;\n      }\n    });\n\n    //加载文章\n    this.loadPostLast(true);\n  },\n  onShow: function onShow() {},\n  onReachBottom: function onReachBottom() {\n    if (this.currentTab == 0) {\n      if (!this.pullUpOnLast) {\n        return;\n      }\n      this.loadPostLast(false);\n    } else {\n      if (!this.pullUpOn) {\n        return;\n      }\n      this.loadPost(false);\n    }\n  },\n  onShareAppMessage: function onShareAppMessage() {\n    var params = {\n      title: getApp().globalData.appName,\n      path: 'pages/index/index'\n    };\n    if (this.share_title) {\n      params.title = this.share_title;\n    }\n    if (this.share_thumb) {\n      params.imageUrl = this.share_thumb;\n    }\n    return params;\n  },\n  methods: {\n    //nav start----\n    handlerSearchClick: function handlerSearchClick(e) {\n      uni.navigateTo({\n        url: '/pages/search/search'\n      });\n    },\n    //nav end ----\n    //slide start----\n    handlerSlideChange: function handlerSlideChange(e) {\n      this.current = e.detail.current;\n    },\n    //slide end----\n    //tab -- start\n    /**\r\n     * 点击 切换分类\r\n     */\n    swichNav: function swichNav(e) {\n      var cur = e.currentTarget.dataset.current;\n      if (this.currentTab == cur) {\n        return false;\n      }\n      this.background = cur == 0 && this.slide && this.slide.length > 0 ? Api.JIANGQIE_BG_INDEX : '';\n      this.currentTab = cur;\n      if (cur !== 0) {\n        this.loadPost(true);\n      }\n    },\n    /**\r\n     * 点击 打开 分类页面\r\n     */\n    handlerTabMoreClick: function handlerTabMoreClick(e) {\n      uni.switchTab({\n        url: '/pages/categories/categories'\n      });\n    },\n    //tab -- end\n    /**\r\n     * 点击 ICON\r\n     */\n    // handlerIconNavClick(e) {\n    // \tlet link = e.currentTarget.dataset.link;\n    // \tUtil.openLink(link);\n    // },\n    /**\r\n     * 点击幻灯片\r\n     */\n    clickSlide: function clickSlide(link) {\n      Util.openLink(link);\n    },\n    /**\r\n     * 点击 活动图\r\n     */\n    // handlerActiveClick(e) {\n    // \tlet link = e.currentTarget.dataset.link;\n    // \tUtil.openLink(link);\n    // },\n    /**\r\n     * 点击文章\r\n     */\n    handlerArticleClick: function handlerArticleClick(e) {\n      var post_id = e.currentTarget.dataset.id;\n      uni.navigateTo({\n        url: '/pages/article/article?post_id=' + post_id\n      });\n    },\n    /**\r\n     * 加载 最新文章\r\n     */\n    loadPostLast: function loadPostLast(refresh) {\n      var _this2 = this;\n      this.loaddingLast = true;\n      var offset = 0;\n      if (!refresh) {\n        offset = this.postsLast.length;\n      }\n      Rest.get(Api.JIANGQIE_POSTS_LAST, {\n        'offset': offset\n      }).then(function (res) {\n        _this2.loaddingLast = false;\n        _this2.postsLast = refresh ? res.data : _this2.postsLast.concat(res.data);\n        __f__(\"log\", _this2.postsLast, \" at pages/index/index.vue:525\");\n        _this2.pullUpOnLast = res.data.length >= Constants.JQ_PER_PAGE_COUNT;\n      });\n    },\n    /**\r\n     * 加载 分类文章\r\n     */\n    loadPost: function loadPost(refresh) {\n      var _this3 = this;\n      this.loadding = true;\n      var offset = 0;\n      if (!refresh) {\n        offset = this.posts.length;\n      }\n      Rest.get(Api.JIANGQIE_POSTS_CATEGORY, {\n        'offset': offset,\n        'cat_id': this.topNav[this.currentTab].id\n      }).then(function (res) {\n        _this3.loadding = false;\n        _this3.posts = refresh ? res.data : _this3.posts.concat(res.data);\n        _this3.pullUpOn = res.data.length >= Constants.JQ_PER_PAGE_COUNT;\n      });\n    },\n    /**\r\n     * 点击弹出窗口\r\n     */\n    clickPopAd: function clickPopAd() {\n      wx.setStorageSync(Constants.ZHUIGE_INDEX_MAXAD_LAST_TIME, new Date().getTime());\n      Util.openLink(this.pop_ad.link);\n      this.pop_ad = false;\n    },\n    /**\r\n     * 关闭弹出窗口\r\n     */\n    clickPopAdClose: function clickPopAdClose() {\n      this.pop_ad = false;\n      wx.setStorageSync(Constants.ZHUIGE_INDEX_MAXAD_LAST_TIME, new Date().getTime());\n    }\n  }\n};\nexports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 53)[\"default\"], __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/mp.js */ 29)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvaW5kZXgvaW5kZXgudnVlIl0sIm5hbWVzIjpbIkNvbnN0YW50cyIsInJlcXVpcmUiLCJBcGkiLCJVdGlsIiwiUmVzdCIsImNvbXBvbmVudHMiLCJKaWFuZ3FpZUxvYWRtb3JlIiwiSmlhbmdxaWVOb21vcmUiLCJ1bmlOYXZCYXIiLCJkYXRhIiwiYmRfdGl0bGUiLCJ1bmRlZmluZWQiLCJiZF9kZXNjcmlwdGlvbiIsImJkX2tleXdvcmRzIiwiaW50ZXJzdGl0aWFsQWQiLCJsb2dvIiwiYmFja2dyb3VuZCIsInRvcE5hdiIsImlkIiwibmFtZSIsImN1cnJlbnRUYWIiLCJzbGlkZSIsInBvc3RzTGFzdCIsImxvYWRkaW5nTGFzdCIsInB1bGxVcE9uTGFzdCIsInBvc3RzIiwibG9hZGRpbmciLCJwdWxsVXBPbiIsImxpc3RNb2RlIiwic2Nyb2xsTGVmdCIsImN1cnJlbnQiLCJwb3BfYWQiLCJzaGFyZV90aXRsZSIsInNoYXJlX3RodW1iIiwib25Mb2FkIiwib3B0aW9ucyIsImdldCIsIkpJQU5HUUlFX1NFVFRJTkdfSE9NRSIsInRoZW4iLCJyZXMiLCJsZW5ndGgiLCJjb25jYXQiLCJ0b3BfbmF2IiwiaG9tZV9zbGlkZSIsImxpc3RfbW9kZSIsInRpdGxlIiwiZ2V0QXBwIiwiZ2xvYmFsRGF0YSIsImFwcE5hbWUiLCJnZXRQb3BBZCIsIlpIVUlHRV9JTkRFWF9NQVhBRF9MQVNUX1RJTUUiLCJsb2FkUG9zdExhc3QiLCJvblNob3ciLCJvblJlYWNoQm90dG9tIiwibG9hZFBvc3QiLCJvblNoYXJlQXBwTWVzc2FnZSIsInBhcmFtcyIsInBhdGgiLCJpbWFnZVVybCIsIm1ldGhvZHMiLCJoYW5kbGVyU2VhcmNoQ2xpY2siLCJlIiwidW5pIiwibmF2aWdhdGVUbyIsInVybCIsImhhbmRsZXJTbGlkZUNoYW5nZSIsImRldGFpbCIsInN3aWNoTmF2IiwiY3VyIiwiY3VycmVudFRhcmdldCIsImRhdGFzZXQiLCJKSUFOR1FJRV9CR19JTkRFWCIsImhhbmRsZXJUYWJNb3JlQ2xpY2siLCJzd2l0Y2hUYWIiLCJjbGlja1NsaWRlIiwibGluayIsIm9wZW5MaW5rIiwiaGFuZGxlckFydGljbGVDbGljayIsInBvc3RfaWQiLCJyZWZyZXNoIiwib2Zmc2V0IiwiSklBTkdRSUVfUE9TVFNfTEFTVCIsIkpRX1BFUl9QQUdFX0NPVU5UIiwiSklBTkdRSUVfUE9TVFNfQ0FURUdPUlkiLCJjbGlja1BvcEFkIiwid3giLCJzZXRTdG9yYWdlU3luYyIsIkRhdGUiLCJnZXRUaW1lIiwiY2xpY2tQb3BBZENsb3NlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBaVBBO0FBQ0E7QUFDQTtBQW5QQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtB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QUFRLEVBQUVILE1BQU07UUFDaEIsUUFBUSxFQUFFLElBQUksQ0FBQy9ELE1BQU0sQ0FBQyxJQUFJLENBQUNHLFVBQVUsQ0FBQyxDQUFDRjtNQUN6QyxDQUFDLENBQUMsQ0FBQ29CLElBQUksQ0FBQyxVQUFBQyxHQUFHLEVBQUk7UUFDYixNQUFJLENBQUNiLFFBQVEsR0FBRyxLQUFLO1FBQ3JCLE1BQUksQ0FBQ0QsS0FBSyxHQUFJc0QsT0FBTyxHQUFHeEMsR0FBRyxDQUFDOUIsSUFBSSxHQUFHLE1BQUksQ0FBQ2dCLEtBQUssQ0FBQ2dCLE1BQU0sQ0FBQ0YsR0FBRyxDQUFDOUIsSUFBSSxDQUFFO1FBQy9ELE1BQUksQ0FBQ2tCLFFBQVEsR0FBR1ksR0FBRyxDQUFDOUIsSUFBSSxDQUFDK0IsTUFBTSxJQUFJeEMsU0FBUyxDQUFDa0YsaUJBQWlCO01BQ2hFLENBQUMsQ0FBQztJQUNKLENBQUM7SUFFRDtBQUNKO0FBQ0E7SUFDSUUsVUFBVSx3QkFBRztNQUNYQyxFQUFFLENBQUNDLGNBQWMsQ0FBQ3RGLFNBQVMsQ0FBQ2tELDRCQUE0QixFQUFFLElBQUlxQyxJQUFJLEVBQUUsQ0FBQ0MsT0FBTyxFQUFFLENBQUM7TUFDL0VyRixJQUFJLENBQUN5RSxRQUFRLENBQUMsSUFBSSxDQUFDN0MsTUFBTSxDQUFDNEMsSUFBSSxDQUFDO01BQy9CLElBQUksQ0FBQzVDLE1BQU0sR0FBRyxLQUFLO0lBQ3JCLENBQUM7SUFFRDtBQUNKO0FBQ0E7SUFDSTBELGVBQWUsNkJBQUc7TUFDaEIsSUFBSSxDQUFDMUQsTUFBTSxHQUFHLEtBQUs7TUFDbkJzRCxFQUFFLENBQUNDLGNBQWMsQ0FBQ3RGLFNBQVMsQ0FBQ2tELDRCQUE0QixFQUFFLElBQUlxQyxJQUFJLEVBQUUsQ0FBQ0MsT0FBTyxFQUFFLENBQUM7SUFDakY7RUFDRjtBQUNGLENBQUM7QUFBQSwyQiIsImZpbGUiOiIyOC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcbi8vXHJcblxyXG5cclxuY29uc3QgQ29uc3RhbnRzID0gcmVxdWlyZShcIkAvdXRpbHMvY29uc3RhbnRzLmpzXCIpO1xyXG5jb25zdCBBcGkgPSByZXF1aXJlKFwiQC91dGlscy9hcGkuanNcIik7XHJcbmNvbnN0IFV0aWwgPSByZXF1aXJlKFwiQC91dGlscy91dGlsLmpzXCIpO1xyXG5jb25zdCBSZXN0ID0gcmVxdWlyZShcIkAvdXRpbHMvcmVzdC5qc1wiKTtcclxuXHJcbmltcG9ydCBKaWFuZ3FpZUxvYWRtb3JlIGZyb20gXCJAL2NvbXBvbmVudHMvbG9hZG1vcmUvbG9hZG1vcmVcIjtcclxuaW1wb3J0IEppYW5ncWllTm9tb3JlIGZyb20gXCJAL2NvbXBvbmVudHMvbm9tb3JlL25vbW9yZVwiO1xyXG5pbXBvcnQgdW5pTmF2QmFyIGZyb20gJ0AvY29tcG9uZW50cy91bmktbmF2LWJhci91bmktbmF2LWJhci52dWUnXHJcblxyXG5leHBvcnQgZGVmYXVsdCB7XHJcbiAgY29tcG9uZW50czoge1xyXG4gICAgSmlhbmdxaWVMb2FkbW9yZSxcclxuICAgIEppYW5ncWllTm9tb3JlLFxyXG4gICAgdW5pTmF2QmFyXHJcbiAgfSxcclxuXHJcbiAgZGF0YSgpIHtcclxuICAgIHRoaXMuYmRfdGl0bGUgPSB1bmRlZmluZWQ7XHJcbiAgICB0aGlzLmJkX2Rlc2NyaXB0aW9uID0gdW5kZWZpbmVkO1xyXG4gICAgdGhpcy5iZF9rZXl3b3JkcyA9IHVuZGVmaW5lZDtcclxuICAgIHRoaXMuaW50ZXJzdGl0aWFsQWQgPSB1bmRlZmluZWQ7XHJcblxyXG4gICAgcmV0dXJuIHtcclxuICAgICAgbG9nbzogJycsXHJcbiAgICAgIGJhY2tncm91bmQ6IHVuZGVmaW5lZCxcclxuXHJcbiAgICAgIC8v6aG26YOo5a+86IiqXHJcbiAgICAgIHRvcE5hdjogW3tcclxuICAgICAgICBpZDogMCxcclxuICAgICAgICBuYW1lOiAn5aS05p2hJ1xyXG4gICAgICB9XSxcclxuICAgICAgY3VycmVudFRhYjogMCxcclxuXHJcbiAgICAgIC8v5bm754Gv54mHXHJcbiAgICAgIHNsaWRlOiBbXSxcclxuXHJcbiAgICAgIC8v5Zu+54mH5a+86IiqXHJcbiAgICAgIC8vIGljb25OYXY6IFtdLFxyXG5cclxuICAgICAgLy/ng63pl6jmlofnq6BcclxuICAgICAgLy8gaG90OiBbXSxcclxuXHJcbiAgICAgIC8v54Ot6ZeodGFiXHJcbiAgICAgIHBvc3RzTGFzdDogW10sXHJcbiAgICAgIGxvYWRkaW5nTGFzdDogZmFsc2UsXHJcbiAgICAgIHB1bGxVcE9uTGFzdDogdHJ1ZSxcclxuXHJcbiAgICAgIC8v5YW25LuWdGFiXHJcbiAgICAgIHBvc3RzOiBbXSxcclxuICAgICAgbG9hZGRpbmc6IGZhbHNlLFxyXG4gICAgICBwdWxsVXBPbjogdHJ1ZSxcclxuXHJcbiAgICAgIC8v5YiX6KGo5qih5byPXHJcbiAgICAgIGxpc3RNb2RlOiAzLFxyXG5cclxuICAgICAgc2Nyb2xsTGVmdDogXCJcIixcclxuICAgICAgY3VycmVudDogXCJcIixcclxuICAgICAgLy8gYWN0aXZlczogdW5kZWZpbmVkLFxyXG5cclxuICAgICAgLy8g5by556qX5bm/5ZGKXHJcbiAgICAgIHBvcF9hZDogdW5kZWZpbmVkLFxyXG5cclxuICAgICAgLy8g5YiG5Lqr5qCH6aKYXHJcbiAgICAgIHNoYXJlX3RpdGxlOiB1bmRlZmluZWQsXHJcbiAgICAgIC8vIOWIhuS6q+e8qeeVpeWbvlxyXG4gICAgICBzaGFyZV90aHVtYjogdW5kZWZpbmVkLFxyXG4gICAgfTtcclxuICB9LFxyXG5cclxuICBvbkxvYWQob3B0aW9ucykge1xyXG4gICAgUmVzdC5nZXQoQXBpLkpJQU5HUUlFX1NFVFRJTkdfSE9NRSkudGhlbihyZXMgPT4ge1xyXG4gICAgICBsZXQgbG9nbyA9IFwiL3N0YXRpYy9pbWFnZXMvbG9nby5wbmdcIjtcclxuICAgICAgaWYgKHJlcy5kYXRhLmxvZ28gJiYgcmVzLmRhdGEubG9nby5sZW5ndGggPiAwKSB7XHJcbiAgICAgICAgbG9nbyA9IHJlcy5kYXRhLmxvZ287XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIHRoaXMubG9nbyA9IGxvZ287XHJcbiAgICAgIHRoaXMudG9wTmF2ID0gdGhpcy50b3BOYXYuY29uY2F0KHJlcy5kYXRhLnRvcF9uYXYpO1xyXG4gICAgICB0aGlzLnNsaWRlID0gcmVzLmRhdGEuaG9tZV9zbGlkZTtcclxuICAgICAgLy8gdGhpcy5pY29uTmF2ID0gcmVzLmRhdGEuaWNvbl9uYXY7XHJcbiAgICAgIC8vIHRoaXMuYWN0aXZlcyA9IHJlcy5kYXRhLmFjdGl2ZXM7XHJcbiAgICAgIC8vIHRoaXMuaG90ID0gcmVzLmRhdGEuaG90O1xyXG4gICAgICB0aGlzLmxpc3RNb2RlID0gcmVzLmRhdGEubGlzdF9tb2RlO1xyXG4gICAgICB0aGlzLmJhY2tncm91bmQgPSAodGhpcy5zbGlkZSAmJiB0aGlzLnNsaWRlLmxlbmd0aCA+IDAgPyByZXMuZGF0YS5iYWNrZ3JvdW5kIDogJycpXHJcblxyXG4gICAgICBpZiAocmVzLmRhdGEudGl0bGUgJiYgcmVzLmRhdGEudGl0bGUubGVuZ3RoID4gMCkge1xyXG4gICAgICAgIGdldEFwcCgpLmdsb2JhbERhdGEuYXBwTmFtZSA9IHJlcy5kYXRhLnRpdGxlO1xyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcbiAgICAgIH1cclxuXHJcbiAgICAgIC8v5o+S5bGP5bm/5ZGKXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG4gICAgICAvLyDlvLnmoYZcclxuICAgICAgdGhpcy5wb3BfYWQgPSBVdGlsLmdldFBvcEFkKHJlcy5kYXRhLnBvcF9hZCwgQ29uc3RhbnRzLlpIVUlHRV9JTkRFWF9NQVhBRF9MQVNUX1RJTUUpO1xyXG5cclxuICAgICAgaWYgKHJlcy5kYXRhLnNoYXJlX3RpdGxlKSB7XHJcbiAgICAgICAgdGhpcy5zaGFyZV90aXRsZSA9IHJlcy5kYXRhLnNoYXJlX3RpdGxlO1xyXG4gICAgICB9XHJcblxyXG4gICAgICBpZiAocmVzLmRhdGEuc2hhcmVfdGh1bWIpIHtcclxuICAgICAgICB0aGlzLnNoYXJlX3RodW1iID0gcmVzLmRhdGEuc2hhcmVfdGh1bWI7XHJcbiAgICAgIH1cclxuICAgIH0pO1xyXG5cclxuICAgIC8v5Yqg6L295paH56ugXHJcbiAgICB0aGlzLmxvYWRQb3N0TGFzdCh0cnVlKTtcclxuICB9LFxyXG5cclxuICBvblNob3coKSB7XHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcbiAgfSxcclxuXHJcbiAgb25SZWFjaEJvdHRvbSgpIHtcclxuICAgIGlmICh0aGlzLmN1cnJlbnRUYWIgPT0gMCkge1xyXG4gICAgICBpZiAoIXRoaXMucHVsbFVwT25MYXN0KSB7XHJcbiAgICAgICAgcmV0dXJuO1xyXG4gICAgICB9XHJcblxyXG4gICAgICB0aGlzLmxvYWRQb3N0TGFzdChmYWxzZSk7XHJcbiAgICB9IGVsc2Uge1xyXG4gICAgICBpZiAoIXRoaXMucHVsbFVwT24pIHtcclxuICAgICAgICByZXR1cm47XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIHRoaXMubG9hZFBvc3QoZmFsc2UpO1xyXG4gICAgfVxyXG4gIH0sXHJcblxyXG4gIG9uU2hhcmVBcHBNZXNzYWdlKCkge1xyXG4gICAgbGV0IHBhcmFtcyA9IHtcclxuICAgICAgdGl0bGU6IGdldEFwcCgpLmdsb2JhbERhdGEuYXBwTmFtZSxcclxuICAgICAgcGF0aDogJ3BhZ2VzL2luZGV4L2luZGV4J1xyXG4gICAgfTtcclxuXHJcbiAgICBpZiAodGhpcy5zaGFyZV90aXRsZSkge1xyXG4gICAgICBwYXJhbXMudGl0bGUgPSB0aGlzLnNoYXJlX3RpdGxlO1xyXG4gICAgfVxyXG5cclxuICAgIGlmICh0aGlzLnNoYXJlX3RodW1iKSB7XHJcbiAgICAgIHBhcmFtcy5pbWFnZVVybCA9IHRoaXMuc2hhcmVfdGh1bWI7XHJcbiAgICB9XHJcblxyXG4gICAgcmV0dXJuIHBhcmFtcztcclxuICB9LFxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuICBtZXRob2RzOiB7XHJcbiAgICAvL25hdiBzdGFydC0tLS1cclxuICAgIGhhbmRsZXJTZWFyY2hDbGljayhlKSB7XHJcbiAgICAgIHVuaS5uYXZpZ2F0ZVRvKHtcclxuICAgICAgICB1cmw6ICcvcGFnZXMvc2VhcmNoL3NlYXJjaCdcclxuICAgICAgfSk7XHJcbiAgICB9LFxyXG4gICAgLy9uYXYgZW5kIC0tLS1cclxuXHJcbiAgICAvL3NsaWRlIHN0YXJ0LS0tLVxyXG4gICAgaGFuZGxlclNsaWRlQ2hhbmdlKGUpIHtcclxuICAgICAgdGhpcy5jdXJyZW50ID0gZS5kZXRhaWwuY3VycmVudDtcclxuICAgIH0sXHJcbiAgICAvL3NsaWRlIGVuZC0tLS1cclxuXHJcbiAgICAvL3RhYiAtLSBzdGFydFxyXG4gICAgLyoqXHJcbiAgICAgKiDngrnlh7sg5YiH5o2i5YiG57G7XHJcbiAgICAgKi9cclxuICAgIHN3aWNoTmF2KGUpIHtcclxuICAgICAgbGV0IGN1ciA9IGUuY3VycmVudFRhcmdldC5kYXRhc2V0LmN1cnJlbnQ7XHJcbiAgICAgIGlmICh0aGlzLmN1cnJlbnRUYWIgPT0gY3VyKSB7XHJcbiAgICAgICAgcmV0dXJuIGZhbHNlO1xyXG4gICAgICB9XHJcblxyXG4gICAgICB0aGlzLmJhY2tncm91bmQgPSAoY3VyID09IDAgJiYgdGhpcy5zbGlkZSAmJiB0aGlzLnNsaWRlLmxlbmd0aCA+IDAgPyBBcGkuSklBTkdRSUVfQkdfSU5ERVggOiAnJyk7XHJcbiAgICAgIHRoaXMuY3VycmVudFRhYiA9IGN1cjtcclxuXHJcbiAgICAgIGlmIChjdXIgIT09IDApIHtcclxuICAgICAgICB0aGlzLmxvYWRQb3N0KHRydWUpO1xyXG4gICAgICB9XHJcbiAgICB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye7IOaJk+W8gCDliIbnsbvpobXpnaJcclxuICAgICAqL1xyXG4gICAgaGFuZGxlclRhYk1vcmVDbGljayhlKSB7XHJcbiAgICAgIHVuaS5zd2l0Y2hUYWIoe1xyXG4gICAgICAgIHVybDogJy9wYWdlcy9jYXRlZ29yaWVzL2NhdGVnb3JpZXMnXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuICAgIC8vdGFiIC0tIGVuZFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye7IElDT05cclxuICAgICAqL1xyXG4gICAgLy8gaGFuZGxlckljb25OYXZDbGljayhlKSB7XHJcbiAgICAvLyBcdGxldCBsaW5rID0gZS5jdXJyZW50VGFyZ2V0LmRhdGFzZXQubGluaztcclxuICAgIC8vIFx0VXRpbC5vcGVuTGluayhsaW5rKTtcclxuICAgIC8vIH0sXHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiDngrnlh7vlubvnga/niYdcclxuICAgICAqL1xyXG4gICAgY2xpY2tTbGlkZShsaW5rKSB7XHJcbiAgICAgIFV0aWwub3BlbkxpbmsobGluayk7XHJcbiAgICB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye7IOa0u+WKqOWbvlxyXG4gICAgICovXHJcbiAgICAvLyBoYW5kbGVyQWN0aXZlQ2xpY2soZSkge1xyXG4gICAgLy8gXHRsZXQgbGluayA9IGUuY3VycmVudFRhcmdldC5kYXRhc2V0Lmxpbms7XHJcbiAgICAvLyBcdFV0aWwub3BlbkxpbmsobGluayk7XHJcbiAgICAvLyB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye75paH56ugXHJcbiAgICAgKi9cclxuICAgIGhhbmRsZXJBcnRpY2xlQ2xpY2soZSkge1xyXG4gICAgICBsZXQgcG9zdF9pZCA9IGUuY3VycmVudFRhcmdldC5kYXRhc2V0LmlkO1xyXG4gICAgICB1bmkubmF2aWdhdGVUbyh7XHJcbiAgICAgICAgdXJsOiAnL3BhZ2VzL2FydGljbGUvYXJ0aWNsZT9wb3N0X2lkPScgKyBwb3N0X2lkXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuXHJcbiAgICAvKipcclxuICAgICAqIOWKoOi9vSDmnIDmlrDmlofnq6BcclxuICAgICAqL1xyXG4gICAgbG9hZFBvc3RMYXN0KHJlZnJlc2gpIHtcclxuICAgICAgdGhpcy5sb2FkZGluZ0xhc3QgPSB0cnVlO1xyXG4gICAgICBsZXQgb2Zmc2V0ID0gMDtcclxuXHJcbiAgICAgIGlmICghcmVmcmVzaCkge1xyXG4gICAgICAgIG9mZnNldCA9IHRoaXMucG9zdHNMYXN0Lmxlbmd0aDtcclxuICAgICAgfVxyXG5cclxuICAgICAgUmVzdC5nZXQoQXBpLkpJQU5HUUlFX1BPU1RTX0xBU1QsIHtcclxuICAgICAgICAnb2Zmc2V0Jzogb2Zmc2V0XHJcbiAgICAgIH0pLnRoZW4ocmVzID0+IHtcclxuICAgICAgICB0aGlzLmxvYWRkaW5nTGFzdCA9IGZhbHNlO1xyXG4gICAgICAgIHRoaXMucG9zdHNMYXN0ID0gKHJlZnJlc2ggPyByZXMuZGF0YSA6IHRoaXMucG9zdHNMYXN0LmNvbmNhdChyZXMuZGF0YSkpO1xyXG4gICAgICAgIGNvbnNvbGUubG9nKHRoaXMucG9zdHNMYXN0KVxyXG4gICAgICAgIHRoaXMucHVsbFVwT25MYXN0ID0gKHJlcy5kYXRhLmxlbmd0aCA+PSBDb25zdGFudHMuSlFfUEVSX1BBR0VfQ09VTlQpXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuXHJcbiAgICAvKipcclxuICAgICAqIOWKoOi9vSDliIbnsbvmlofnq6BcclxuICAgICAqL1xyXG4gICAgbG9hZFBvc3QocmVmcmVzaCkge1xyXG4gICAgICB0aGlzLmxvYWRkaW5nID0gdHJ1ZTtcclxuICAgICAgbGV0IG9mZnNldCA9IDA7XHJcbiAgICAgIGlmICghcmVmcmVzaCkge1xyXG4gICAgICAgIG9mZnNldCA9IHRoaXMucG9zdHMubGVuZ3RoO1xyXG4gICAgICB9XHJcblxyXG4gICAgICBSZXN0LmdldChBcGkuSklBTkdRSUVfUE9TVFNfQ0FURUdPUlksIHtcclxuICAgICAgICAnb2Zmc2V0Jzogb2Zmc2V0LFxyXG4gICAgICAgICdjYXRfaWQnOiB0aGlzLnRvcE5hdlt0aGlzLmN1cnJlbnRUYWJdLmlkXHJcbiAgICAgIH0pLnRoZW4ocmVzID0+IHtcclxuICAgICAgICB0aGlzLmxvYWRkaW5nID0gZmFsc2U7XHJcbiAgICAgICAgdGhpcy5wb3N0cyA9IChyZWZyZXNoID8gcmVzLmRhdGEgOiB0aGlzLnBvc3RzLmNvbmNhdChyZXMuZGF0YSkpO1xyXG4gICAgICAgIHRoaXMucHVsbFVwT24gPSByZXMuZGF0YS5sZW5ndGggPj0gQ29uc3RhbnRzLkpRX1BFUl9QQUdFX0NPVU5UXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuXHJcbiAgICAvKipcclxuICAgICAqIOeCueWHu+W8ueWHuueql+WPo1xyXG4gICAgICovXHJcbiAgICBjbGlja1BvcEFkKCkge1xyXG4gICAgICB3eC5zZXRTdG9yYWdlU3luYyhDb25zdGFudHMuWkhVSUdFX0lOREVYX01BWEFEX0xBU1RfVElNRSwgbmV3IERhdGUoKS5nZXRUaW1lKCkpXHJcbiAgICAgIFV0aWwub3BlbkxpbmsodGhpcy5wb3BfYWQubGluayk7XHJcbiAgICAgIHRoaXMucG9wX2FkID0gZmFsc2U7XHJcbiAgICB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog5YWz6Zet5by55Ye656qX5Y+jXHJcbiAgICAgKi9cclxuICAgIGNsaWNrUG9wQWRDbG9zZSgpIHtcclxuICAgICAgdGhpcy5wb3BfYWQgPSBmYWxzZTtcclxuICAgICAgd3guc2V0U3RvcmFnZVN5bmMoQ29uc3RhbnRzLlpIVUlHRV9JTkRFWF9NQVhBRF9MQVNUX1RJTUUsIG5ldyBEYXRlKCkuZ2V0VGltZSgpKVxyXG4gICAgfSxcclxuICB9XHJcbn07XHJcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///28\n");
+eval("/* WEBPACK VAR INJECTION */(function(__f__, wx) {\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 1);\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _loadmore = _interopRequireDefault(__webpack_require__(/*! @/components/loadmore/loadmore */ 38));\nvar _nomore = _interopRequireDefault(__webpack_require__(/*! @/components/nomore/nomore */ 43));\nvar _uniNavBar = _interopRequireDefault(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 10));\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar Constants = __webpack_require__(/*! @/utils/constants.js */ 48);\nvar Api = __webpack_require__(/*! @/utils/api.js */ 49);\nvar Util = __webpack_require__(/*! @/utils/util.js */ 51);\nvar Rest = __webpack_require__(/*! @/utils/rest.js */ 52);\nvar _default = {\n  components: {\n    JiangqieLoadmore: _loadmore.default,\n    JiangqieNomore: _nomore.default,\n    uniNavBar: _uniNavBar.default\n  },\n  data: function data() {\n    this.bd_title = undefined;\n    this.bd_description = undefined;\n    this.bd_keywords = undefined;\n    this.interstitialAd = undefined;\n    return {\n      logo: '',\n      background: undefined,\n      //顶部导航\n      topNav: [{\n        id: 0,\n        name: '头条'\n      }],\n      currentTab: 0,\n      //幻灯片\n      slide: [],\n      //图片导航\n      // iconNav: [],\n\n      //热门文章\n      // hot: [],\n\n      //热门tab\n      postsLast: [],\n      loaddingLast: false,\n      pullUpOnLast: true,\n      //其他tab\n      posts: [],\n      loadding: false,\n      pullUpOn: true,\n      //列表模式\n      listMode: 1,\n      scrollLeft: \"\",\n      current: \"\",\n      // actives: undefined,\n\n      // 弹窗广告\n      pop_ad: undefined,\n      // 分享标题\n      share_title: undefined,\n      // 分享缩略图\n      share_thumb: undefined\n    };\n  },\n  onLoad: function onLoad(options) {\n    var _this = this;\n    Rest.get(Api.JIANGQIE_SETTING_HOME).then(function (res) {\n      var logo = \"/static/images/logo.png\";\n      if (res.data.logo && res.data.logo.length > 0) {\n        logo = res.data.logo;\n      }\n      _this.logo = logo;\n      _this.topNav = _this.topNav.concat(res.data.top_nav);\n      _this.slide = res.data.home_slide;\n      // this.iconNav = res.data.icon_nav;\n      // this.actives = res.data.actives;\n      // this.hot = res.data.hot;\n      _this.listMode = res.data.list_mode;\n      _this.background = _this.slide && _this.slide.length > 0 ? res.data.background : '';\n      if (res.data.title && res.data.title.length > 0) {\n        getApp().globalData.appName = res.data.title;\n      }\n\n      //插屏广告\n\n      // 弹框\n      _this.pop_ad = Util.getPopAd(res.data.pop_ad, Constants.ZHUIGE_INDEX_MAXAD_LAST_TIME);\n      if (res.data.share_title) {\n        _this.share_title = res.data.share_title;\n      }\n      if (res.data.share_thumb) {\n        _this.share_thumb = res.data.share_thumb;\n      }\n    });\n\n    //加载文章\n    this.loadPostLast(true);\n  },\n  onShow: function onShow() {},\n  onReachBottom: function onReachBottom() {\n    if (this.currentTab == 0) {\n      if (!this.pullUpOnLast) {\n        return;\n      }\n      this.loadPostLast(false);\n    } else {\n      if (!this.pullUpOn) {\n        return;\n      }\n      this.loadPost(false);\n    }\n  },\n  onShareAppMessage: function onShareAppMessage() {\n    var params = {\n      title: getApp().globalData.appName,\n      path: 'pages/index/index'\n    };\n    if (this.share_title) {\n      params.title = this.share_title;\n    }\n    if (this.share_thumb) {\n      params.imageUrl = this.share_thumb;\n    }\n    return params;\n  },\n  methods: {\n    //nav start----\n    handlerSearchClick: function handlerSearchClick(e) {\n      uni.navigateTo({\n        url: '/pages/search/search'\n      });\n    },\n    //nav end ----\n    //slide start----\n    handlerSlideChange: function handlerSlideChange(e) {\n      this.current = e.detail.current;\n    },\n    //slide end----\n    //tab -- start\n    /**\r\n     * 点击 切换分类\r\n     */\n    swichNav: function swichNav(e) {\n      var cur = e.currentTarget.dataset.current;\n      if (this.currentTab == cur) {\n        return false;\n      }\n      this.background = cur == 0 && this.slide && this.slide.length > 0 ? Api.JIANGQIE_BG_INDEX : '';\n      this.currentTab = cur;\n      if (cur !== 0) {\n        this.loadPost(true);\n      }\n    },\n    /**\r\n     * 点击 打开 分类页面\r\n     */\n    handlerTabMoreClick: function handlerTabMoreClick(e) {\n      uni.switchTab({\n        url: '/pages/categories/categories'\n      });\n    },\n    //tab -- end\n    /**\r\n     * 点击 ICON\r\n     */\n    // handlerIconNavClick(e) {\n    // \tlet link = e.currentTarget.dataset.link;\n    // \tUtil.openLink(link);\n    // },\n    /**\r\n     * 点击幻灯片\r\n     */\n    clickSlide: function clickSlide(link) {\n      Util.openLink(link);\n    },\n    /**\r\n     * 点击 活动图\r\n     */\n    // handlerActiveClick(e) {\n    // \tlet link = e.currentTarget.dataset.link;\n    // \tUtil.openLink(link);\n    // },\n    /**\r\n     * 点击文章\r\n     */\n    handlerArticleClick: function handlerArticleClick(e) {\n      var post_id = e.currentTarget.dataset.id;\n      uni.navigateTo({\n        url: '/pages/article/article?post_id=' + post_id\n      });\n    },\n    /**\r\n     * 加载 最新文章\r\n     */\n    loadPostLast: function loadPostLast(refresh) {\n      var _this2 = this;\n      this.loaddingLast = true;\n      var offset = 0;\n      if (!refresh) {\n        offset = this.postsLast.length;\n      }\n      Rest.get(Api.JIANGQIE_POSTS_LAST, {\n        'offset': offset\n      }).then(function (res) {\n        _this2.loaddingLast = false;\n        _this2.postsLast = refresh ? res.data : _this2.postsLast.concat(res.data);\n        __f__(\"log\", _this2.postsLast, \" at pages/index/index.vue:503\");\n        _this2.pullUpOnLast = res.data.length >= Constants.JQ_PER_PAGE_COUNT;\n      });\n    },\n    /**\r\n     * 加载 分类文章\r\n     */\n    loadPost: function loadPost(refresh) {\n      var _this3 = this;\n      this.loadding = true;\n      var offset = 0;\n      if (!refresh) {\n        offset = this.posts.length;\n      }\n      Rest.get(Api.JIANGQIE_POSTS_CATEGORY, {\n        'offset': offset,\n        'cat_id': this.topNav[this.currentTab].id\n      }).then(function (res) {\n        _this3.loadding = false;\n        _this3.posts = refresh ? res.data : _this3.posts.concat(res.data);\n        _this3.pullUpOn = res.data.length >= Constants.JQ_PER_PAGE_COUNT;\n      });\n    },\n    /**\r\n     * 点击弹出窗口\r\n     */\n    clickPopAd: function clickPopAd() {\n      wx.setStorageSync(Constants.ZHUIGE_INDEX_MAXAD_LAST_TIME, new Date().getTime());\n      Util.openLink(this.pop_ad.link);\n      this.pop_ad = false;\n    },\n    /**\r\n     * 关闭弹出窗口\r\n     */\n    clickPopAdClose: function clickPopAdClose() {\n      this.pop_ad = false;\n      wx.setStorageSync(Constants.ZHUIGE_INDEX_MAXAD_LAST_TIME, new Date().getTime());\n    }\n  }\n};\nexports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 53)[\"default\"], __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/mp.js */ 29)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvaW5kZXgvaW5kZXgudnVlIl0sIm5hbWVzIjpbImNvbXBvbmVudHMiLCJKaWFuZ3FpZUxvYWRtb3JlIiwiSmlhbmdxaWVOb21vcmUiLCJ1bmlOYXZCYXIiLCJkYXRhIiwibG9nbyIsImJhY2tncm91bmQiLCJ0b3BOYXYiLCJpZCIsIm5hbWUiLCJjdXJyZW50VGFiIiwic2xpZGUiLCJwb3N0c0xhc3QiLCJsb2FkZGluZ0xhc3QiLCJwdWxsVXBPbkxhc3QiLCJwb3N0cyIsImxvYWRkaW5nIiwicHVsbFVwT24iLCJsaXN0TW9kZSIsInNjcm9sbExlZnQiLCJjdXJyZW50IiwicG9wX2FkIiwic2hhcmVfdGl0bGUiLCJzaGFyZV90aHVtYiIsIm9uTG9hZCIsIlJlc3QiLCJnZXRBcHAiLCJvblNob3ciLCJvblJlYWNoQm90dG9tIiwib25TaGFyZUFwcE1lc3NhZ2UiLCJ0aXRsZSIsInBhdGgiLCJwYXJhbXMiLCJtZXRob2RzIiwiaGFuZGxlclNlYXJjaENsaWNrIiwidW5pIiwidXJsIiwiaGFuZGxlclNsaWRlQ2hhbmdlIiwic3dpY2hOYXYiLCJoYW5kbGVyVGFiTW9yZUNsaWNrIiwiY2xpY2tTbGlkZSIsIlV0aWwiLCJoYW5kbGVyQXJ0aWNsZUNsaWNrIiwibG9hZFBvc3RMYXN0Iiwib2Zmc2V0IiwibG9hZFBvc3QiLCJjbGlja1BvcEFkIiwid3giLCJjbGlja1BvcEFkQ2xvc2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUEyTkE7QUFDQTtBQUNBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBUEE7QUFDQTtBQUNBO0FBQ0E7QUFBQSxlQU1BO0VBQ0FBO0lBQ0FDO0lBQ0FDO0lBQ0FDO0VBQ0E7RUFFQUM7SUFDQTtJQUNBO0lBQ0E7SUFDQTtJQUVBO01BQ0FDO01BQ0FDO01BRUE7TUFDQUM7UUFDQUM7UUFDQUM7TUFDQTtNQUNBQztNQUVBO01BQ0FDO01BRUE7TUFDQTs7TUFFQTtNQUNBOztNQUVBO01BQ0FDO01BQ0FDO01BQ0FDO01BRUE7TUFDQUM7TUFDQUM7TUFDQUM7TUFFQTtNQUNBQztNQUVBQztNQUNBQztNQUNBOztNQUVBO01BQ0FDO01BRUE7TUFDQUM7TUFDQTtNQUNBQztJQUNBO0VBQ0E7RUFFQUM7SUFBQTtJQUNBQztNQUNBO01BQ0E7UUFDQXBCO01BQ0E7TUFFQTtNQUNBO01BQ0E7TUFDQTtNQUNBO01BQ0E7TUFDQTtNQUNBO01BRUE7UUFDQXFCO01BWUE7O01BRUE7O01BdUJBO01BQ0E7TUFFQTtRQUNBO01BQ0E7TUFFQTtRQUNBO01BQ0E7SUFDQTs7SUFFQTtJQUNBO0VBQ0E7RUFFQUMsMkJBVUE7RUFFQUM7SUFDQTtNQUNBO1FBQ0E7TUFDQTtNQUVBO0lBQ0E7TUFDQTtRQUNBO01BQ0E7TUFFQTtJQUNBO0VBQ0E7RUFFQUM7SUFDQTtNQUNBQztNQUNBQztJQUNBO0lBRUE7TUFDQUM7SUFDQTtJQUVBO01BQ0FBO0lBQ0E7SUFFQTtFQUNBO0VBY0FDO0lBQ0E7SUFDQUM7TUFDQUM7UUFDQUM7TUFDQTtJQUNBO0lBQ0E7SUFFQTtJQUNBQztNQUNBO0lBQ0E7SUFDQTtJQUVBO0lBQ0E7QUFDQTtBQUNBO0lBQ0FDO01BQ0E7TUFDQTtRQUNBO01BQ0E7TUFFQTtNQUNBO01BRUE7UUFDQTtNQUNBO0lBQ0E7SUFFQTtBQUNBO0FBQ0E7SUFDQUM7TUFDQUo7UUFDQUM7TUFDQTtJQUNBO0lBQ0E7SUFFQTtBQUNBO0FBQ0E7SUFDQTtJQUNBO0lBQ0E7SUFDQTtJQUVBO0FBQ0E7QUFDQTtJQUNBSTtNQUNBQztJQUNBO0lBRUE7QUFDQTtBQUNBO0lBQ0E7SUFDQTtJQUNBO0lBQ0E7SUFFQTtBQUNBO0FBQ0E7SUFDQUM7TUFDQTtNQUNBUDtRQUNBQztNQUNBO0lBQ0E7SUFFQTtBQUNBO0FBQ0E7SUFDQU87TUFBQTtNQUNBO01BQ0E7TUFFQTtRQUNBQztNQUNBO01BRUFuQjtRQUNBO01BQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtNQUNBO0lBQ0E7SUFFQTtBQUNBO0FBQ0E7SUFDQW9CO01BQUE7TUFDQTtNQUNBO01BQ0E7UUFDQUQ7TUFDQTtNQUVBbkI7UUFDQTtRQUNBO01BQ0E7UUFDQTtRQUNBO1FBQ0E7TUFDQTtJQUNBO0lBRUE7QUFDQTtBQUNBO0lBQ0FxQjtNQUNBQztNQUNBTjtNQUNBO0lBQ0E7SUFFQTtBQUNBO0FBQ0E7SUFDQU87TUFDQTtNQUNBRDtJQUNBO0VBQ0E7QUFDQTtBQUFBLDJCIiwiZmlsZSI6IjI4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHRlbXBsYXRlPlxyXG4gIDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtdG9wLWJnXCIgOnN0eWxlPVwiYmFja2dyb3VuZD8nYmFja2dyb3VuZC1pbWFnZTogdXJsKCcgKyBiYWNrZ3JvdW5kICsgJyk7JzonJ1wiPlxyXG5cclxuICAgIDx1bmktbmF2LWJhciA6Zml4ZWQ9XCJ0cnVlXCIgOnN0YXR1c0Jhcj1cInRydWVcIiBiYWNrZ3JvdW5kQ29sb3I9XCIjRTAzMDFGXCI+XHJcbiAgICAgIDx0ZW1wbGF0ZSBzbG90PVwibGVmdFwiPlxyXG4gICAgICAgIDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtbG9nb1wiPlxyXG4gICAgICAgICAgPGltYWdlIDpzcmM9XCJsb2dvXCI+PC9pbWFnZT5cclxuICAgICAgICA8L3ZpZXc+XHJcbiAgICAgIDwvdGVtcGxhdGU+XHJcbiAgICAgIDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtYnRuLXNlYXJjaFwiIEBjbGljaz1cImhhbmRsZXJTZWFyY2hDbGlja1wiPlxyXG4gICAgICAgIDx1bmktaWNvbnMgY2xhc3M9XCJpbnB1dC11bmktaWNvblwiIHR5cGU9XCJzZWFyY2hcIiBzaXplPVwiMThcIiBjb2xvcj1cIiNmOGI4YjhcIi8+XHJcbiAgICAgICAgPHRleHQ+54K55oiR5pCc57SiPC90ZXh0PlxyXG4gICAgICA8L3ZpZXc+XHJcbiAgICA8L3VuaS1uYXYtYmFyPlxyXG5cclxuICAgIDxzY3JvbGwtdmlldyBzY3JvbGwteCBzY3JvbGwtd2l0aC1hbmltYXRpb24gY2xhc3M9XCJ0YWItdmlld1wiIDpzY3JvbGwtbGVmdD1cInNjcm9sbExlZnRcIj5cclxuICAgICAgPHZpZXcgdi1mb3I9XCIoaXRlbSwgaW5kZXgpIGluIHRvcE5hdlwiIDprZXk9XCJpbmRleFwiXHJcbiAgICAgICAgICAgIDpjbGFzcz1cIid0YWItYmFyLWl0ZW0gJyArIChjdXJyZW50VGFiPT1pbmRleCA/ICdhY3RpdmUnIDogJycpXCIgOmRhdGEtY3VycmVudD1cImluZGV4XCJcclxuICAgICAgICAgICAgQHRhcC5zdG9wPVwic3dpY2hOYXZcIj5cclxuICAgICAgICA8dGV4dCBjbGFzcz1cInRhYi1iYXItdGl0bGVcIj57eyBpdGVtLm5hbWUgfX08L3RleHQ+XHJcbiAgICAgIDwvdmlldz5cclxuICAgICAgPHZpZXcgY2xhc3M9XCJ0YWItYmFyLWl0ZW1cIj5cclxuICAgICAgICA8dGV4dCBjbGFzcz1cInRhYi1iYXItdGl0bGVcIj4uPC90ZXh0PlxyXG4gICAgICA8L3ZpZXc+XHJcbiAgICA8L3Njcm9sbC12aWV3PlxyXG5cclxuICAgIDx2aWV3IGNsYXNzPVwidGFiLW1vcmVcIiBAdGFwLnN0b3A9XCJoYW5kbGVyVGFiTW9yZUNsaWNrXCI+XHJcbiAgICAgIDxpbWFnZSBzcmM9XCIvc3RhdGljL2ltYWdlcy90YWJtb3JlcmVkLnBuZ1wiIG1vZGU9XCJhc3BlY3RGaWxsXCI+PC9pbWFnZT5cclxuICAgIDwvdmlldz5cclxuXHJcbiAgICA8dmlldyBjbGFzcz1cInRhYi1jb250ZW50XCIgc3R5bGU9XCJwYWRkaW5nLXRvcDogMTIwcnB4O1wiPlxyXG4gICAgICA8dGVtcGxhdGUgdi1pZj1cImN1cnJlbnRUYWI9PTBcIj5cclxuXHJcbiAgICAgICAgPCEtLWJhbm5lci0tPlxyXG4gICAgICAgIDx2aWV3IHYtaWY9XCJzbGlkZSAmJiBzbGlkZS5sZW5ndGg+MFwiIGNsYXNzPVwiamlhbmdxaWUtYmFubmVyLWJveFwiPlxyXG4gICAgICAgICAgPHN3aXBlciBpbmRpY2F0b3ItZG90cz1cInRydWVcIiBhdXRvcGxheT1cInRydWVcIiBpbnRlcnZhbD1cIjUwMDBcIiBkdXJhdGlvbj1cIjE1MFwiXHJcbiAgICAgICAgICAgICAgICAgIGNsYXNzPVwiamlhbmdxaWUtYmFubmVyLXN3aXBlclwiIDpjaXJjdWxhcj1cInRydWVcIiBwcmV2aW91cy1tYXJnaW49XCIxNXJweFwiIG5leHQtbWFyZ2luPVwiMTVycHhcIlxyXG4gICAgICAgICAgICAgICAgICBAY2hhbmdlPVwiaGFuZGxlclNsaWRlQ2hhbmdlXCI+XHJcbiAgICAgICAgICAgIDxzd2lwZXItaXRlbSB2LWZvcj1cIihpdGVtLCBpbmRleCkgaW4gc2xpZGVcIiA6a2V5PVwiaW5kZXhcIiBjbGFzcz1cImppYW5ncWllLWJhbm5lci1pdGVtXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgIDpkYXRhLWlkPVwiaXRlbS5pZFwiIEB0YXAuc3RvcD1cImNsaWNrU2xpZGUoaXRlbS5saW5rKVwiPlxyXG4gICAgICAgICAgICAgIDxpbWFnZSA6c3JjPVwiaXRlbS5pbWFnZVwiXHJcbiAgICAgICAgICAgICAgICAgICAgIDpjbGFzcz1cIidqaWFuZ3FpZS1zbGlkZS1pbWFnZSAnICsgKChjdXJyZW50PT1pbmRleCB8fCAoY3VycmVudD09dW5kZWZpbmVkICYmIGluZGV4PT0wKSk/Jyc6J2ppYW5ncWllLWJhbm5lci1zY2FsZScpXCJcclxuICAgICAgICAgICAgICAgICAgICAgbW9kZT1cImFzcGVjdEZpbGxcIj48L2ltYWdlPlxyXG4gICAgICAgICAgICA8L3N3aXBlci1pdGVtPlxyXG4gICAgICAgICAgPC9zd2lwZXI+XHJcbiAgICAgICAgPC92aWV3PlxyXG4gICAgICAgIDwhLS1iYW5uZXItLT5cclxuXHJcbiAgICAgICAgPHZpZXcgY2xhc3M9XCJjb250YWluZXJcIj5cclxuICAgICAgICAgIDwhLS3lm77moIfmqKHlnZcg5Y+v5Y2V54us6K6+572u6IOM5pmv6Imy44CB6IOM5pmv5Zu+44CB5Zu+5qCH5Zu+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdDx2aWV3IHYtaWY9XCJpY29uTmF2ICYmIGljb25OYXYubGVuZ3RoPjBcIiBjbGFzcz1cImppYW5ncWllLW5ld3MtaWNvblwiPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdDx2aWV3IHYtZm9yPVwiKGl0ZW0sIGluZGV4KSBpbiBpY29uTmF2XCIgOmtleT1cImluZGV4XCIgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWljb25ib3hcIi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0OmRhdGEtbGluaz1cIml0ZW0ubGlua1wiIEB0YXAuc3RvcD1cImhhbmRsZXJJY29uTmF2Q2xpY2tcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtbmV3cy1pY29uYmdcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdFx0PGltYWdlIGNsYXNzPVwiamlhbmdxaWUtbmV3cy1pY29uaW1nXCIgOnNyYz1cIml0ZW0uaWNvblwiPjwvaW1hZ2U+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHQ8L3ZpZXc+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHQ8dGV4dD57e2l0ZW0udGl0bGV9fTwvdGV4dD4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8L3ZpZXc+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdDwvdmlldz4tLT5cclxuXHJcbiAgICAgICAgICA8IS0t5o6o6I2Q5qih5Z2XLS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdDx2aWV3IHYtaWY9XCJhY3RpdmVzXCIgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXZpZXdcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtbGlnaHRib3ggamlhbmdxaWUtbmV3cy1saWdodGJveC1tYWluXCIgOmRhdGEtbGluaz1cImFjdGl2ZXMubGVmdC5saW5rXCItLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdEB0YXAuc3RvcD1cImhhbmRsZXJBY3RpdmVDbGlja1wiPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0PGltYWdlIGNsYXNzPVwiamlhbmdxaWUtbmV3cy1saWdodGltZ1wiIDpzcmM9XCJhY3RpdmVzLmxlZnQuaW1hZ2VcIiBtb2RlPVwiYXNwZWN0RmlsbFwiPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0PC9pbWFnZT4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtbmV3cy1saWdodHRleHRcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWxpaGd0dGl0bGVcIj57e2FjdGl2ZXMubGVmdC50aXRsZX19PC90ZXh0Pi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0PC92aWV3Pi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdDwvdmlldz4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtbGlnaHRib3ggamlhbmdxaWUtbmV3cy1saWdodGJveC1zaWRlXCItLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDpkYXRhLWxpbms9XCJhY3RpdmVzLnJpZ2h0X3RvcC5saW5rXCIgQHRhcC5zdG9wPVwiaGFuZGxlckFjdGl2ZUNsaWNrXCI+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHQ8aW1hZ2UgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWxpZ2h0aW1nXCIgOnNyYz1cImFjdGl2ZXMucmlnaHRfdG9wLmltYWdlXCIgbW9kZT1cImFzcGVjdEZpbGxcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDwvaW1hZ2U+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtbGlnaHR0ZXh0XCI+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHRcdDx0ZXh0IGNsYXNzPVwiamlhbmdxaWUtbmV3cy1saWhndHRpdGxlXCI+e3thY3RpdmVzLnJpZ2h0X3RvcC50aXRsZX19PC90ZXh0Pi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0PC92aWV3Pi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdDwvdmlldz4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtbGlnaHRib3ggamlhbmdxaWUtbmV3cy1saWdodGJveC1zaWRlMlwiLS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHQ6ZGF0YS1saW5rPVwiYWN0aXZlcy5yaWdodF9kb3duLmxpbmtcIiBAdGFwLnN0b3A9XCJoYW5kbGVyQWN0aXZlQ2xpY2tcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDxpbWFnZSBjbGFzcz1cImppYW5ncWllLW5ld3MtbGlnaHRpbWdcIiA6c3JjPVwiYWN0aXZlcy5yaWdodF9kb3duLmltYWdlXCIgbW9kZT1cImFzcGVjdEZpbGxcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDwvaW1hZ2U+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtbGlnaHR0ZXh0XCI+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHRcdDx0ZXh0IGNsYXNzPVwiamlhbmdxaWUtbmV3cy1saWhndHRpdGxlXCI+e3thY3RpdmVzLnJpZ2h0X2Rvd24udGl0bGV9fTwvdGV4dD4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDwvdmlldz4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8L3ZpZXc+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdDwvdmlldz4tLT5cclxuXHJcbiAgICAgICAgICA8IS0t5paw6Ze75YiX6KGo4oCU4oCU54Ot6ZeoLS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdDx2aWV3IHYtaWY9XCJob3QgJiYgaG90Lmxlbmd0aD4wXCIgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXZpZXcgamlhbmdxaWUtbmV3cy1ob3RcIj4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtdHlwZVwiPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx054Ot6Zeo5o6o6I2QPHRleHQ+5ruR5Yqo5p+l55yLPC90ZXh0Pi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdDwvdmlldz4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8c2Nyb2xsLXZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXNjcm9sbC14LWJveFwiIHNjcm9sbC14PVwidHJ1ZVwiPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0PHZpZXcgdi1mb3I9XCIoaXRlbSwgaW5kZXgpIGluIGhvdFwiIDprZXk9XCJpbmRleFwiIGNsYXNzPVwiamlhbmdxaWUtaG90LXNjcm9sbC1ib3hcIi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0XHQ6ZGF0YS1pZD1cIml0ZW0uaWRcIiBAdGFwLnN0b3A9XCJoYW5kbGVyQXJ0aWNsZUNsaWNrXCI+LS0+XHJcbiAgICAgICAgICA8IS0tXHRcdFx0XHRcdFx0XHRcdDxpbWFnZSA6c3JjPVwiaXRlbS50aHVtYm5haWxcIiBtb2RlPVwiYXNwZWN0RmlsbFwiIGNsYXNzPVwiamlhbmdxaWUtaG90LXNjcm9sbC1pbWFnZVwiPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0XHQ8L2ltYWdlPi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHRcdFx0XHQ8dmlldyBjbGFzcz1cImppYW5ncWllLWhvdC1zY3JvbGwtdGl0bGVcIj57e2l0ZW0udGl0bGV9fTwvdmlldz4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHRcdDwvdmlldz4tLT5cclxuICAgICAgICAgIDwhLS1cdFx0XHRcdFx0XHQ8L3Njcm9sbC12aWV3Pi0tPlxyXG4gICAgICAgICAgPCEtLVx0XHRcdFx0XHQ8L3ZpZXc+LS0+XHJcblxyXG4gICAgICAgICAgPCEtLeaWsOmXu+WIl+ihqOKAlOKAlOW4uOinhC0tPlxyXG4gICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXZpZXdcIj5cclxuICAgICAgICAgICAgPCEtLSAgICAgICAgICAgIDx2aWV3IHYtaWY9XCJwb3N0c0xhc3QgJiYgcG9zdHNMYXN0Lmxlbmd0aD4wXCIgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXR5cGVcIj4tLT5cclxuICAgICAgICAgICAgPCEtLSAgICAgICAgICAgICAg5pyA5paw5paH56ugLS0+XHJcbiAgICAgICAgICAgIDwhLS0gICAgICAgICAgICA8L3ZpZXc+LS0+XHJcbiAgICAgICAgICAgIDx0ZW1wbGF0ZSB2LWZvcj1cIihpdGVtLCBpbmRleCkgaW4gcG9zdHNMYXN0XCI+XHJcbiAgICAgICAgICAgICAgPHZpZXcgOmtleT1cImluZGV4XCIgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWJsb2NrXCIgOmRhdGEtaWQ9XCJpdGVtLmlkXCJcclxuICAgICAgICAgICAgICAgICAgICBAdGFwLnN0b3A9XCJoYW5kbGVyQXJ0aWNsZUNsaWNrXCI+XHJcbiAgICAgICAgICAgICAgICA8aW1hZ2UgOnNyYz1cIml0ZW0udGh1bWJuYWlsXCIgbW9kZT1cImFzcGVjdEZpbGxcIiBjbGFzcz1cImppYW5ncWllLW5ld3MtaW1hZ2VcIj48L2ltYWdlPlxyXG4gICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXRleHRcIj5cclxuICAgICAgICAgICAgICAgICAgPHZpZXdcclxuICAgICAgICAgICAgICAgICAgICAgIDpjbGFzcz1cIidqaWFuZ3FpZS1uZXdzLXRpdGxlICcgKyAoaXRlbS5leGNlcnB0PycnOidqaWFuZ3FpZS1uZXdzLW5vLWV4Y2VycHQnKVwiPlxyXG4gICAgICAgICAgICAgICAgICAgIDx0ZXh0IHYtaWY9XCJpdGVtLnN0aWNrPT0xXCI+572u6aG2PC90ZXh0PlxyXG4gICAgICAgICAgICAgICAgICAgIHt7IGl0ZW0udGl0bGUgfX1cclxuICAgICAgICAgICAgICAgICAgPC92aWV3PlxyXG4gICAgICAgICAgICAgICAgICA8dmlldyB2LWlmPVwiaXRlbS5leGNlcnB0XCIgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWRlc2NyaWJlXCI+e3sgaXRlbS5leGNlcnB0IH19PC92aWV3PlxyXG4gICAgICAgICAgICAgICAgICA8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtaW5mb1wiPlxyXG4gICAgICAgICAgICAgICAgICAgIDx0ZXh0IHYtZm9yPVwiKGl0ZW0sIGluZGV4MikgaW4gaXRlbS50YWdzXCIgOmtleT1cImluZGV4MlwiXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXRhZ1wiPnt7IGl0ZW0ubmFtZSB9fVxyXG4gICAgICAgICAgICAgICAgICAgIDwvdGV4dD5cclxuICAgICAgICAgICAgICAgICAgICA8dGV4dCBjbGFzcz1cImppYW5ncWllLW5ld3MtdGltZVwiPnt7IGl0ZW0udGltZSB9fTwvdGV4dD5cclxuICAgICAgICAgICAgICAgICAgICA8dmlldyBjbGFzcz1cImppYW5ncWllLW5ld3MtY210XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8aW1hZ2Ugc3JjPVwiL3N0YXRpYy9pbWFnZXMvY3RtMi5wbmdcIiBtb2RlPVwiYXNwZWN0RmlsbFwiPjwvaW1hZ2U+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8dGV4dD57eyBpdGVtLnZpZXdzIH19PC90ZXh0PlxyXG4gICAgICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgICAgPC92aWV3PlxyXG4gICAgICAgICAgICAgICAgPC92aWV3PlxyXG4gICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgPC90ZW1wbGF0ZT5cclxuICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICA8L3ZpZXc+XHJcbiAgICAgICAgPCEtLeWKoOi9vWxvYWRkaW5nLS0+XHJcbiAgICAgICAgPGppYW5ncWllLWxvYWRtb3JlIDp2aXNpYmxlPVwibG9hZGRpbmdMYXN0XCI+PC9qaWFuZ3FpZS1sb2FkbW9yZT5cclxuICAgICAgICA8amlhbmdxaWUtbm9tb3JlIDp2aXNpYmxlPVwiIXB1bGxVcE9uTGFzdFwiPjwvamlhbmdxaWUtbm9tb3JlPlxyXG4gICAgICAgIDwhLS3liqDovb1sb2FkZGluZy0tPlxyXG4gICAgICA8L3RlbXBsYXRlPlxyXG5cclxuICAgICAgPHRlbXBsYXRlIHYtZWxzZT5cclxuICAgICAgICA8dmlldyBjbGFzcz1cImNvbnRhaW5lclwiPlxyXG4gICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXZpZXdcIj5cclxuICAgICAgICAgICAgPHRlbXBsYXRlIHYtZm9yPVwiKGl0ZW0sIGluZGV4KSBpbiBwb3N0c1wiPlxyXG4gICAgICAgICAgICAgIDx2aWV3IHYtaWY9XCIobGlzdE1vZGU9PTEgJiYgZmFsc2UpIHx8IChsaXN0TW9kZT09MikgfHwgKGxpc3RNb2RlPT0zICYmIGluZGV4JTU9PTQpXCJcclxuICAgICAgICAgICAgICAgICAgICA6a2V5PVwiaW5kZXhcIiBjbGFzcz1cImppYW5ncWllLW5ld3MtYmxvY2sgaW1hZ2Utd2lkZVwiIDpkYXRhLWlkPVwiaXRlbS5pZFwiXHJcbiAgICAgICAgICAgICAgICAgICAgQHRhcC5zdG9wPVwiaGFuZGxlckFydGljbGVDbGlja1wiPlxyXG4gICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWltYWdlXCI+XHJcbiAgICAgICAgICAgICAgICAgIDxpbWFnZSA6c3JjPVwiaXRlbS50aHVtYm5haWxcIiBtb2RlPVwiYXNwZWN0RmlsbFwiLz5cclxuICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgIDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtbmV3cy10ZXh0XCI+XHJcbiAgICAgICAgICAgICAgICAgIDx2aWV3XHJcbiAgICAgICAgICAgICAgICAgICAgICA6Y2xhc3M9XCInamlhbmdxaWUtbmV3cy10aXRsZSAnICsgKGl0ZW0uZXhjZXJwdD8nJzonamlhbmdxaWUtbmV3cy1uby1leGNlcnB0JylcIj5cclxuICAgICAgICAgICAgICAgICAgICB7eyBpdGVtLnRpdGxlIH19XHJcbiAgICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgICAgPHZpZXcgdi1pZj1cIml0ZW0uZXhjZXJwdFwiIGNsYXNzPVwiamlhbmdxaWUtbmV3cy1kZXNjcmliZVwiPnt7IGl0ZW0uZXhjZXJwdCB9fTwvdmlldz5cclxuICAgICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWluZm9cIj5cclxuICAgICAgICAgICAgICAgICAgICA8dGV4dCB2LWZvcj1cIihpdGVtLCBpbmRleDIpIGluIGl0ZW0udGFnc1wiIDprZXk9XCJpbmRleDJcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzPVwiamlhbmdxaWUtbmV3cy10YWdcIj57eyBpdGVtLm5hbWUgfX1cclxuICAgICAgICAgICAgICAgICAgICA8L3RleHQ+XHJcbiAgICAgICAgICAgICAgICAgICAgPHRleHQgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXRpbWVcIj57eyBpdGVtLnRpbWUgfX08L3RleHQ+XHJcbiAgICAgICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWNtdFwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPGltYWdlIHNyYz1cIi9zdGF0aWMvaW1hZ2VzL2N0bTIucG5nXCIgbW9kZT1cImFzcGVjdEZpbGxcIj48L2ltYWdlPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRleHQ+e3sgaXRlbS52aWV3cyB9fTwvdGV4dD5cclxuICAgICAgICAgICAgICAgICAgICA8L3ZpZXc+XHJcbiAgICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICA8L3ZpZXc+XHJcbiAgICAgICAgICAgICAgPHZpZXcgdi1lbHNlIDprZXk9XCJpbmRleFwiIGNsYXNzPVwiamlhbmdxaWUtbmV3cy1ibG9ja1wiIDpkYXRhLWlkPVwiaXRlbS5pZFwiXHJcbiAgICAgICAgICAgICAgICAgICAgQHRhcC5zdG9wPVwiaGFuZGxlckFydGljbGVDbGlja1wiPlxyXG4gICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWltYWdlXCI+XHJcbiAgICAgICAgICAgICAgICAgIDxpbWFnZSA6c3JjPVwiaXRlbS50aHVtYm5haWxcIiBtb2RlPVwiYXNwZWN0RmlsbFwiLz5cclxuICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgIDx2aWV3IGNsYXNzPVwiamlhbmdxaWUtbmV3cy10ZXh0XCI+XHJcbiAgICAgICAgICAgICAgICAgIDx2aWV3XHJcbiAgICAgICAgICAgICAgICAgICAgICA6Y2xhc3M9XCInamlhbmdxaWUtbmV3cy10aXRsZSAnICsgKGl0ZW0uZXhjZXJwdD8nJzonamlhbmdxaWUtbmV3cy1uby1leGNlcnB0JylcIj5cclxuICAgICAgICAgICAgICAgICAgICB7eyBpdGVtLnRpdGxlIH19XHJcbiAgICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgICAgPHZpZXcgdi1pZj1cIml0ZW0uZXhjZXJwdFwiIGNsYXNzPVwiamlhbmdxaWUtbmV3cy1kZXNjcmliZVwiPnt7IGl0ZW0uZXhjZXJwdCB9fTwvdmlldz5cclxuICAgICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWluZm9cIj5cclxuICAgICAgICAgICAgICAgICAgICA8dGV4dCB2LWZvcj1cIihpdGVtLCBpbmRleDIpIGluIGl0ZW0udGFnc1wiIDprZXk9XCJpbmRleDJcIlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzPVwiamlhbmdxaWUtbmV3cy10YWdcIj57eyBpdGVtLm5hbWUgfX1cclxuICAgICAgICAgICAgICAgICAgICA8L3RleHQ+XHJcbiAgICAgICAgICAgICAgICAgICAgPHRleHQgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLXRpbWVcIj57eyBpdGVtLnRpbWUgfX08L3RleHQ+XHJcbiAgICAgICAgICAgICAgICAgICAgPHZpZXcgY2xhc3M9XCJqaWFuZ3FpZS1uZXdzLWNtdFwiPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPGltYWdlIHNyYz1cIi9zdGF0aWMvaW1hZ2VzL2N0bTIucG5nXCIgbW9kZT1cImFzcGVjdEZpbGxcIj48L2ltYWdlPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRleHQ+e3sgaXRlbS52aWV3cyB9fTwvdGV4dD5cclxuICAgICAgICAgICAgICAgICAgICA8L3ZpZXc+XHJcbiAgICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICAgIDwvdmlldz5cclxuICAgICAgICAgICAgICA8L3ZpZXc+XHJcbiAgICAgICAgICAgIDwvdGVtcGxhdGU+XHJcbiAgICAgICAgICA8L3ZpZXc+XHJcbiAgICAgICAgPC92aWV3PlxyXG4gICAgICAgIDwhLS3liqDovb1sb2FkZGluZy0tPlxyXG4gICAgICAgIDxqaWFuZ3FpZS1sb2FkbW9yZSA6dmlzaWJsZT1cImxvYWRkaW5nXCI+PC9qaWFuZ3FpZS1sb2FkbW9yZT5cclxuICAgICAgICA8amlhbmdxaWUtbm9tb3JlIDp2aXNpYmxlPVwiIXB1bGxVcE9uXCI+PC9qaWFuZ3FpZS1ub21vcmU+XHJcbiAgICAgICAgPCEtLeWKoOi9vWxvYWRkaW5nLS0+XHJcbiAgICAgIDwvdGVtcGxhdGU+XHJcbiAgICA8L3ZpZXc+XHJcblxyXG4gICAgPHZpZXcgdi1pZj1cInBvcF9hZFwiIGNsYXNzPVwiemh1Z2llLXBvcC1jb3ZlclwiPlxyXG4gICAgICA8dmlldyBjbGFzcz1cIlwiIEBjbGljaz1cImNsaWNrUG9wQWRcIiBjbGFzcz1cInpodWlnZS1wb3AtYm94XCI+XHJcbiAgICAgICAgPGltYWdlIG1vZGU9XCJhc3BlY3RGaXRcIiA6c3JjPVwicG9wX2FkLmltYWdlXCI+PC9pbWFnZT5cclxuICAgICAgICA8dmlldz5cclxuICAgICAgICAgIDx1bmktaWNvbnMgQGNsaWNrPVwiY2xpY2tQb3BBZENsb3NlXCIgdHlwZT1cImNsb3NlXCIgc2l6ZT1cIjMyXCIgY29sb3I9XCIjRkZGRkZGXCI+PC91bmktaWNvbnM+XHJcbiAgICAgICAgPC92aWV3PlxyXG4gICAgICA8L3ZpZXc+XHJcbiAgICA8L3ZpZXc+XHJcbiAgPC92aWV3PlxyXG48L3RlbXBsYXRlPlxyXG5cclxuPHNjcmlwdD5cclxuXHJcbmNvbnN0IENvbnN0YW50cyA9IHJlcXVpcmUoXCJAL3V0aWxzL2NvbnN0YW50cy5qc1wiKTtcclxuY29uc3QgQXBpID0gcmVxdWlyZShcIkAvdXRpbHMvYXBpLmpzXCIpO1xyXG5jb25zdCBVdGlsID0gcmVxdWlyZShcIkAvdXRpbHMvdXRpbC5qc1wiKTtcclxuY29uc3QgUmVzdCA9IHJlcXVpcmUoXCJAL3V0aWxzL3Jlc3QuanNcIik7XHJcblxyXG5pbXBvcnQgSmlhbmdxaWVMb2FkbW9yZSBmcm9tIFwiQC9jb21wb25lbnRzL2xvYWRtb3JlL2xvYWRtb3JlXCI7XHJcbmltcG9ydCBKaWFuZ3FpZU5vbW9yZSBmcm9tIFwiQC9jb21wb25lbnRzL25vbW9yZS9ub21vcmVcIjtcclxuaW1wb3J0IHVuaU5hdkJhciBmcm9tICdAL2NvbXBvbmVudHMvdW5pLW5hdi1iYXIvdW5pLW5hdi1iYXIudnVlJ1xyXG5cclxuZXhwb3J0IGRlZmF1bHQge1xyXG4gIGNvbXBvbmVudHM6IHtcclxuICAgIEppYW5ncWllTG9hZG1vcmUsXHJcbiAgICBKaWFuZ3FpZU5vbW9yZSxcclxuICAgIHVuaU5hdkJhclxyXG4gIH0sXHJcblxyXG4gIGRhdGEoKSB7XHJcbiAgICB0aGlzLmJkX3RpdGxlID0gdW5kZWZpbmVkO1xyXG4gICAgdGhpcy5iZF9kZXNjcmlwdGlvbiA9IHVuZGVmaW5lZDtcclxuICAgIHRoaXMuYmRfa2V5d29yZHMgPSB1bmRlZmluZWQ7XHJcbiAgICB0aGlzLmludGVyc3RpdGlhbEFkID0gdW5kZWZpbmVkO1xyXG5cclxuICAgIHJldHVybiB7XHJcbiAgICAgIGxvZ286ICcnLFxyXG4gICAgICBiYWNrZ3JvdW5kOiB1bmRlZmluZWQsXHJcblxyXG4gICAgICAvL+mhtumDqOWvvOiIqlxyXG4gICAgICB0b3BOYXY6IFt7XHJcbiAgICAgICAgaWQ6IDAsXHJcbiAgICAgICAgbmFtZTogJ+WktOadoSdcclxuICAgICAgfV0sXHJcbiAgICAgIGN1cnJlbnRUYWI6IDAsXHJcblxyXG4gICAgICAvL+W5u+eBr+eJh1xyXG4gICAgICBzbGlkZTogW10sXHJcblxyXG4gICAgICAvL+WbvueJh+WvvOiIqlxyXG4gICAgICAvLyBpY29uTmF2OiBbXSxcclxuXHJcbiAgICAgIC8v54Ot6Zeo5paH56ugXHJcbiAgICAgIC8vIGhvdDogW10sXHJcblxyXG4gICAgICAvL+eDremXqHRhYlxyXG4gICAgICBwb3N0c0xhc3Q6IFtdLFxyXG4gICAgICBsb2FkZGluZ0xhc3Q6IGZhbHNlLFxyXG4gICAgICBwdWxsVXBPbkxhc3Q6IHRydWUsXHJcblxyXG4gICAgICAvL+WFtuS7lnRhYlxyXG4gICAgICBwb3N0czogW10sXHJcbiAgICAgIGxvYWRkaW5nOiBmYWxzZSxcclxuICAgICAgcHVsbFVwT246IHRydWUsXHJcblxyXG4gICAgICAvL+WIl+ihqOaooeW8j1xyXG4gICAgICBsaXN0TW9kZTogMSxcclxuXHJcbiAgICAgIHNjcm9sbExlZnQ6IFwiXCIsXHJcbiAgICAgIGN1cnJlbnQ6IFwiXCIsXHJcbiAgICAgIC8vIGFjdGl2ZXM6IHVuZGVmaW5lZCxcclxuXHJcbiAgICAgIC8vIOW8ueeql+W5v+WRilxyXG4gICAgICBwb3BfYWQ6IHVuZGVmaW5lZCxcclxuXHJcbiAgICAgIC8vIOWIhuS6q+agh+mimFxyXG4gICAgICBzaGFyZV90aXRsZTogdW5kZWZpbmVkLFxyXG4gICAgICAvLyDliIbkuqvnvKnnlaXlm75cclxuICAgICAgc2hhcmVfdGh1bWI6IHVuZGVmaW5lZCxcclxuICAgIH07XHJcbiAgfSxcclxuXHJcbiAgb25Mb2FkKG9wdGlvbnMpIHtcclxuICAgIFJlc3QuZ2V0KEFwaS5KSUFOR1FJRV9TRVRUSU5HX0hPTUUpLnRoZW4ocmVzID0+IHtcclxuICAgICAgbGV0IGxvZ28gPSBcIi9zdGF0aWMvaW1hZ2VzL2xvZ28ucG5nXCI7XHJcbiAgICAgIGlmIChyZXMuZGF0YS5sb2dvICYmIHJlcy5kYXRhLmxvZ28ubGVuZ3RoID4gMCkge1xyXG4gICAgICAgIGxvZ28gPSByZXMuZGF0YS5sb2dvO1xyXG4gICAgICB9XHJcblxyXG4gICAgICB0aGlzLmxvZ28gPSBsb2dvO1xyXG4gICAgICB0aGlzLnRvcE5hdiA9IHRoaXMudG9wTmF2LmNvbmNhdChyZXMuZGF0YS50b3BfbmF2KTtcclxuICAgICAgdGhpcy5zbGlkZSA9IHJlcy5kYXRhLmhvbWVfc2xpZGU7XHJcbiAgICAgIC8vIHRoaXMuaWNvbk5hdiA9IHJlcy5kYXRhLmljb25fbmF2O1xyXG4gICAgICAvLyB0aGlzLmFjdGl2ZXMgPSByZXMuZGF0YS5hY3RpdmVzO1xyXG4gICAgICAvLyB0aGlzLmhvdCA9IHJlcy5kYXRhLmhvdDtcclxuICAgICAgdGhpcy5saXN0TW9kZSA9IHJlcy5kYXRhLmxpc3RfbW9kZTtcclxuICAgICAgdGhpcy5iYWNrZ3JvdW5kID0gKHRoaXMuc2xpZGUgJiYgdGhpcy5zbGlkZS5sZW5ndGggPiAwID8gcmVzLmRhdGEuYmFja2dyb3VuZCA6ICcnKVxyXG5cclxuICAgICAgaWYgKHJlcy5kYXRhLnRpdGxlICYmIHJlcy5kYXRhLnRpdGxlLmxlbmd0aCA+IDApIHtcclxuICAgICAgICBnZXRBcHAoKS5nbG9iYWxEYXRhLmFwcE5hbWUgPSByZXMuZGF0YS50aXRsZTtcclxuXHJcbiAgICAgICAgLy8gI2lmZGVmIE1QLUJBSURVXHJcbiAgICAgICAgdGhpcy5iZF90aXRsZSA9IHJlcy5kYXRhLnRpdGxlO1xyXG4gICAgICAgIHRoaXMuYmRfZGVzY3JpcHRpb24gPSByZXMuZGF0YS5kZXNjcmlwdGlvbjtcclxuICAgICAgICB0aGlzLmJkX2tleXdvcmRzID0gcmVzLmRhdGEua2V5d29yZHM7XHJcbiAgICAgICAgc3dhbi5zZXRQYWdlSW5mbyh7XHJcbiAgICAgICAgICB0aXRsZTogdGhpcy5iZF90aXRsZSxcclxuICAgICAgICAgIGRlc2NyaXB0aW9uOiB0aGlzLmJkX2Rlc2NyaXB0aW9uLFxyXG4gICAgICAgICAga2V5d29yZHM6IHRoaXMuYmRfa2V5d29yZHMsXHJcbiAgICAgICAgfSk7XHJcbiAgICAgICAgLy8gI2VuZGlmXHJcbiAgICAgIH1cclxuXHJcbiAgICAgIC8v5o+S5bGP5bm/5ZGKXHJcbiAgICAgIC8vICNpZmRlZiBNUC1XRUlYSU5cclxuICAgICAgaWYgKHJlcy5kYXRhLnd4X2FkICYmIHd4LmNyZWF0ZUludGVyc3RpdGlhbEFkKSB7XHJcbiAgICAgICAgc2V0VGltZW91dCgoKSA9PiB7XHJcbiAgICAgICAgICB0aGlzLmludGVyc3RpdGlhbEFkID0gd3guY3JlYXRlSW50ZXJzdGl0aWFsQWQoe1xyXG4gICAgICAgICAgICBhZFVuaXRJZDogcmVzLmRhdGEud3hfYWRcclxuICAgICAgICAgIH0pXHJcbiAgICAgICAgICB0aGlzLmludGVyc3RpdGlhbEFkLm9uTG9hZCgoKSA9PiB7XHJcbiAgICAgICAgICAgIC8vIGNvbnNvbGUubG9nKCdvbkxvYWQgZXZlbnQgZW1pdCcpXHJcbiAgICAgICAgICAgIHRoaXMuaW50ZXJzdGl0aWFsQWQuc2hvdygpLmNhdGNoKChlcnIpID0+IHtcclxuICAgICAgICAgICAgICBjb25zb2xlLmVycm9yKGVycilcclxuICAgICAgICAgICAgfSlcclxuICAgICAgICAgIH0pXHJcbiAgICAgICAgICB0aGlzLmludGVyc3RpdGlhbEFkLm9uRXJyb3IoKGVycikgPT4ge1xyXG4gICAgICAgICAgICAvLyBjb25zb2xlLmxvZygnb25FcnJvciBldmVudCBlbWl0JywgZXJyKVxyXG4gICAgICAgICAgfSlcclxuICAgICAgICAgIHRoaXMuaW50ZXJzdGl0aWFsQWQub25DbG9zZSgocmVzKSA9PiB7XHJcbiAgICAgICAgICAgIC8vIGNvbnNvbGUubG9nKCdvbkNsb3NlIGV2ZW50IGVtaXQnLCByZXMpXHJcbiAgICAgICAgICB9KVxyXG4gICAgICAgIH0sIDEwMDAgKiBwYXJzZUludChyZXMuZGF0YS53eF9hZF9kZWxheSkpXHJcbiAgICAgIH1cclxuICAgICAgLy8gI2VuZGlmXHJcblxyXG4gICAgICAvLyDlvLnmoYZcclxuICAgICAgdGhpcy5wb3BfYWQgPSBVdGlsLmdldFBvcEFkKHJlcy5kYXRhLnBvcF9hZCwgQ29uc3RhbnRzLlpIVUlHRV9JTkRFWF9NQVhBRF9MQVNUX1RJTUUpO1xyXG5cclxuICAgICAgaWYgKHJlcy5kYXRhLnNoYXJlX3RpdGxlKSB7XHJcbiAgICAgICAgdGhpcy5zaGFyZV90aXRsZSA9IHJlcy5kYXRhLnNoYXJlX3RpdGxlO1xyXG4gICAgICB9XHJcblxyXG4gICAgICBpZiAocmVzLmRhdGEuc2hhcmVfdGh1bWIpIHtcclxuICAgICAgICB0aGlzLnNoYXJlX3RodW1iID0gcmVzLmRhdGEuc2hhcmVfdGh1bWI7XHJcbiAgICAgIH1cclxuICAgIH0pO1xyXG5cclxuICAgIC8v5Yqg6L295paH56ugXHJcbiAgICB0aGlzLmxvYWRQb3N0TGFzdCh0cnVlKTtcclxuICB9LFxyXG5cclxuICBvblNob3coKSB7XHJcbiAgICAvLyAjaWZkZWYgTVAtQkFJRFVcclxuICAgIGlmICh0aGlzLmJkX3RpdGxlKSB7XHJcbiAgICAgIHN3YW4uc2V0UGFnZUluZm8oe1xyXG4gICAgICAgIHRpdGxlOiB0aGlzLmJkX3RpdGxlLFxyXG4gICAgICAgIGRlc2NyaXB0aW9uOiB0aGlzLmJkX2Rlc2NyaXB0aW9uLFxyXG4gICAgICAgIGtleXdvcmRzOiB0aGlzLmJkX2tleXdvcmRzLFxyXG4gICAgICB9KTtcclxuICAgIH1cclxuICAgIC8vICNlbmRpZlxyXG4gIH0sXHJcblxyXG4gIG9uUmVhY2hCb3R0b20oKSB7XHJcbiAgICBpZiAodGhpcy5jdXJyZW50VGFiID09IDApIHtcclxuICAgICAgaWYgKCF0aGlzLnB1bGxVcE9uTGFzdCkge1xyXG4gICAgICAgIHJldHVybjtcclxuICAgICAgfVxyXG5cclxuICAgICAgdGhpcy5sb2FkUG9zdExhc3QoZmFsc2UpO1xyXG4gICAgfSBlbHNlIHtcclxuICAgICAgaWYgKCF0aGlzLnB1bGxVcE9uKSB7XHJcbiAgICAgICAgcmV0dXJuO1xyXG4gICAgICB9XHJcblxyXG4gICAgICB0aGlzLmxvYWRQb3N0KGZhbHNlKTtcclxuICAgIH1cclxuICB9LFxyXG5cclxuICBvblNoYXJlQXBwTWVzc2FnZSgpIHtcclxuICAgIGxldCBwYXJhbXMgPSB7XHJcbiAgICAgIHRpdGxlOiBnZXRBcHAoKS5nbG9iYWxEYXRhLmFwcE5hbWUsXHJcbiAgICAgIHBhdGg6ICdwYWdlcy9pbmRleC9pbmRleCdcclxuICAgIH07XHJcblxyXG4gICAgaWYgKHRoaXMuc2hhcmVfdGl0bGUpIHtcclxuICAgICAgcGFyYW1zLnRpdGxlID0gdGhpcy5zaGFyZV90aXRsZTtcclxuICAgIH1cclxuXHJcbiAgICBpZiAodGhpcy5zaGFyZV90aHVtYikge1xyXG4gICAgICBwYXJhbXMuaW1hZ2VVcmwgPSB0aGlzLnNoYXJlX3RodW1iO1xyXG4gICAgfVxyXG5cclxuICAgIHJldHVybiBwYXJhbXM7XHJcbiAgfSxcclxuXHJcbiAgLy8gI2lmZGVmIE1QLVdFSVhJTlxyXG4gIG9uU2hhcmVUaW1lbGluZSgpIHtcclxuICAgIGxldCB0aXRsZSA9IGdldEFwcCgpLmdsb2JhbERhdGEuYXBwTmFtZTtcclxuICAgIGlmICh0aGlzLnNoYXJlX3RpdGxlKSB7XHJcbiAgICAgIHRpdGxlID0gdGhpcy5zaGFyZV90aXRsZTtcclxuICAgIH1cclxuICAgIHJldHVybiB7XHJcbiAgICAgIHRpdGxlOiB0aXRsZVxyXG4gICAgfTtcclxuICB9LFxyXG4gIC8vICNlbmRpZlxyXG5cclxuICBtZXRob2RzOiB7XHJcbiAgICAvL25hdiBzdGFydC0tLS1cclxuICAgIGhhbmRsZXJTZWFyY2hDbGljayhlKSB7XHJcbiAgICAgIHVuaS5uYXZpZ2F0ZVRvKHtcclxuICAgICAgICB1cmw6ICcvcGFnZXMvc2VhcmNoL3NlYXJjaCdcclxuICAgICAgfSk7XHJcbiAgICB9LFxyXG4gICAgLy9uYXYgZW5kIC0tLS1cclxuXHJcbiAgICAvL3NsaWRlIHN0YXJ0LS0tLVxyXG4gICAgaGFuZGxlclNsaWRlQ2hhbmdlKGUpIHtcclxuICAgICAgdGhpcy5jdXJyZW50ID0gZS5kZXRhaWwuY3VycmVudDtcclxuICAgIH0sXHJcbiAgICAvL3NsaWRlIGVuZC0tLS1cclxuXHJcbiAgICAvL3RhYiAtLSBzdGFydFxyXG4gICAgLyoqXHJcbiAgICAgKiDngrnlh7sg5YiH5o2i5YiG57G7XHJcbiAgICAgKi9cclxuICAgIHN3aWNoTmF2KGUpIHtcclxuICAgICAgbGV0IGN1ciA9IGUuY3VycmVudFRhcmdldC5kYXRhc2V0LmN1cnJlbnQ7XHJcbiAgICAgIGlmICh0aGlzLmN1cnJlbnRUYWIgPT0gY3VyKSB7XHJcbiAgICAgICAgcmV0dXJuIGZhbHNlO1xyXG4gICAgICB9XHJcblxyXG4gICAgICB0aGlzLmJhY2tncm91bmQgPSAoY3VyID09IDAgJiYgdGhpcy5zbGlkZSAmJiB0aGlzLnNsaWRlLmxlbmd0aCA+IDAgPyBBcGkuSklBTkdRSUVfQkdfSU5ERVggOiAnJyk7XHJcbiAgICAgIHRoaXMuY3VycmVudFRhYiA9IGN1cjtcclxuXHJcbiAgICAgIGlmIChjdXIgIT09IDApIHtcclxuICAgICAgICB0aGlzLmxvYWRQb3N0KHRydWUpO1xyXG4gICAgICB9XHJcbiAgICB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye7IOaJk+W8gCDliIbnsbvpobXpnaJcclxuICAgICAqL1xyXG4gICAgaGFuZGxlclRhYk1vcmVDbGljayhlKSB7XHJcbiAgICAgIHVuaS5zd2l0Y2hUYWIoe1xyXG4gICAgICAgIHVybDogJy9wYWdlcy9jYXRlZ29yaWVzL2NhdGVnb3JpZXMnXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuICAgIC8vdGFiIC0tIGVuZFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye7IElDT05cclxuICAgICAqL1xyXG4gICAgLy8gaGFuZGxlckljb25OYXZDbGljayhlKSB7XHJcbiAgICAvLyBcdGxldCBsaW5rID0gZS5jdXJyZW50VGFyZ2V0LmRhdGFzZXQubGluaztcclxuICAgIC8vIFx0VXRpbC5vcGVuTGluayhsaW5rKTtcclxuICAgIC8vIH0sXHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiDngrnlh7vlubvnga/niYdcclxuICAgICAqL1xyXG4gICAgY2xpY2tTbGlkZShsaW5rKSB7XHJcbiAgICAgIFV0aWwub3BlbkxpbmsobGluayk7XHJcbiAgICB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye7IOa0u+WKqOWbvlxyXG4gICAgICovXHJcbiAgICAvLyBoYW5kbGVyQWN0aXZlQ2xpY2soZSkge1xyXG4gICAgLy8gXHRsZXQgbGluayA9IGUuY3VycmVudFRhcmdldC5kYXRhc2V0Lmxpbms7XHJcbiAgICAvLyBcdFV0aWwub3BlbkxpbmsobGluayk7XHJcbiAgICAvLyB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog54K55Ye75paH56ugXHJcbiAgICAgKi9cclxuICAgIGhhbmRsZXJBcnRpY2xlQ2xpY2soZSkge1xyXG4gICAgICBsZXQgcG9zdF9pZCA9IGUuY3VycmVudFRhcmdldC5kYXRhc2V0LmlkO1xyXG4gICAgICB1bmkubmF2aWdhdGVUbyh7XHJcbiAgICAgICAgdXJsOiAnL3BhZ2VzL2FydGljbGUvYXJ0aWNsZT9wb3N0X2lkPScgKyBwb3N0X2lkXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuXHJcbiAgICAvKipcclxuICAgICAqIOWKoOi9vSDmnIDmlrDmlofnq6BcclxuICAgICAqL1xyXG4gICAgbG9hZFBvc3RMYXN0KHJlZnJlc2gpIHtcclxuICAgICAgdGhpcy5sb2FkZGluZ0xhc3QgPSB0cnVlO1xyXG4gICAgICBsZXQgb2Zmc2V0ID0gMDtcclxuXHJcbiAgICAgIGlmICghcmVmcmVzaCkge1xyXG4gICAgICAgIG9mZnNldCA9IHRoaXMucG9zdHNMYXN0Lmxlbmd0aDtcclxuICAgICAgfVxyXG5cclxuICAgICAgUmVzdC5nZXQoQXBpLkpJQU5HUUlFX1BPU1RTX0xBU1QsIHtcclxuICAgICAgICAnb2Zmc2V0Jzogb2Zmc2V0XHJcbiAgICAgIH0pLnRoZW4ocmVzID0+IHtcclxuICAgICAgICB0aGlzLmxvYWRkaW5nTGFzdCA9IGZhbHNlO1xyXG4gICAgICAgIHRoaXMucG9zdHNMYXN0ID0gKHJlZnJlc2ggPyByZXMuZGF0YSA6IHRoaXMucG9zdHNMYXN0LmNvbmNhdChyZXMuZGF0YSkpO1xyXG4gICAgICAgIGNvbnNvbGUubG9nKHRoaXMucG9zdHNMYXN0KVxyXG4gICAgICAgIHRoaXMucHVsbFVwT25MYXN0ID0gKHJlcy5kYXRhLmxlbmd0aCA+PSBDb25zdGFudHMuSlFfUEVSX1BBR0VfQ09VTlQpXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuXHJcbiAgICAvKipcclxuICAgICAqIOWKoOi9vSDliIbnsbvmlofnq6BcclxuICAgICAqL1xyXG4gICAgbG9hZFBvc3QocmVmcmVzaCkge1xyXG4gICAgICB0aGlzLmxvYWRkaW5nID0gdHJ1ZTtcclxuICAgICAgbGV0IG9mZnNldCA9IDA7XHJcbiAgICAgIGlmICghcmVmcmVzaCkge1xyXG4gICAgICAgIG9mZnNldCA9IHRoaXMucG9zdHMubGVuZ3RoO1xyXG4gICAgICB9XHJcblxyXG4gICAgICBSZXN0LmdldChBcGkuSklBTkdRSUVfUE9TVFNfQ0FURUdPUlksIHtcclxuICAgICAgICAnb2Zmc2V0Jzogb2Zmc2V0LFxyXG4gICAgICAgICdjYXRfaWQnOiB0aGlzLnRvcE5hdlt0aGlzLmN1cnJlbnRUYWJdLmlkXHJcbiAgICAgIH0pLnRoZW4ocmVzID0+IHtcclxuICAgICAgICB0aGlzLmxvYWRkaW5nID0gZmFsc2U7XHJcbiAgICAgICAgdGhpcy5wb3N0cyA9IChyZWZyZXNoID8gcmVzLmRhdGEgOiB0aGlzLnBvc3RzLmNvbmNhdChyZXMuZGF0YSkpO1xyXG4gICAgICAgIHRoaXMucHVsbFVwT24gPSByZXMuZGF0YS5sZW5ndGggPj0gQ29uc3RhbnRzLkpRX1BFUl9QQUdFX0NPVU5UXHJcbiAgICAgIH0pO1xyXG4gICAgfSxcclxuXHJcbiAgICAvKipcclxuICAgICAqIOeCueWHu+W8ueWHuueql+WPo1xyXG4gICAgICovXHJcbiAgICBjbGlja1BvcEFkKCkge1xyXG4gICAgICB3eC5zZXRTdG9yYWdlU3luYyhDb25zdGFudHMuWkhVSUdFX0lOREVYX01BWEFEX0xBU1RfVElNRSwgbmV3IERhdGUoKS5nZXRUaW1lKCkpXHJcbiAgICAgIFV0aWwub3BlbkxpbmsodGhpcy5wb3BfYWQubGluayk7XHJcbiAgICAgIHRoaXMucG9wX2FkID0gZmFsc2U7XHJcbiAgICB9LFxyXG5cclxuICAgIC8qKlxyXG4gICAgICog5YWz6Zet5by55Ye656qX5Y+jXHJcbiAgICAgKi9cclxuICAgIGNsaWNrUG9wQWRDbG9zZSgpIHtcclxuICAgICAgdGhpcy5wb3BfYWQgPSBmYWxzZTtcclxuICAgICAgd3guc2V0U3RvcmFnZVN5bmMoQ29uc3RhbnRzLlpIVUlHRV9JTkRFWF9NQVhBRF9MQVNUX1RJTUUsIG5ldyBEYXRlKCkuZ2V0VGltZSgpKVxyXG4gICAgfSxcclxuICB9XHJcbn07XHJcbjwvc2NyaXB0PlxyXG5cclxuPHN0eWxlIGxhbmc9XCJzY3NzXCI+XHJcbi5qaWFuZ3FpZS1sb2dvIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgbWFyZ2luLXJpZ2h0OiAxNXJweDtcclxuXHJcbiAgaW1hZ2Uge1xyXG4gICAgaGVpZ2h0OiA0OHJweDtcclxuICAgIHdpZHRoOiAxMjhycHg7XHJcbiAgfVxyXG59XHJcblxyXG4uamlhbmdxaWUtYnRuLXNlYXJjaCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHdpZHRoOiA4MCU7XHJcbiAgaGVpZ2h0OiAzMnB4O1xyXG4gIHBhZGRpbmctbGVmdDogMjBycHg7XHJcbiAgYmFja2dyb3VuZDogI2Q1NTQ0ZjtcclxuICBib3JkZXItcmFkaXVzOiAxNnB4O1xyXG4gIGNvbG9yOiAjZjhiOGI4O1xyXG4gIGZvbnQtc2l6ZTogMjhycHg7XHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIHBhZGRpbmctYm90dG9tOiBlbnYoc2FmZS1hcmVhLWluc2V0LWJvdHRvbSk7XHJcbiAgYmFja2dyb3VuZDogI0ZGRjtcclxufVxyXG5cclxuLmppYW5ncWllLXRvcC1iZyB7XHJcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcclxuICBiYWNrZ3JvdW5kLXNpemU6IDEwMCUgYXV0bztcclxuICBiYWNrZ3JvdW5kLXBvc2l0aW9uLXk6IDEwMHJweDtcclxufVxyXG5cclxuLypiYW5uZXIqL1xyXG4uamlhbmdxaWUtYmFubmVyLWJveCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1iYW5uZXItc3dpcGVyIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDMyMHJweDtcclxufVxyXG5cclxuLmppYW5ncWllLWJhbm5lci1pdGVtIHtcclxuICBwYWRkaW5nOiAwIDE2cnB4O1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1zbGlkZS1pbWFnZSB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAzMjBycHg7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgYm9yZGVyLXJhZGl1czogMjBycHg7XHJcbiAgdHJhbnNpdGlvbjogYWxsIDAuMXMgbGluZWFyO1xyXG4gIGJveC1zaGFkb3c6IDNycHggM3JweCAxMHJweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1iYW5uZXItc2NhbGUge1xyXG4gIHRyYW5zZm9ybTogc2NhbGVZKDAuOSk7XHJcbiAgdHJhbnNmb3JtLW9yaWdpbjogY2VudGVyIGNlbnRlcjtcclxufVxyXG5cclxuLmppYW5ncWllLWJhbm5lci1zd2lwZXIgLnd4LXN3aXBlci1kb3Qge1xyXG4gIHdpZHRoOiA4cnB4O1xyXG4gIGhlaWdodDogOHJweDtcclxuICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcclxuICBiYWNrZ3JvdW5kOiBub25lO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuLmppYW5ncWllLWJhbm5lci1zd2lwZXIgLnd4LXN3aXBlci1kb3Q6OmJlZm9yZSB7XHJcbiAgY29udGVudDogJyc7XHJcbiAgZmxleC1ncm93OiAxO1xyXG4gIGJhY2tncm91bmQ6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC4zKTtcclxuICBib3JkZXItcmFkaXVzOiAxNnJweDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4uamlhbmdxaWUtYmFubmVyLXN3aXBlciAud3gtc3dpcGVyLWRvdC1hY3RpdmU6OmJlZm9yZSB7XHJcbiAgYmFja2dyb3VuZDogI0ZGRjtcclxufVxyXG5cclxuLmppYW5ncWllLWJhbm5lci1zd2lwZXIgLnd4LXN3aXBlci1kb3Qud3gtc3dpcGVyLWRvdC1hY3RpdmUge1xyXG4gIHdpZHRoOiAxNnJweDtcclxufVxyXG5cclxuXHJcbi8qKiBqaWFuZ3FpZS1uZXdzLWljb24gKiovXHJcbi5qaWFuZ3FpZS1uZXdzLWljb24ge1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgZm9udC1zaXplOiAyNHJweDtcclxuICBjb2xvcjogIzU1NTtcclxuICBtYXJnaW4tdG9wOiAxMHJweDtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtaWNvbmJveCB7XHJcbiAgd2lkdGg6IDIwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgbWFyZ2luLWJvdHRvbTogMTBycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWljb25pbWcge1xyXG4gIGhlaWdodDogMTAwcnB4O1xyXG4gIHdpZHRoOiAxMDBycHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTZycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWljb25ib3ggdGV4dCB7XHJcbiAgbGluZS1oZWlnaHQ6IDQ2cnB4O1xyXG59XHJcblxyXG4vKiogamlhbmdxaWUtbmV3cy1saWdodGJveCAqKi9cclxuLmppYW5ncWllLW5ld3MtdmlldyB7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICBwYWRkaW5nOiAwIDMwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1saWdodGJveCB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMjBycHg7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJvcmRlci1yYWRpdXM6IDIwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1saWdodGJveC1tYWluIHtcclxuICBoZWlnaHQ6IDMwMHJweDtcclxuICB3aWR0aDogMzIwcnB4O1xyXG4gIC8vIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCBib3R0b20sICM3RkQzRkYsICMyQkIxRjIpO1xyXG4gIGJveC1zaGFkb3c6IDVycHggNXJweCAyMHJweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWxpZ2h0Ym94LXNpZGUsXHJcbi5qaWFuZ3FpZS1uZXdzLWxpZ2h0Ym94LXNpZGUyIHtcclxuICBoZWlnaHQ6IDE0MXJweDtcclxuICB3aWR0aDogMzUwcnB4O1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgbWFyZ2luLWxlZnQ6IDIwcnB4O1xyXG4gIC8vIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byByaWdodCBib3R0b20sICM5Nzg4RkYsICM3MzVDRkYpO1xyXG4gIGJveC1zaGFkb3c6IDVycHggNXJweCAyMHJweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWxpZ2h0Ym94LXNpZGUyIHtcclxuICAvLyBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQgYm90dG9tLCAjRkY5MUMyLCAjRkY1MzlFKTtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtbGlnaHRpbWcge1xyXG4gIGhlaWdodDogMzAwcnB4O1xyXG4gIHdpZHRoOiAzMjBycHg7XHJcbiAgYm9yZGVyLXJhZGl1czogOHJweDtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtbGlnaHRib3gtc2lkZSAuamlhbmdxaWUtbmV3cy1saWdodGltZyxcclxuLmppYW5ncWllLW5ld3MtbGlnaHRib3gtc2lkZTIgLmppYW5ncWllLW5ld3MtbGlnaHRpbWcge1xyXG4gIGhlaWdodDogMTQxcnB4O1xyXG4gIHdpZHRoOiAzNTBycHg7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG5cclxuLmppYW5ncWllLW5ld3MtbGlnaHR0ZXh0IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogMHJweDtcclxuICBib3R0b206IDBycHg7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gYm90dG9tLCByZ2JhKDAsIDAsIDAsIDApLCByZ2JhKDU1LCA1NSwgNTUsIDAuNCkpO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgei1pbmRleDogOTtcclxuICB3aWR0aDogMjgwcnB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDAgMCA4cnB4IDhycHg7XHJcbiAgaGVpZ2h0OiA5MHJweDtcclxuICBsaW5lLWhlaWdodDogMTEwcnB4O1xyXG4gIHBhZGRpbmc6IDAgMjBycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWxpZ2h0Ym94LXNpZGUgLmppYW5ncWllLW5ld3MtbGlnaHR0ZXh0LFxyXG4uamlhbmdxaWUtbmV3cy1saWdodGJveC1zaWRlMiAuamlhbmdxaWUtbmV3cy1saWdodHRleHQge1xyXG4gIHdpZHRoOiAzMTBycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWxpaGd0dGl0bGUge1xyXG4gIGNvbG9yOiAjRkZGO1xyXG4gIGZvbnQtc2l6ZTogMjZycHg7XHJcbiAgZm9udC13ZWlnaHQ6IDQwMDtcclxuICBsaW5lLWhlaWdodDogNzBycHg7XHJcbn1cclxuXHJcblxyXG4vKiogamlhbmdxaWUtbmV3cy1ibG9jayAqKi9cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLXR5cGUge1xyXG4gIGZvbnQtc2l6ZTogMzZycHg7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBjb2xvcjogIzU1NTtcclxuICBwYWRkaW5nOiAxNnJweCAwIDA7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLXR5cGUgdGV4dCB7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG4gIGZvbnQtc2l6ZTogMjRycHg7XHJcbiAgZm9udC13ZWlnaHQ6IDIwMDtcclxuICBjb2xvcjogIzk5OTtcclxuICBtYXJnaW4tcmlnaHQ6IDMwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1ibG9jayB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG4gIGJvcmRlci1ib3R0b206IDFycHggc29saWQgI0RERDtcclxuICBwYWRkaW5nOiAyNHJweCAwO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3ctcmV2ZXJzZTtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtYmxvY2s6bGFzdC1jaGlsZCB7XHJcbiAgYm9yZGVyOiBub25lO1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1zdGljay1pbWFnZSB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGhlaWdodDogNjBycHg7XHJcbiAgd2lkdGg6IDYwcnB4O1xyXG4gIGxlZnQ6IDBycHg7XHJcbiAgdG9wOiAwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1pbWFnZSB7XHJcbiAgZmxleDogMCAwIDI2MHJweDtcclxuICBoZWlnaHQ6IDIwMHJweDtcclxuICB3aWR0aDogMjYwcnB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDhycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLWltYWdlIGltYWdlIHtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgYm9yZGVyLXJhZGl1czogOHJweDtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtdGV4dCB7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICBwYWRkaW5nLXJpZ2h0OiAyMHJweDtcclxuICB3aWR0aDogMTAwJTtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy10aXRsZSB7XHJcbiAgZm9udC1zaXplOiAzMnJweDtcclxuICBjb2xvcjogIzMzMztcclxuICBmb250LXdlaWdodDogNjAwO1xyXG4gIGxpbmUtaGVpZ2h0OiA0NHJweDtcclxuICBtYXgtaGVpZ2h0OiA4OHJweDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIG1hcmdpbi1ib3R0b206IDEycnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1uby1leGNlcnB0IHtcclxuICBtYXJnaW4tYm90dG9tOiAzMHJweDtcclxuICBoZWlnaHQ6IDEwMHJweDtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtZGVzY3JpYmUge1xyXG4gIGZvbnQtc2l6ZTogMjZycHg7XHJcbiAgY29sb3I6ICM5OTk7XHJcbiAgbGluZS1oZWlnaHQ6IDMwcnB4O1xyXG4gIG1heC1oZWlnaHQ6IDMwcnB4O1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxuICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcclxuICBtYXJnaW4tYm90dG9tOiAxOHJweDtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtaW5mbyB7XHJcbiAgZm9udC1zaXplOiAyMnJweDtcclxuICBjb2xvcjogI0JCQjtcclxuICBoZWlnaHQ6IDI2cnB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtY210IHtcclxuICBtYXJnaW4tcmlnaHQ6IDEycnB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtY210IGltYWdlIHtcclxuICBoZWlnaHQ6IDI0cnB4O1xyXG4gIHdpZHRoOiAyNHJweDtcclxuICBtYXJnaW4tcmlnaHQ6IDhycHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTBycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLXRhZyB7XHJcbiAgbGluZS1oZWlnaHQ6IDMycnB4O1xyXG4gIGhlaWdodDogMzBycHg7XHJcbiAgcGFkZGluZzogMCAxNnJweDtcclxuICBib3JkZXI6IDFycHggc29saWQgI0FBQTtcclxuICBib3JkZXItcmFkaXVzOiAyNnJweDtcclxuICBtYXJnaW4tcmlnaHQ6IDEycnB4O1xyXG4gIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1uZXdzLXRpbWUge1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIGxpbmUtaGVpZ2h0OiAzMHJweDtcclxuICBoZWlnaHQ6IDMwcnB4O1xyXG4gIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgcGFkZGluZy1yaWdodDogMTBycHg7XHJcbn1cclxuXHJcbi5pbWFnZS13aWRlIHtcclxuICBwYWRkaW5nLXJpZ2h0OiAwO1xyXG4gIGZsZXgtd3JhcDogd3JhcDtcclxufVxyXG5cclxuLmltYWdlLXdpZGUgLmppYW5ncWllLW5ld3MtaW1hZ2Uge1xyXG4gIGZsZXg6IG5vbmU7XHJcbiAgaGVpZ2h0OiAzMjBycHg7XHJcbiAgd2lkdGg6IDY5MHJweDtcclxuICBtYXJnaW4tcmlnaHQ6IDBycHg7XHJcbiAgbWFyZ2luLWJvdHRvbTogMTBycHg7XHJcbn1cclxuXHJcbi5pbWFnZS13aWRlIC5qaWFuZ3FpZS1uZXdzLXRleHQge1xyXG4gIHBhZGRpbmctbGVmdDogMDtcclxufVxyXG5cclxuLmltYWdlLXdpZGUgLmppYW5ncWllLW5ld3MtdGl0bGUge1xyXG4gIGhlaWdodDogYXV0bztcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtaG90IHtcclxuICBwYWRkaW5nOiAxMHJweCAwO1xyXG4gIGJvcmRlci1ib3R0b206IDEycnB4IHNvbGlkICNGM0YzRjM7XHJcbiAgYm9yZGVyLXRvcDogMTJycHggc29saWQgI0YzRjNGMztcclxufVxyXG5cclxuLmppYW5ncWllLW5ld3MtaG90IC5qaWFuZ3FpZS1uZXdzLXR5cGUge1xyXG4gIHBhZGRpbmctbGVmdDogMzBycHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDIwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtbmV3cy1zY3JvbGwteC1ib3gge1xyXG4gIGhlaWdodDogMjkwcnB4O1xyXG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiAwO1xyXG4gIGhlaWdodDogMDtcclxuICBjb2xvcjogdHJhbnNwYXJlbnQ7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1ob3Qtc2Nyb2xsLWJveCB7XHJcbiAgd2lkdGg6IDQ0MHJweDtcclxuICBoZWlnaHQ6IDI5MHJweDtcclxuICBtYXJnaW4tbGVmdDogMjBycHg7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLmppYW5ncWllLWhvdC1zY3JvbGwtYm94OmZpcnN0LWNoaWxkIHtcclxuICBtYXJnaW4tbGVmdDogMzBycHg7XHJcbn1cclxuXHJcbi5qaWFuZ3FpZS1ob3Qtc2Nyb2xsLWJveDpsYXN0LWNoaWxkIHtcclxuICBtYXJnaW4tcmlnaHQ6IDMwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtaG90LXNjcm9sbC1pbWFnZSB7XHJcbiAgd2lkdGg6IDQ0MHJweDtcclxuICBoZWlnaHQ6IDIyMHJweDtcclxuICBib3JkZXItcmFkaXVzOiA4cnB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDEwcnB4O1xyXG59XHJcblxyXG4uamlhbmdxaWUtaG90LXNjcm9sbC10aXRsZSB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDBycHg7XHJcbiAgYm90dG9tOiAwcnB4O1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIGJvdHRvbSwgcmdiYSgwLCAwLCAwLCAwKSwgcmdiYSgyMiwgMjIsIDIyLCAwLjQpKTtcclxuICB6LWluZGV4OiA5O1xyXG4gIHdpZHRoOiA0MDBycHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMCAwIDhycHggOHJweDtcclxuICBoZWlnaHQ6IDkwcnB4O1xyXG4gIGxpbmUtaGVpZ2h0OiAxMTBycHg7XHJcbiAgcGFkZGluZzogMCAyMHJweDtcclxuICBjb2xvcjogI0ZGRkZGRjtcclxuICB3aGl0ZS1zcGFjZTogbm9ybWFsO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG59XHJcblxyXG4udGFiLW1vcmUge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICByaWdodDogMDtcclxuICBoZWlnaHQ6IDEwMHJweDtcclxuICB3aWR0aDogMTIwcnB4O1xyXG4gIHotaW5kZXg6IDk5O1xyXG59XHJcblxyXG4udGFiLW1vcmUgaW1hZ2Uge1xyXG4gIGhlaWdodDogMTAwcnB4O1xyXG4gIHdpZHRoOiAxMjBycHg7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiAwO1xyXG4gIGhlaWdodDogMDtcclxuICBjb2xvcjogdHJhbnNwYXJlbnQ7XHJcbn1cclxuXHJcbi50YWItdmlldzo6YmVmb3JlIHtcclxuICBjb250ZW50OiAnJztcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgLXdlYmtpdC10cmFuc2Zvcm06IHNjYWxlWSgwLjUpO1xyXG4gIHRyYW5zZm9ybTogc2NhbGVZKDAuNSk7XHJcbiAgYm90dG9tOiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIGxlZnQ6IDA7XHJcbn1cclxuXHJcbi50YWItdmlldyB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDBycHg7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICBsZWZ0OiAwO1xyXG4gIHotaW5kZXg6IDk5O1xyXG4gIGJhY2tncm91bmQ6ICNFMDMwMUY7XHJcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxufVxyXG5cclxuLnRhYi1iYXItaXRlbSB7XHJcbiAgcGFkZGluZzogMDtcclxuICBoZWlnaHQ6IDEwMHJweDtcclxuICBtaW4td2lkdGg6IDgwcnB4O1xyXG4gIGxpbmUtaGVpZ2h0OiAxMDBycHg7XHJcbiAgbWFyZ2luOiAwIDI4cnB4O1xyXG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLnRhYi1iYXItdGl0bGUge1xyXG4gIGhlaWdodDogMTAwcnB4O1xyXG4gIGxpbmUtaGVpZ2h0OiAxMDBycHg7XHJcbiAgZm9udC1zaXplOiAyOHJweDtcclxuICBjb2xvcjogI0Y4QjhCODtcclxuICBmb250LXdlaWdodDogNDAwO1xyXG59XHJcblxyXG5cclxuLmFjdGl2ZSAudGFiLWJhci10aXRsZSB7XHJcbiAgY29sb3I6ICNGRkYgIWltcG9ydGFudDtcclxuICBmb250LXNpemU6IDMycnB4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcblxyXG4vKnRhYmJhciBlbmQqL1xyXG5cclxuLmppYW5ncWllLW5ld3MtdGl0bGUgdGV4dCB7XHJcbiAgZm9udC1zaXplOiAyMnJweDtcclxuICBmb250LXdlaWdodDogMzAwO1xyXG4gIGNvbG9yOiAjRkZGO1xyXG4gIGJhY2tncm91bmQ6ICNGMzA7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgd2lkdGg6IDYwcnB4O1xyXG4gIGhlaWdodDogMzZycHg7XHJcbiAgbWFyZ2luLXRvcDogNnJweDtcclxuICBsaW5lLWhlaWdodDogMzZycHg7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGJvcmRlci1yYWRpdXM6IDhycHg7XHJcbiAgbWFyZ2luLXJpZ2h0OiAxMnJweDtcclxufVxyXG5cclxuLyoqXHJcbiAqIOW8ueeqlyBzdGFydFxyXG4gKi9cclxuLnpodWdpZS1wb3AtY292ZXIge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgLjYpO1xyXG4gIHotaW5kZXg6IDk5ODtcclxuICB0b3A6IDA7XHJcbiAgbGVmdDogMDtcclxufVxyXG5cclxuLnpodWlnZS1wb3AtYm94IHtcclxuICB3aWR0aDogNjAwcnB4O1xyXG4gIGhlaWdodDogNjAwcnB4O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi56aHVpZ2UtcG9wLWJveCBpbWFnZSB7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uemh1aWdlLXBvcC1ib3ggdmlldyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGJvdHRvbTogLTQ4cnB4O1xyXG4gIGhlaWdodDogNDhycHg7XHJcbiAgd2lkdGg6IDQ4cnB4O1xyXG4gIHotaW5kZXg6IDk5OTtcclxuICBsZWZ0OiA1MCU7XHJcbiAgbWFyZ2luLWxlZnQ6IC0yNHJweDtcclxufVxyXG5cclxuLyoqXHJcbiAqIOW8ueeqlyBlbmRcclxuICovXHJcbjwvc3R5bGU+Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///28\n");
 
 /***/ }),
 /* 29 */

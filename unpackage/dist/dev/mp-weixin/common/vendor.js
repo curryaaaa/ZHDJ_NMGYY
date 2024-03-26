@@ -211,7 +211,25 @@ module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, mo
 
 /***/ }),
 
-/***/ 178:
+/***/ 18:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 186:
 /*!******************************************************!*\
   !*** D:/A.work/yiyuan/components/uni-icons/icons.js ***!
   \******************************************************/
@@ -322,24 +340,6 @@ var _default = {
   'scan': "\uE612"
 };
 exports.default = _default;
-
-/***/ }),
-
-/***/ 18:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 19);
-var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 20);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 21);
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -2780,7 +2780,21 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 207:
+/***/ 21:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 215:
 /*!*****************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/parser.js ***!
   \*****************************************************/
@@ -3993,7 +4007,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 208:
+/***/ 216:
 /*!**********************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/audio/index.js ***!
   \**********************************************************/
@@ -4008,7 +4022,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ 209));
+var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ 217));
 /**
  * @fileoverview audio 插件
  */
@@ -4043,7 +4057,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 209:
+/***/ 217:
 /*!************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/audio/context.js ***!
   \************************************************************/
@@ -4073,21 +4087,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 21:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 210:
+/***/ 218:
 /*!**************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/highlight/index.js ***!
   \**************************************************************/
@@ -4102,9 +4102,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _prism = _interopRequireDefault(__webpack_require__(/*! ./prism.min */ 211));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 212));
-var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 207));
+var _prism = _interopRequireDefault(__webpack_require__(/*! ./prism.min */ 219));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 220));
+var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 215));
 /**
  * @fileoverview highlight 插件
  * Include prismjs (https://prismjs.com)
@@ -4201,7 +4201,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 211:
+/***/ 219:
 /*!******************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/highlight/prism.min.js ***!
   \******************************************************************/
@@ -4805,31 +4805,6 @@ Prism.languages.javascript = Prism.languages.extend("clike", {
 
 /***/ }),
 
-/***/ 212:
-/*!***************************************************************!*\
-  !*** D:/A.work/yiyuan/components/mp-html/highlight/config.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  copyByLongPress: true,
-  // 是否需要长按代码块时显示复制代码内容菜单
-  showLanguageName: true,
-  // 是否在代码块右上角显示语言的名称
-  showLineNumber: true // 是否显示行号
-};
-exports.default = _default;
-
-/***/ }),
-
 /***/ 22:
 /*!*************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
@@ -5368,6 +5343,31 @@ function resolveLocaleChain(locale) {
 /***/ }),
 
 /***/ 220:
+/*!***************************************************************!*\
+  !*** D:/A.work/yiyuan/components/mp-html/highlight/config.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  copyByLongPress: true,
+  // 是否需要长按代码块时显示复制代码内容菜单
+  showLanguageName: true,
+  // 是否在代码块右上角显示语言的名称
+  showLineNumber: true // 是否显示行号
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 228:
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -5376,12 +5376,12 @@ function resolveLocaleChain(locale) {
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 221)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 229)();
 module.exports = runtime;
 
 /***/ }),
 
-/***/ 221:
+/***/ 229:
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -5703,7 +5703,23 @@ module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.e
 
 /***/ }),
 
-/***/ 222:
+/***/ 23:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 230:
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -5744,7 +5760,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
-/***/ 223:
+/***/ 231:
 /*!**********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/utils.js ***!
   \**********************************************************************************/
@@ -5765,8 +5781,8 @@ exports.isNumber = isNumber;
 exports.pathToBase64 = pathToBase64;
 exports.sleep = sleep;
 exports.toPx = toPx;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 220));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 222));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 228));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 230));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var networkReg = /^(http|\/\/)/;
 function sleep(delay) {
@@ -5962,7 +5978,7 @@ function getImageInfo(img, isH5PathToBase64) {
 
 /***/ }),
 
-/***/ 224:
+/***/ 232:
 /*!*********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/draw.js ***!
   \*********************************************************************************/
@@ -5977,15 +5993,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Draw = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 220));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 222));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 228));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 230));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = __webpack_require__(/*! ./utils */ 223);
-var _gradient = __webpack_require__(/*! ./gradient */ 225);
-var _qrcode = _interopRequireDefault(__webpack_require__(/*! ./qrcode */ 226));
+var _utils = __webpack_require__(/*! ./utils */ 231);
+var _gradient = __webpack_require__(/*! ./gradient */ 233);
+var _qrcode = _interopRequireDefault(__webpack_require__(/*! ./qrcode */ 234));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
@@ -6877,7 +6893,7 @@ exports.Draw = Draw;
 
 /***/ }),
 
-/***/ 225:
+/***/ 233:
 /*!*************************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/gradient.js ***!
   \*************************************************************************************/
@@ -7006,7 +7022,7 @@ function linearEffect(width, height, bg, ctx) {
 
 /***/ }),
 
-/***/ 226:
+/***/ 234:
 /*!***********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/qrcode.js ***!
   \***********************************************************************************/
@@ -7017,7 +7033,7 @@ function linearEffect(width, height, bg, ctx) {
 
 /***/ }),
 
-/***/ 227:
+/***/ 235:
 /*!***********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/layout.js ***!
   \***********************************************************************************/
@@ -7032,14 +7048,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Layout = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 220));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 228));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 222));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 230));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = __webpack_require__(/*! ./utils */ 223);
+var _utils = __webpack_require__(/*! ./utils */ 231);
 var Layout = /*#__PURE__*/function () {
   function Layout() {
     (0, _classCallCheck2.default)(this, Layout);
@@ -7606,7 +7622,7 @@ exports.Layout = Layout;
 
 /***/ }),
 
-/***/ 228:
+/***/ 236:
 /*!***********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/canvas.js ***!
   \***********************************************************************************/
@@ -7683,22 +7699,6 @@ function adaptor(ctx) {
     draw: function draw() {}
   });
 }
-
-/***/ }),
-
-/***/ 23:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 

@@ -17,7 +17,7 @@
       <view v-for="(item, index) in topNav" :key="index"
             :class="'tab-bar-item ' + (currentTab==index ? 'active' : '')" :data-current="index"
             @tap.stop="swichNav">
-        <text class="tab-bar-title">{{item.name}}</text>
+        <text class="tab-bar-title">{{ item.name }}</text>
       </view>
       <view class="tab-bar-item">
         <text class="tab-bar-title">.</text>
@@ -103,52 +103,28 @@
 
           <!--新闻列表——常规-->
           <view class="jiangqie-news-view">
-<!--            <view v-if="postsLast && postsLast.length>0" class="jiangqie-news-type">-->
-<!--              最新文章-->
-<!--            </view>-->
+            <!--            <view v-if="postsLast && postsLast.length>0" class="jiangqie-news-type">-->
+            <!--              最新文章-->
+            <!--            </view>-->
             <template v-for="(item, index) in postsLast">
-              <view v-if="(listMode==1 && false) || (listMode==2) || (listMode==3 && index%5==4)"
-                    :key="index" class="jiangqie-news-block image-wide" :data-id="item.id"
+              <view :key="index" class="jiangqie-news-block" :data-id="item.id"
                     @tap.stop="handlerArticleClick">
-                <view class="jiangqie-news-image">
-                  <image :src="item.thumbnail" mode="aspectFill"/>
-                </view>
+<!--                <image :src="item.thumbnail" mode="aspectFill" class="jiangqie-news-image"></image>-->
                 <view class="jiangqie-news-text">
                   <view
                       :class="'jiangqie-news-title ' + (item.excerpt?'':'jiangqie-news-no-excerpt')">
                     <text v-if="item.stick==1">置顶</text>
-                    {{item.title}}
+                    {{ item.title }}
                   </view>
-
-                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{item.excerpt}}</view>
+                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{ item.excerpt }}</view>
                   <view class="jiangqie-news-info">
                     <text v-for="(item, index2) in item.tags" :key="index2"
-                          class="jiangqie-news-tag">{{item.name}}</text>
-                    <text class="jiangqie-news-time">{{item.time}}</text>
+                          class="jiangqie-news-tag">{{ item.name }}
+                    </text>
+                    <text class="jiangqie-news-time">{{ item.time }}</text>
                     <view class="jiangqie-news-cmt">
                       <image src="/static/images/ctm2.png" mode="aspectFill"></image>
-                      <text>{{item.views}}</text>
-                    </view>
-                  </view>
-                </view>
-              </view>
-              <view v-else :key="index" class="jiangqie-news-block" :data-id="item.id"
-                    @tap.stop="handlerArticleClick">
-                <image :src="item.thumbnail" mode="aspectFill" class="jiangqie-news-image"></image>
-                <view class="jiangqie-news-text">
-                  <view
-                      :class="'jiangqie-news-title ' + (item.excerpt?'':'jiangqie-news-no-excerpt')">
-                    <text v-if="item.stick==1">置顶</text>
-                    {{item.title}}
-                  </view>
-                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{item.excerpt}}</view>
-                  <view class="jiangqie-news-info">
-                    <text v-for="(item, index2) in item.tags" :key="index2"
-                          class="jiangqie-news-tag">{{item.name}}</text>
-                    <text class="jiangqie-news-time">{{item.time}}</text>
-                    <view class="jiangqie-news-cmt">
-                      <image src="/static/images/ctm2.png" mode="aspectFill"></image>
-                      <text>{{item.views}}</text>
+                      <text>{{ item.views }}</text>
                     </view>
                   </view>
                 </view>
@@ -175,16 +151,17 @@
                 <view class="jiangqie-news-text">
                   <view
                       :class="'jiangqie-news-title ' + (item.excerpt?'':'jiangqie-news-no-excerpt')">
-                    {{item.title}}
+                    {{ item.title }}
                   </view>
-                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{item.excerpt}}</view>
+                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{ item.excerpt }}</view>
                   <view class="jiangqie-news-info">
                     <text v-for="(item, index2) in item.tags" :key="index2"
-                          class="jiangqie-news-tag">{{item.name}}</text>
-                    <text class="jiangqie-news-time">{{item.time}}</text>
+                          class="jiangqie-news-tag">{{ item.name }}
+                    </text>
+                    <text class="jiangqie-news-time">{{ item.time }}</text>
                     <view class="jiangqie-news-cmt">
                       <image src="/static/images/ctm2.png" mode="aspectFill"></image>
-                      <text>{{item.views}}</text>
+                      <text>{{ item.views }}</text>
                     </view>
                   </view>
                 </view>
@@ -197,16 +174,17 @@
                 <view class="jiangqie-news-text">
                   <view
                       :class="'jiangqie-news-title ' + (item.excerpt?'':'jiangqie-news-no-excerpt')">
-                    {{item.title}}
+                    {{ item.title }}
                   </view>
-                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{item.excerpt}}</view>
+                  <view v-if="item.excerpt" class="jiangqie-news-describe">{{ item.excerpt }}</view>
                   <view class="jiangqie-news-info">
                     <text v-for="(item, index2) in item.tags" :key="index2"
-                          class="jiangqie-news-tag">{{item.name}}</text>
-                    <text class="jiangqie-news-time">{{item.time}}</text>
+                          class="jiangqie-news-tag">{{ item.name }}
+                    </text>
+                    <text class="jiangqie-news-time">{{ item.time }}</text>
                     <view class="jiangqie-news-cmt">
                       <image src="/static/images/ctm2.png" mode="aspectFill"></image>
-                      <text>{{item.views}}</text>
+                      <text>{{ item.views }}</text>
                     </view>
                   </view>
                 </view>
@@ -287,7 +265,7 @@ export default {
       pullUpOn: true,
 
       //列表模式
-      listMode: 3,
+      listMode: 1,
 
       scrollLeft: "",
       current: "",
@@ -522,6 +500,7 @@ export default {
       }).then(res => {
         this.loaddingLast = false;
         this.postsLast = (refresh ? res.data : this.postsLast.concat(res.data));
+        console.log(this.postsLast)
         this.pullUpOnLast = (res.data.length >= Constants.JQ_PER_PAGE_COUNT)
       });
     },
@@ -742,7 +721,7 @@ export default {
   left: 0rpx;
   bottom: 0rpx;
   text-align: left;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(55,55,55,0.4));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(55, 55, 55, 0.4));
   overflow: hidden;
   z-index: 9;
   width: 280rpx;
@@ -960,7 +939,7 @@ export default {
   left: 0rpx;
   bottom: 0rpx;
   text-align: left;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(22,22,22,0.4));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(22, 22, 22, 0.4));
   z-index: 9;
   width: 400rpx;
   border-radius: 0 0 8rpx 8rpx;
@@ -1034,7 +1013,6 @@ export default {
 }
 
 
-
 .active .tab-bar-title {
   color: #FFF !important;
   font-size: 32rpx;
@@ -1095,6 +1073,7 @@ export default {
   left: 50%;
   margin-left: -24rpx;
 }
+
 /**
  * 弹窗 end
  */

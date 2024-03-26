@@ -1,5 +1,5 @@
 <template>
-	<view v-if="setting" class="jiangqie-top-bg" style="background-image: url(../../static/images/mianbackground.png)">
+	<view v-if="setting" class="jiangqie-top-bg" style="background-image: url(static/images/mianbackground.png)">
 
 		<view class="jiangqie-userbox">
 			<view class="jiangqie-usersetup">
@@ -63,8 +63,8 @@
 					</view>
 				</view>
 				<view
-					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')">
-					<view class="jiangqie-listcont">
+					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')" @tap.stop="Wodezuzhi">
+					<view class="jiangqie-listcont" >
 						<image src="/static/images/more.png" mode="aspectFill"></image>
 					</view>
 					<button open-type="feedback" class="jiangqie-listtitle">
@@ -213,6 +213,11 @@
       Gerenxinxi(e){
         uni.navigateTo({
           url: '/pages/personalData/personalData'
+        });
+      },
+      Wodezuzhi(e){
+        uni.navigateTo({
+          url: '/pages/wodezuzhi/wodezuzhi'
         });
       },
 

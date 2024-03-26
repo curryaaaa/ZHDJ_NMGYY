@@ -15,7 +15,8 @@
     "pages/viewhtml/viewhtml",
     "pages/webview/webview",
     "pages/verify/verify",
-    "pages/logout/logout"
+    "pages/logout/logout",
+    "pages/wodezuzhi/wodezuzhi"
   ],
   "subPackages": [],
   "window": {

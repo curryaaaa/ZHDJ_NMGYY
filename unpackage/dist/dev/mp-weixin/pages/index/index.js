@@ -101,10 +101,10 @@ var components
 try {
   components = {
     uniNavBar: function () {
-      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 166))
+      return __webpack_require__.e(/*! import() | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then(__webpack_require__.bind(null, /*! @/components/uni-nav-bar/uni-nav-bar.vue */ 174))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 173))
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 181))
     },
   }
 } catch (e) {
@@ -388,28 +388,6 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var Constants = __webpack_require__(/*! @/utils/constants.js */ 31);
 var Api = __webpack_require__(/*! @/utils/api.js */ 41);
@@ -417,17 +395,17 @@ var Util = __webpack_require__(/*! @/utils/util.js */ 43);
 var Rest = __webpack_require__(/*! @/utils/rest.js */ 44);
 var JiangqieLoadmore = function JiangqieLoadmore() {
   __webpack_require__.e(/*! require.ensure | components/loadmore/loadmore */ "components/loadmore/loadmore").then((function () {
-    return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 181));
+    return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 189));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var JiangqieNomore = function JiangqieNomore() {
   __webpack_require__.e(/*! require.ensure | components/nomore/nomore */ "components/nomore/nomore").then((function () {
-    return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 188));
+    return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 196));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniNavBar = function uniNavBar() {
   __webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {
-    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 166));
+    return resolve(__webpack_require__(/*! @/components/uni-nav-bar/uni-nav-bar.vue */ 174));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -467,7 +445,7 @@ var _default = {
       loadding: false,
       pullUpOn: true,
       //列表模式
-      listMode: 3,
+      listMode: 1,
       scrollLeft: "",
       current: "",
       // actives: undefined,
