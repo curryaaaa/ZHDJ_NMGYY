@@ -29,15 +29,11 @@
 }
 .buttonIco1.data-v-4883731c {
   position: relative;
-  height: 80rpx;
-  /* 假设父容器有固定高度 */
   flex: 1;
   /* 每个项目占据可用空间的相同比例 */
 }
 .buttonIco2.data-v-4883731c {
   position: relative;
-  height: 80rpx;
-  /* 假设父容器有固定高度 */
   flex: 2;
   /* 每个项目占据可用空间的相同比例 */
 }

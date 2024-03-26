@@ -16,7 +16,9 @@
     "pages/webview/webview",
     "pages/verify/verify",
     "pages/logout/logout",
-    "pages/wodezuzhi/wodezuzhi"
+    "pages/wodezuzhi/wodezuzhi",
+    "pages/dangfei/dangfei",
+    "pages/CaiLiaoShangBao/CaiLiaoShangBao"
   ],
   "subPackages": [],
   "window": {

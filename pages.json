@@ -120,6 +120,22 @@
         		"navigationBarTitleText" : "我的组织",
         		"enablePullDownRefresh" : false
         	}
+        },
+        {
+        	"path" : "pages/dangfei/dangfei",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "党费详情",
+        		"enablePullDownRefresh" : false
+        	}
+        },
+        {
+        	"path" : "pages/CaiLiaoShangBao/CaiLiaoShangBao",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "材料上报",
+        		"enablePullDownRefresh" : false
+        	}
         }
     
     ],

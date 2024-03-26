@@ -275,23 +275,6 @@ var _default = {
       menu: [
       //views,likes,favorites,comments,about,feedback,contact,clear,split,link,page
       {
-        tp: 'split'
-      }, {
-        tp: 'about',
-        icon: '',
-        title: '关于我们',
-        line: 1
-      }, {
-        tp: 'feedback',
-        icon: '',
-        title: '意见反馈',
-        line: 1
-      }, {
-        tp: 'contact',
-        icon: '',
-        title: '在线客服',
-        line: 1
-      }, {
         tp: 'clear',
         icon: '',
         title: '清除缓存',
@@ -334,35 +317,34 @@ var _default = {
     };
   },
   methods: {
+    handlerAbout: function handlerAbout(e) {
+      uni.navigateTo({
+        url: '/pages/about/about'
+      });
+    },
     Wodeintegral: function Wodeintegral(e) {
       uni.navigateTo({
         url: '/pages/wodeintegral/wodeintegral'
       });
     },
-    Gerenxinxi: function Gerenxinxi(e) {
+    Gerenxinxi: function Gerenxinxi() {
       uni.navigateTo({
         url: '/pages/personalData/personalData'
       });
     },
-    Wodezuzhi: function Wodezuzhi(e) {
+    Wodezuzhi: function Wodezuzhi() {
       uni.navigateTo({
         url: '/pages/wodezuzhi/wodezuzhi'
       });
     },
-    /**
-     * 点击打开链接
-     */
-    clickLink: function clickLink(link) {
-      if (!link) {
-        return;
-      }
+    DangfeiXQ: function DangfeiXQ() {
       uni.navigateTo({
-        url: '/pages/webview/webview?src=' + encodeURIComponent(link),
-        fail: function fail() {
-          uni.redirectTo({
-            url: '/pages/webview/webview?src=' + encodeURIComponent(link)
-          });
-        }
+        url: '/pages/dangfei/dangfei'
+      });
+    },
+    cailiaoshangbao: function cailiaoshangbao() {
+      uni.navigateTo({
+        url: '/pages/CaiLiaoShangBao/CaiLiaoShangBao'
       });
     },
     /**
@@ -378,39 +360,16 @@ var _default = {
       Util.openLink('/pages/verify/verify');
     },
     /**
-     * 点击 文章浏览历史
-     */
-    handlerPostTrack: function handlerPostTrack(e) {
-      if (!Auth.getUser()) {
-        uni.navigateTo({
-          url: '/pages/login/login'
-        });
-        return;
-      }
-      var track = e.currentTarget.dataset.track;
-      uni.navigateTo({
-        url: '/pages/list/list?track=' + track
-      });
-    },
-    /**
-     * 点击 关于
-     */
-    handlerAbout: function handlerAbout(e) {
-      uni.navigateTo({
-        url: '/pages/about/about'
-      });
-    },
-    /**
      * 点击 清除缓存
      */
     handlerClearCache: function handlerClearCache(e) {
       uni.showModal({
         title: '提示',
-        content: '清除缓存 需要重新登录',
+        content: '重新登录 需要清除缓存',
         success: function success(res) {
           if (res.confirm) {
             uni.clearStorageSync();
-            Util.toast('清除完毕');
+            Util.toast('重新登录');
             uni.reLaunch({
               url: '/pages/index/index'
             });

@@ -63,28 +63,28 @@
 					</view>
 				</view>
 				<view
-					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')" @tap.stop="Wodezuzhi">
+					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')" @click.stop="Wodezuzhi">
 					<view class="jiangqie-listcont" >
 						<image src="/static/images/more.png" mode="aspectFill"></image>
 					</view>
-					<button open-type="feedback" class="jiangqie-listtitle">
+					<button  class="jiangqie-listtitle">
 						<image src="/static/images/wodezuzhi.png" mode="aspectFill"></image>
             <text>我的组织</text>
 					</button>
 				</view>
 				<view
-					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')">
+					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')" @tap.stop="DangfeiXQ">
 					<view class="jiangqie-listcont">
 						<image src="/static/images/more.png" mode="aspectFill"></image>
 					</view>
-					<button open-type="contact" class="jiangqie-listtitle">
+					<button  class="jiangqie-listtitle">
             <image  src="/static/images/wodedangfei.png" mode="aspectFill"></image>
 						<text>党费详情</text>
 					</button>
 				</view>
 				<view
 					:class="'jiangqie-listblock ' + ('jiangqie-listblock-line')"
-					@tap.stop="handlerClearCache">
+					@tap.stop="cailiaoshangbao">
 					<view class="jiangqie-listcont">
 						<image src="/static/images/more.png" mode="aspectFill"></image>
 					</view>
@@ -134,24 +134,7 @@
 		data() {
 			this.default = {
 				menu: [ //views,likes,favorites,comments,about,feedback,contact,clear,split,link,page
-					{
-						tp: 'split'
-					}, {
-						tp: 'about',
-						icon: '',
-						title: '关于我们',
-						line: 1
-					}, {
-						tp: 'feedback',
-						icon: '',
-						title: '意见反馈',
-						line: 1
-					}, {
-						tp: 'contact',
-						icon: '',
-						title: '在线客服',
-						line: 1
-					}, {
+						 {
 						tp: 'clear',
 						icon: '',
 						title: '清除缓存',
@@ -204,41 +187,40 @@
 		// #endif
 
 		methods: {
+      handlerAbout(e) {
+        uni.navigateTo({
+          url: '/pages/about/about'
+        });
+      },
 
       Wodeintegral(e){
         uni.navigateTo({
           url: '/pages/wodeintegral/wodeintegral'
         });
       },
-      Gerenxinxi(e){
+      Gerenxinxi(){
         uni.navigateTo({
           url: '/pages/personalData/personalData'
         });
       },
-      Wodezuzhi(e){
+      Wodezuzhi(){
         uni.navigateTo({
           url: '/pages/wodezuzhi/wodezuzhi'
         });
       },
+      DangfeiXQ(){
+        uni.navigateTo({
+          url: '/pages/dangfei/dangfei'
+        });
+      },
+      cailiaoshangbao(){
+        uni.navigateTo({
+          url: '/pages/CaiLiaoShangBao/CaiLiaoShangBao'
+        });
+      },
 
 
-			/**
-			 * 点击打开链接
-			 */
-			clickLink(link) {
-				if (!link) {
-					return;
-				}
-				
-				uni.navigateTo({
-					url: '/pages/webview/webview?src=' + encodeURIComponent(link),
-					fail: () => {
-						uni.redirectTo({
-							url: '/pages/webview/webview?src=' + encodeURIComponent(link)
-						})
-					}
-				});
-			},
+
 			
 			/**
 			 * 点击 登录
@@ -254,31 +236,6 @@
 				Util.openLink('/pages/verify/verify')
 			},
 
-			/**
-			 * 点击 文章浏览历史
-			 */
-			handlerPostTrack(e) {
-				if (!Auth.getUser()) {
-					uni.navigateTo({
-						url: '/pages/login/login'
-					})
-					return;
-				}
-
-				let track = e.currentTarget.dataset.track;
-				uni.navigateTo({
-					url: '/pages/list/list?track=' + track
-				});
-			},
-
-			/**
-			 * 点击 关于
-			 */
-			handlerAbout(e) {
-				uni.navigateTo({
-					url: '/pages/about/about'
-				});
-			},
 
 			/**
 			 * 点击 清除缓存
@@ -286,12 +243,12 @@
 			handlerClearCache(e) {
 				uni.showModal({
 					title: '提示',
-					content: '清除缓存 需要重新登录',
+					content: '重新登录 需要清除缓存',
 					success: (res) => {
 						if (res.confirm) {
 							uni.clearStorageSync();
 							
-							Util.toast('清除完毕');
+							Util.toast('重新登录');
 							
 							uni.reLaunch({
 								url: '/pages/index/index'
@@ -383,14 +340,14 @@
     }
     .buttonIco1{
       position: relative;
-      height: 80rpx; /* 假设父容器有固定高度 */
+      //height: 80rpx; /* 假设父容器有固定高度 */
       //background-color: #44d5ba;
       flex: 1; /* 每个项目占据可用空间的相同比例 */
 
     }
     .buttonIco2{
       position: relative;
-      height: 80rpx; /* 假设父容器有固定高度 */
+      //height: 80rpx; /* 假设父容器有固定高度 */
       //background-color: #44d5ba;
       flex: 2; /* 每个项目占据可用空间的相同比例 */
     }

@@ -1,5 +1,5 @@
 <template>
-  <view class="jiangqie-top-bg" style="background-image: url(/static/images/mianbackground.png)">
+  <view class="jiangqie-top-bg" style="background-image: url(static/images/mianbackground.png)">
     <view class="jiangqie-userbox">
       <view class="jiangqie-usersetup">
         <image src="/static/images/setup.png"></image>
@@ -84,14 +84,7 @@
 </template>
 
 <script>
-/*
- * 酱茄小程序开源版
- * 作者: 追格
- * 文档：https://www.zhuige.com/docs/zxfree.html
- * github: https://github.com/zhuige-com/jiangqie_kafei
- * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
- * Copyright © 2020-2024 www.zhuige.com All rights reserved.
- */
+
 const Constant = require("@/utils/constants.js");
 const Auth = require("@/utils/auth.js");
 const Util = require("@/utils/util.js");
@@ -220,14 +213,14 @@ export default {
 
 .dates {
   padding-top: 16rpx;
-  font-size: 18rpx;
+  font-size: 28rpx;
 }
 
 .form-item {
   display: flex;
   align-items: center;
   padding: 8rpx 8rpx 16rpx;
-  font-size: 26rpx;
+  font-size: 30rpx;
 }
 
 .label {
