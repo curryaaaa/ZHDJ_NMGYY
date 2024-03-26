@@ -97,15 +97,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-}
-var recyclableRender = false
+var render = function () {}
 var staticRenderFns = []
-render._withStripped = true
+var recyclableRender
+var components
 
 
 
@@ -169,16 +164,6 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var Constant = __webpack_require__(/*! @/utils/constants.js */ 31);
 var Util = __webpack_require__(/*! @/utils/util.js */ 43);
@@ -186,29 +171,66 @@ var _default = {
   components: {},
   data: function data() {
     return {
-      version: Constant.JQ_VERSION
+      steps: [
+      //start:0未上报，start:1已上报审批中，start:2已上报完成
+      {
+        title: '1个月内',
+        description: '申请入党',
+        buttonText: '待上报',
+        id: 1,
+        start: 2
+      }, {
+        title: '6个月以上',
+        description: '党支部与申请人谈话',
+        buttonText: '待上报',
+        id: 2,
+        start: 2
+      }, {
+        title: '12个月以上',
+        description: '确认为入党积极分子',
+        buttonText: '待上报',
+        id: 3,
+        start: 2
+      }, {
+        title: ' ',
+        description: '党员发展对象',
+        buttonText: '待上报',
+        id: 4,
+        start: 1
+      }, {
+        title: '3个月内',
+        description: '接受为预备党员',
+        buttonText: '待上报',
+        id: 5,
+        start: 0
+      }, {
+        title: ' ',
+        description: '报上级党委审批',
+        buttonText: '待上报',
+        id: 6,
+        start: 0
+      }, {
+        title: '1个月内',
+        description: '预备党员转正',
+        buttonText: '待上报',
+        id: 7,
+        start: 0
+      }, {
+        title: ' ',
+        description: '报上级党委审批',
+        buttonText: '待上报',
+        id: 8,
+        start: 0
+      }, {
+        title: false,
+        description: '材料归档',
+        buttonText: '流程图',
+        id: 9,
+        start: 0
+      }]
     };
   },
-  onLoad: function onLoad(options) {},
-  onShareAppMessage: function onShareAppMessage() {
-    return {
-      title: getApp().globalData.appName,
-      path: 'pages/index/index'
-    };
-  },
-  onShareTimeline: function onShareTimeline() {
-    return {
-      title: getApp().globalData.appName
-    };
-  },
-  methods: {
-    showFile: function showFile() {
-      this.$refs.alertDialog.open();
-    },
-    dialogClose: function dialogClose() {
-      console.log('点击关闭');
-    }
-  }
+  methods: {}
 };
 exports.default = _default;
 

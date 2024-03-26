@@ -1,12 +1,40 @@
 @charset "UTF-8";
+.flexjiantou.data-v-308674ec {
+  flex: 2;
+}
+.jiangqie-listtitle.data-v-308674ec {
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+}
+.jiangqie-listtitle image.data-v-308674ec {
+  height: 100rpx;
+  float: right;
+  width: 80rpx;
+  margin-right: 11px;
+  margin-top: 14rpx;
+}
+.jiangqie-listtitle text.data-v-308674ec {
+  font-size: 30rpx;
+  flex: 2;
+  font-weight: 400;
+  color: #807e7e;
+}
+.arrow-down.data-v-308674ec {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid black;
+  /* 可以根据需要修改箭头的大小和颜色 */
+}
 .submit-button.data-v-308674ec {
-  background-color: #e63621;
-  /* 初始颜色 */
   color: white;
-  /* 文字颜色 */
-  width: 116rpx;
-  height: 72rpx;
-  font-size: 28rpx;
+  width: 150rpx;
+  height: 60rpx;
+  font-size: 24rpx;
 }
 .dates.data-v-308674ec {
   padding-top: 16rpx;
@@ -27,7 +55,7 @@
 }
 .money.data-v-308674ec {
   flex: 1;
-  text-align: right;
+  text-align: center;
   margin-right: 20rpx;
   font-weight: bolder;
 }
@@ -39,10 +67,10 @@
 .jiangqie-content-box.data-v-308674ec {
   width: 100%;
   margin-top: 30rpx;
-  padding: 30rpx;
+  padding: 20rpx 30rpx 10rpx 30rpx;
   box-sizing: border-box;
-  background: #fff;
+  background: #fff1f1;
   border-radius: 10rpx;
-  box-shadow: 0 0 10rpx #eee;
+  box-shadow: 0 0 10rpx #bebaba;
 }
 
