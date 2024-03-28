@@ -427,6 +427,20 @@ button.jiangqie-page-laud-btn.data-v-05aef2f4 {
   right: 40rpx;
   bottom: 200rpx;
 }
+.jiangqie-goback-btn-left.data-v-05aef2f4 {
+  height: 96rpx;
+  width: 96rpx;
+  position: fixed;
+  left: 40rpx;
+  bottom: 200rpx;
+}
+.jiangqie-goback-btn-left button.data-v-05aef2f4 {
+  background: none;
+}
+.jiangqie-goback-btn-left image.data-v-05aef2f4 {
+  height: 96rpx;
+  width: 96rpx;
+}
 .jiangqie-goback-btn button.data-v-05aef2f4 {
   background: none;
 }

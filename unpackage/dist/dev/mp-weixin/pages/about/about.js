@@ -49,7 +49,9 @@ exports.default = void 0;
 //
 //
 //
-
+//
+//
+//
 
 var Constant = __webpack_require__(/*! @/utils/constants.js */ 31);
 var Util = __webpack_require__(/*! @/utils/util.js */ 43);
@@ -57,10 +59,14 @@ var _default = {
   components: {},
   data: function data() {
     return {
-      version: Constant.JQ_VERSION
+      data: {}
     };
   },
-  onLoad: function onLoad(options) {},
+  onLoad: function onLoad(options) {
+    if (options.data) {
+      this.data = JSON.parse(options.data);
+    }
+  },
   onShareAppMessage: function onShareAppMessage() {
     return {
       title: getApp().globalData.appName,
@@ -254,6 +260,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.data.Text && _vm.data.Text.length > 0
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []

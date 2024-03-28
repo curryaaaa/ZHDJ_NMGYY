@@ -172,7 +172,9 @@
 		<view class="jiangqie-goback-btn" @tap="jumpBtn">
 			<image src="/static/images/goback.png" mode="widthFix"></image>
 		</view>
-
+<!--    <view class="jiangqie-goback-btn-left" @tap="jumpBtn">-->
+<!--      <image src="/static/images/goback.png" mode="widthFix"></image>-->
+<!--    </view>-->
 		<!-- #ifdef MP-BAIDU -->
 		<view v-if="isShowPainter" isRenderImage style="position: fixed; top: 0;" @longpress="longTapPainter"
 			@click="clickPainter()">
@@ -230,6 +232,7 @@
 			this.comment_submiting = false;
 
 			return {
+        currentTime: 0, //时间
 				post: {
 					title: "",
 					views: "",
@@ -287,6 +290,16 @@
 			uni.$on('linktap', this.onMPHtmlLink);
 		},
 
+    created() {
+      let timer = setInterval(() => {
+        this.currentTime++;
+        console.log(this.currentTime)
+        if (this.currentTime === 30) {
+          clearInterval(timer);
+          this.makeRequest(); // 达到30秒时执行请求
+        }
+      }, 1000);
+    },
 		onShow() {
 			if (!this.needRefresh) {
 				this.needRefresh = true;
@@ -365,6 +378,10 @@
 		// #endif
 
 		methods: {
+      makeRequest() {
+        // 在这里进行请求的逻辑，例如使用axios或fetch请求数据
+        console.log('发送请求');
+      },
 			/**
 			 * 点击文章内链接
 			 */
@@ -1221,6 +1238,23 @@
 		right: 40rpx;
 		bottom: 200rpx;
 	}
+  .jiangqie-goback-btn-left {
+		height: 96rpx;
+		width: 96rpx;
+		position: fixed;
+		left: 40rpx;
+		bottom: 200rpx;
+	}
+
+
+  .jiangqie-goback-btn-left button {
+    background: none;
+  }
+
+  .jiangqie-goback-btn-left image {
+    height: 96rpx;
+    width: 96rpx;
+  }
 
 	.jiangqie-goback-btn button {
 		background: none;

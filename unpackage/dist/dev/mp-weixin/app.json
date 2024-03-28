@@ -8,8 +8,8 @@
     "pages/categories/categories",
     "pages/article/article",
     "pages/about/about",
-    "pages/wodeintegral/wodeintegral",
-    "pages/jifenxiangqing/jifenxiangqing",
+    "pages/basicInformation/basicInformation",
+    "pages/pointsDetails/pointsDetails",
     "pages/personalData/personalData",
     "pages/login/login",
     "pages/viewhtml/viewhtml",
@@ -17,8 +17,8 @@
     "pages/verify/verify",
     "pages/logout/logout",
     "pages/wodezuzhi/wodezuzhi",
-    "pages/dangfei/dangfei",
-    "pages/CaiLiaoShangBao/CaiLiaoShangBao"
+    "pages/partyDues/partyDues",
+    "pages/materialDeclaration/materialDeclaration"
   ],
   "subPackages": [],
   "window": {

@@ -157,7 +157,6 @@ export default {
   methods: {
 
     jifengmingxi() {
-      console.log(222222)
       uni.navigateTo({
         url: '/pages/jifenxiangqing/jifenxiangqing'
       });

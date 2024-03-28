@@ -1,31 +1,27 @@
 <template>
-	<view class="container">
-
-		<view class="jiangqie-content-box">
-      <view class="form-item">
-        <view class="label">
-          <view>入党积极分子申请书</view>
-          <view class="dates">2001-10-12</view>
-        </view>
-
-        <view class="data">
-          <button @click="showFile" class="submit-button">查看</button>
+  <view class="container">
+    <view v-if="data.Text && data.Text.length > 0">
+      <view v-for="(item, index) in data.Text" class="jiangqie-content-box" :key="index">
+        <view class="form-item">
+          <view class="label">
+            <view>{{item}}</view>
+            <view class="dates">2001-10-12</view>
+          </view>
+          <view class="data">
+            <button @click="showFile" class="submit-button">{{data.start== 0 ? '上报':'查看'}}</button>
+          </view>
         </view>
       </view>
+    </view>
+    <view class="kongstart" v-else>
+      您未上传档案
+    </view>
+  </view>
 
-		</view>
-	</view>
 </template>
 
 <script>
-	/*
-	 * 酱茄小程序开源版
-	 * 作者: 追格
-	 * 文档：https://www.zhuige.com/docs/zxfree.html
-	 * github: https://github.com/zhuige-com/jiangqie_kafei
-	 * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
-	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
-	 */
+
 	const Constant = require("@/utils/constants.js");
 	const Util = require("@/utils/util.js");
 
@@ -36,11 +32,14 @@
 		
 		data() {
 			return {
-				version: Constant.JQ_VERSION,
+			 data:{}
 			};
 		},
 
-		onLoad(options) {},
+		onLoad(options) {
+
+      if (   options.data){this.data=JSON.parse(options.data)}
+    },
 
 		onShareAppMessage() {
 			return {
@@ -110,6 +109,13 @@
 
 <style lang="scss" scoped>
 
+.kongstart{
+padding-top: 50%;
+color: #bebdbd;
+  font-size: 40rpx;
+  text-align: center;
+}
+
 .submit-button {
   background-color: #e63621; /* 初始颜色 */
   color: white; /* 文字颜色 */
@@ -144,6 +150,7 @@
 		padding: 0 20rpx 30rpx 20rpx;
 		box-sizing: border-box;
 		overflow: hidden;
+
 	}
 
 

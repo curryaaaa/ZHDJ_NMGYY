@@ -8,13 +8,13 @@
             {{ item.description }}
           </view>
           <view class="data">
-            <button @click="showFile"
-                    :style="`background-color: ${item.start == 0 ? '#ef851b' : item.start == 1 ? '#eaaa1f' : '#e63621'}`"
+            <button  @click="showFile(item)"
+                     :style="{ backgroundColor: item.start === 0 ? '#ef851b' : (item.start === 1 ? '#eaaa1f' : '#e63621') }"
                     class="submit-button">{{ item.start == 0 ? '待上报':item.start ==1 ? '审批中':'已完成' }}</button>
           </view>
         </view>
       </view>
-      <view v-show="item.title" class="jiangqie-listtitle">
+      <view v-if="item.title" class="jiangqie-listtitle">
         <view class="flexjiantou">
           <image src="/static/images/jiantou.png"></image>
         </view>
@@ -40,63 +40,63 @@ export default {
         {
           title: '1个月内',
           description: '申请入党',
-          buttonText: '待上报',
           id:1,
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           start:2,
         },
         {
           title: '6个月以上',
           description: '党支部与申请人谈话',
-          buttonText: '待上报',
+          Text: ['党支部与申请人谈话记录'],
           id:2,
           start:2,
         },
         {
           title: '12个月以上',
           description: '确认为入党积极分子',
-          buttonText: '待上报',
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           id:3,
           start:2,
         },
         {
           title: ' ',
           description: '党员发展对象',
-          buttonText: '待上报',
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           id:4,
           start:1,
         },
         {
           title: '3个月内',
           description: '接受为预备党员',
-          buttonText: '待上报',
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           id:5,
           start:0,
         },
         {
           title: ' ',
           description: '报上级党委审批',
-          buttonText: '待上报',
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           id:6,
           start:0,
         },
         {
           title: '1个月内',
           description: '预备党员转正',
-          buttonText: '待上报',
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           id:7,
           start:0,
         },
         {
           title: ' ',
           description: '报上级党委审批',
-          buttonText: '待上报',
+          Text: [{name:'入党申请书(手写)'},'申请人自传(手写)'],
           id:8,
           start:0,
         },
         {
           title: false,
           description: '材料归档',
-          buttonText: '流程图',
+          Text: ['入党申请书(手写)','申请人自传(手写)'],
           id:9,
           start:0,
         }
@@ -106,7 +106,11 @@ export default {
 
 
   methods: {
-
+    showFile(data){
+      uni.navigateTo({
+        url: `/pages/about/about?data=${JSON.stringify(data)}`
+      });
+    }
 
   }
 };

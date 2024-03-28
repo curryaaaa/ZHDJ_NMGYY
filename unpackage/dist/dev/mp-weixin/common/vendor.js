@@ -244,120 +244,6 @@ module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
-/***/ 194:
-/*!******************************************************!*\
-  !*** D:/A.work/yiyuan/components/uni-icons/icons.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  'contact': "\uE100",
-  'person': "\uE101",
-  'personadd': "\uE102",
-  'contact-filled': "\uE130",
-  'person-filled': "\uE131",
-  'personadd-filled': "\uE132",
-  'phone': "\uE200",
-  'email': "\uE201",
-  'chatbubble': "\uE202",
-  'chatboxes': "\uE203",
-  'phone-filled': "\uE230",
-  'email-filled': "\uE231",
-  'chatbubble-filled': "\uE232",
-  'chatboxes-filled': "\uE233",
-  'weibo': "\uE260",
-  'weixin': "\uE261",
-  'pengyouquan': "\uE262",
-  'chat': "\uE263",
-  'qq': "\uE264",
-  'videocam': "\uE300",
-  'camera': "\uE301",
-  'mic': "\uE302",
-  'location': "\uE303",
-  'mic-filled': "\uE332",
-  'speech': "\uE332",
-  'location-filled': "\uE333",
-  'micoff': "\uE360",
-  'image': "\uE363",
-  'map': "\uE364",
-  'compose': "\uE400",
-  'trash': "\uE401",
-  'upload': "\uE402",
-  'download': "\uE403",
-  'close': "\uE404",
-  'redo': "\uE405",
-  'undo': "\uE406",
-  'refresh': "\uE407",
-  'star': "\uE408",
-  'plus': "\uE409",
-  'minus': "\uE410",
-  'circle': "\uE411",
-  'checkbox': "\uE411",
-  'close-filled': "\uE434",
-  'clear': "\uE434",
-  'refresh-filled': "\uE437",
-  'star-filled': "\uE438",
-  'plus-filled': "\uE439",
-  'minus-filled': "\uE440",
-  'circle-filled': "\uE441",
-  'checkbox-filled': "\uE442",
-  'closeempty': "\uE460",
-  'refreshempty': "\uE461",
-  'reload': "\uE462",
-  'starhalf': "\uE463",
-  'spinner': "\uE464",
-  'spinner-cycle': "\uE465",
-  'search': "\uE466",
-  'plusempty': "\uE468",
-  'forward': "\uE470",
-  'back': "\uE471",
-  'left-nav': "\uE471",
-  'checkmarkempty': "\uE472",
-  'home': "\uE500",
-  'navigate': "\uE501",
-  'gear': "\uE502",
-  'paperplane': "\uE503",
-  'info': "\uE504",
-  'help': "\uE505",
-  'locked': "\uE506",
-  'more': "\uE507",
-  'flag': "\uE508",
-  'home-filled': "\uE530",
-  'gear-filled': "\uE532",
-  'info-filled': "\uE534",
-  'help-filled': "\uE535",
-  'more-filled': "\uE537",
-  'settings': "\uE560",
-  'list': "\uE562",
-  'bars': "\uE563",
-  'loop': "\uE565",
-  'paperclip': "\uE567",
-  'eye': "\uE568",
-  'arrowup': "\uE580",
-  'arrowdown': "\uE581",
-  'arrowleft': "\uE582",
-  'arrowright': "\uE583",
-  'arrowthinup': "\uE584",
-  'arrowthindown': "\uE585",
-  'arrowthinleft': "\uE586",
-  'arrowthinright': "\uE587",
-  'pulldown': "\uE588",
-  'closefill': "\uE589",
-  'sound': "\uE590",
-  'scan': "\uE612"
-};
-exports.default = _default;
-
-/***/ }),
-
 /***/ 2:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
@@ -2780,6 +2666,120 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
+/***/ 202:
+/*!******************************************************!*\
+  !*** D:/A.work/yiyuan/components/uni-icons/icons.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  'contact': "\uE100",
+  'person': "\uE101",
+  'personadd': "\uE102",
+  'contact-filled': "\uE130",
+  'person-filled': "\uE131",
+  'personadd-filled': "\uE132",
+  'phone': "\uE200",
+  'email': "\uE201",
+  'chatbubble': "\uE202",
+  'chatboxes': "\uE203",
+  'phone-filled': "\uE230",
+  'email-filled': "\uE231",
+  'chatbubble-filled': "\uE232",
+  'chatboxes-filled': "\uE233",
+  'weibo': "\uE260",
+  'weixin': "\uE261",
+  'pengyouquan': "\uE262",
+  'chat': "\uE263",
+  'qq': "\uE264",
+  'videocam': "\uE300",
+  'camera': "\uE301",
+  'mic': "\uE302",
+  'location': "\uE303",
+  'mic-filled': "\uE332",
+  'speech': "\uE332",
+  'location-filled': "\uE333",
+  'micoff': "\uE360",
+  'image': "\uE363",
+  'map': "\uE364",
+  'compose': "\uE400",
+  'trash': "\uE401",
+  'upload': "\uE402",
+  'download': "\uE403",
+  'close': "\uE404",
+  'redo': "\uE405",
+  'undo': "\uE406",
+  'refresh': "\uE407",
+  'star': "\uE408",
+  'plus': "\uE409",
+  'minus': "\uE410",
+  'circle': "\uE411",
+  'checkbox': "\uE411",
+  'close-filled': "\uE434",
+  'clear': "\uE434",
+  'refresh-filled': "\uE437",
+  'star-filled': "\uE438",
+  'plus-filled': "\uE439",
+  'minus-filled': "\uE440",
+  'circle-filled': "\uE441",
+  'checkbox-filled': "\uE442",
+  'closeempty': "\uE460",
+  'refreshempty': "\uE461",
+  'reload': "\uE462",
+  'starhalf': "\uE463",
+  'spinner': "\uE464",
+  'spinner-cycle': "\uE465",
+  'search': "\uE466",
+  'plusempty': "\uE468",
+  'forward': "\uE470",
+  'back': "\uE471",
+  'left-nav': "\uE471",
+  'checkmarkempty': "\uE472",
+  'home': "\uE500",
+  'navigate': "\uE501",
+  'gear': "\uE502",
+  'paperplane': "\uE503",
+  'info': "\uE504",
+  'help': "\uE505",
+  'locked': "\uE506",
+  'more': "\uE507",
+  'flag': "\uE508",
+  'home-filled': "\uE530",
+  'gear-filled': "\uE532",
+  'info-filled': "\uE534",
+  'help-filled': "\uE535",
+  'more-filled': "\uE537",
+  'settings': "\uE560",
+  'list': "\uE562",
+  'bars': "\uE563",
+  'loop': "\uE565",
+  'paperclip': "\uE567",
+  'eye': "\uE568",
+  'arrowup': "\uE580",
+  'arrowdown': "\uE581",
+  'arrowleft': "\uE582",
+  'arrowright': "\uE583",
+  'arrowthinup': "\uE584",
+  'arrowthindown': "\uE585",
+  'arrowthinleft': "\uE586",
+  'arrowthinright': "\uE587",
+  'pulldown': "\uE588",
+  'closefill': "\uE589",
+  'sound': "\uE590",
+  'scan': "\uE612"
+};
+exports.default = _default;
+
+/***/ }),
+
 /***/ 21:
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
@@ -3331,7 +3331,23 @@ function resolveLocaleChain(locale) {
 
 /***/ }),
 
-/***/ 223:
+/***/ 23:
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 231:
 /*!*****************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/parser.js ***!
   \*****************************************************/
@@ -4544,7 +4560,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 224:
+/***/ 232:
 /*!**********************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/audio/index.js ***!
   \**********************************************************/
@@ -4559,7 +4575,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ 225));
+var _context = _interopRequireDefault(__webpack_require__(/*! ./context */ 233));
 /**
  * @fileoverview audio 插件
  */
@@ -4594,7 +4610,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 225:
+/***/ 233:
 /*!************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/audio/context.js ***!
   \************************************************************/
@@ -4624,7 +4640,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 226:
+/***/ 234:
 /*!**************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/highlight/index.js ***!
   \**************************************************************/
@@ -4639,9 +4655,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _prism = _interopRequireDefault(__webpack_require__(/*! ./prism.min */ 227));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 228));
-var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 223));
+var _prism = _interopRequireDefault(__webpack_require__(/*! ./prism.min */ 235));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 236));
+var _parser = _interopRequireDefault(__webpack_require__(/*! ../parser */ 231));
 /**
  * @fileoverview highlight 插件
  * Include prismjs (https://prismjs.com)
@@ -4738,7 +4754,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 227:
+/***/ 235:
 /*!******************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/highlight/prism.min.js ***!
   \******************************************************************/
@@ -5342,7 +5358,7 @@ Prism.languages.javascript = Prism.languages.extend("clike", {
 
 /***/ }),
 
-/***/ 228:
+/***/ 236:
 /*!***************************************************************!*\
   !*** D:/A.work/yiyuan/components/mp-html/highlight/config.js ***!
   \***************************************************************/
@@ -5367,23 +5383,36 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 23:
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
+/***/ 24:
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ 12);
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, toPropertyKey(descriptor.key), descriptor);
   }
 }
-module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
-/***/ 236:
+/***/ 244:
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -5392,12 +5421,12 @@ module.exports = _classCallCheck, module.exports.__esModule = true, module.expor
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 237)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 245)();
 module.exports = runtime;
 
 /***/ }),
 
-/***/ 237:
+/***/ 245:
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -5719,7 +5748,7 @@ module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.e
 
 /***/ }),
 
-/***/ 238:
+/***/ 246:
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -5760,7 +5789,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
-/***/ 239:
+/***/ 247:
 /*!**********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/utils.js ***!
   \**********************************************************************************/
@@ -5781,8 +5810,8 @@ exports.isNumber = isNumber;
 exports.pathToBase64 = pathToBase64;
 exports.sleep = sleep;
 exports.toPx = toPx;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 236));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 238));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 244));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 246));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var networkReg = /^(http|\/\/)/;
 function sleep(delay) {
@@ -5978,36 +6007,7 @@ function getImageInfo(img, isH5PathToBase64) {
 
 /***/ }),
 
-/***/ 24:
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ 12);
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, toPropertyKey(descriptor.key), descriptor);
-  }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
-}
-module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 240:
+/***/ 248:
 /*!*********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/draw.js ***!
   \*********************************************************************************/
@@ -6022,15 +6022,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Draw = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 236));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 238));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 244));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 246));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = __webpack_require__(/*! ./utils */ 239);
-var _gradient = __webpack_require__(/*! ./gradient */ 241);
-var _qrcode = _interopRequireDefault(__webpack_require__(/*! ./qrcode */ 242));
+var _utils = __webpack_require__(/*! ./utils */ 247);
+var _gradient = __webpack_require__(/*! ./gradient */ 249);
+var _qrcode = _interopRequireDefault(__webpack_require__(/*! ./qrcode */ 250));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
@@ -6922,7 +6922,7 @@ exports.Draw = Draw;
 
 /***/ }),
 
-/***/ 241:
+/***/ 249:
 /*!*************************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/gradient.js ***!
   \*************************************************************************************/
@@ -7047,686 +7047,6 @@ function linearEffect(width, height, bg, ctx) {
     grd.addColorStop(colorPer.percents[i], colorPer.colors[i]);
   }
   ctx.setFillStyle(grd);
-}
-
-/***/ }),
-
-/***/ 242:
-/*!***********************************************************************************!*\
-  !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/qrcode.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 243:
-/*!***********************************************************************************!*\
-  !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/layout.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Layout = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 236));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 238));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = __webpack_require__(/*! ./utils */ 239);
-var Layout = /*#__PURE__*/function () {
-  function Layout() {
-    (0, _classCallCheck2.default)(this, Layout);
-    this.layoutHeight = 0;
-    this.layoutWidth = 0;
-    this.uuid = 0;
-  }
-  (0, _createClass2.default)(Layout, [{
-    key: "init",
-    value: function init(context, root, isH5PathToBase64) {
-      this.ctx = context;
-      this.root = root;
-      this.layoutWidth = root.width || 0;
-      this.layoutHeight = root.height || 0;
-      this.uuid = 0;
-      this.isH5PathToBase64 = isH5PathToBase64;
-    }
-  }, {
-    key: "getNodeTree",
-    value: function () {
-      var _getNodeTree = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(element) {
-        var parent,
-          index,
-          siblings,
-          source,
-          computedStyle,
-          attributes,
-          node,
-          _computedStyle$left,
-          left,
-          _computedStyle$top,
-          top,
-          _computedStyle$width,
-          width,
-          _computedStyle$height,
-          height,
-          childrens,
-          i,
-          v,
-          _args = arguments;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                parent = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
-                index = _args.length > 2 && _args[2] !== undefined ? _args[2] : 0;
-                siblings = _args.length > 3 && _args[3] !== undefined ? _args[3] : [];
-                source = _args.length > 4 ? _args[4] : undefined;
-                computedStyle = Object.assign({}, this.getComputedStyle(element, parent, index));
-                _context.next = 7;
-                return this.getAttributes(element);
-              case 7:
-                attributes = _context.sent;
-                node = {
-                  id: this.uuid++,
-                  parent: parent,
-                  computedStyle: computedStyle,
-                  rules: element.rules,
-                  attributes: Object.assign({}, attributes),
-                  name: (element === null || element === void 0 ? void 0 : element.type) || 'view',
-                  isRoot: !(element !== null && element !== void 0 && element.type) && JSON.stringify(parent) == '{}'
-                };
-                if (JSON.stringify(parent) === '{}' && !element.type) {
-                  _computedStyle$left = computedStyle.left, left = _computedStyle$left === void 0 ? 0 : _computedStyle$left, _computedStyle$top = computedStyle.top, top = _computedStyle$top === void 0 ? 0 : _computedStyle$top, _computedStyle$width = computedStyle.width, width = _computedStyle$width === void 0 ? 0 : _computedStyle$width, _computedStyle$height = computedStyle.height, height = _computedStyle$height === void 0 ? 0 : _computedStyle$height;
-                  node.layoutBox = {
-                    left: left,
-                    top: top,
-                    width: width,
-                    height: height
-                  };
-                } else {
-                  node.layoutBox = Object.assign({
-                    left: 0,
-                    top: 0
-                  }, this.getLayoutBox(node, parent, index, siblings, source));
-                }
-                if (!(element !== null && element !== void 0 && element.views)) {
-                  _context.next = 25;
-                  break;
-                }
-                childrens = [];
-                node.children = [];
-                i = 0;
-              case 14:
-                if (!(i < element.views.length)) {
-                  _context.next = 24;
-                  break;
-                }
-                v = element.views[i];
-                _context.t0 = childrens;
-                _context.next = 19;
-                return this.getNodeTree(v, node, i, childrens, element);
-              case 19:
-                _context.t1 = _context.sent;
-                _context.t0.push.call(_context.t0, _context.t1);
-              case 21:
-                i++;
-                _context.next = 14;
-                break;
-              case 24:
-                node.children = childrens;
-              case 25:
-                return _context.abrupt("return", node);
-              case 26:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-      function getNodeTree(_x) {
-        return _getNodeTree.apply(this, arguments);
-      }
-      return getNodeTree;
-    }()
-  }, {
-    key: "getComputedStyle",
-    value: function getComputedStyle(element) {
-      var _this = this;
-      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-      var style = {};
-      var name = element.name || element.type;
-      var node = JSON.stringify(parent) == '{}' && !name ? element : element.css;
-      if (!node) return style;
-      var inheritProps = ['color', 'fontSize', 'lineHeight', 'verticalAlign', 'fontWeight', 'textAlign'];
-      if (parent.computedStyle) {
-        inheritProps.forEach(function (prop) {
-          if (node[prop] || parent.computedStyle[prop]) {
-            node[prop] = node[prop] || parent.computedStyle[prop];
-          }
-        });
-      }
-      var _loop = function _loop() {
-        var value = _Object$keys[_i];
-        var item = node[value];
-        if (value == 'views') {
-          return "continue";
-        }
-        if (/^(box)?shadow$/i.test(value)) {
-          var shadows = item.split(' ').map(function (v) {
-            return /^\d/.test(v) ? (0, _utils.toPx)(v) : v;
-          });
-          style.boxShadow = shadows;
-          return "continue";
-        }
-        if (/^border/i.test(value) && !/radius$/i.test(value)) {
-          var _style$prefix;
-          var prefix = value.match(/^border([BTRLa-z]+)?/)[0];
-          var type = value.match(/[W|S|C][a-z]+/);
-          var v = item.replace(/([\(,])\s+|\s+([\),])/g, '$1$2').split(' ').map(function (v) {
-            return /^\d/.test(v) ? (0, _utils.toPx)(v, '', true) : v;
-          });
-          style[prefix] = (_style$prefix = {}, (0, _defineProperty2.default)(_style$prefix, prefix + 'Width', ((0, _utils.isNumber)(v[0]) ? v[0] : 0) || 1), (0, _defineProperty2.default)(_style$prefix, prefix + 'Style', v[1] || 'solid'), (0, _defineProperty2.default)(_style$prefix, prefix + 'Color', v[2] || 'black'), _style$prefix);
-          if (v.length == 1 && type) {
-            style[prefix][prefix + type[0]] = v[0];
-          }
-          return "continue";
-        }
-        if (/^background(color)?$/i.test(value)) {
-          style['backgroundColor'] = item;
-          return "continue";
-        }
-        if (/padding|margin|radius/i.test(value)) {
-          var isRadius = /radius$/i.test(value);
-          var _prefix = isRadius ? 'borderRadius' : value.match(/[a-z]+/)[0];
-          var pre = [0, 0, 0, 0].map(function (item, i) {
-            return isRadius ? ['borderTopLeftRadius', 'borderTopRightRadius', 'borderBottomRightRadius', 'borderBottomLeftRadius'][i] : [_prefix + 'Top', _prefix + 'Right', _prefix + 'Bottom', _prefix + 'Left'][i];
-          });
-          if (value === 'padding' || value === 'margin' || /^(border)?radius$/i.test(value)) {
-            var _style$_type;
-            var _v = (item === null || item === void 0 ? void 0 : item.split(' ').map(function (item) {
-              return /^\d/.test(item) && (0, _utils.toPx)(item, node['width']);
-            }, [])) || [0];
-            var _type = isRadius ? 'borderRadius' : value;
-            var _v2 = (0, _slicedToArray2.default)(_v, 4),
-              t = _v2[0],
-              r = _v2[1],
-              b = _v2[2],
-              l = _v2[3];
-            style[_type] = (_style$_type = {}, (0, _defineProperty2.default)(_style$_type, pre[0], t), (0, _defineProperty2.default)(_style$_type, pre[1], (0, _utils.isNumber)(r) ? r : t), (0, _defineProperty2.default)(_style$_type, pre[2], (0, _utils.isNumber)(b) ? b : t), (0, _defineProperty2.default)(_style$_type, pre[3], (0, _utils.isNumber)(l) ? l : r || t), _style$_type);
-          } else {
-            if ((0, _typeof2.default)(style[_prefix]) === 'object') {
-              style[_prefix][value] = (0, _utils.toPx)(item, node['width']);
-            } else {
-              var _style$_prefix;
-              style[_prefix] = (_style$_prefix = {}, (0, _defineProperty2.default)(_style$_prefix, pre[0], style[_prefix] || 0), (0, _defineProperty2.default)(_style$_prefix, pre[1], style[_prefix] || 0), (0, _defineProperty2.default)(_style$_prefix, pre[2], style[_prefix] || 0), (0, _defineProperty2.default)(_style$_prefix, pre[3], style[_prefix] || 0), _style$_prefix);
-              style[_prefix][value] = (0, _utils.toPx)(item, node['width']);
-            }
-          }
-          return "continue";
-        }
-        if (/^(width|height)$/i.test(value)) {
-          if (/%$/.test(item)) {
-            style[value] = (0, _utils.toPx)(item, parent.layoutBox[value]);
-          } else {
-            style[value] = /px|rpx$/.test(item) ? (0, _utils.toPx)(item) : item;
-          }
-          return "continue";
-        }
-        if (/^transform$/i.test(value)) {
-          style[value] = {};
-          item.replace(/([a-zA-Z]+)\(([0-9,-\.%rpxdeg\s]+)\)/g, function (g1, g2, g3) {
-            var v = g3.split(',').map(function (k) {
-              return k.replace(/(^\s*)|(\s*$)/g, '');
-            });
-            var transform = function transform(v, r) {
-              return v.includes('deg') ? v * 1 : r && !/%$/.test(r) ? (0, _utils.toPx)(v, r) : v;
-            };
-            if (g2.includes('matrix')) {
-              style[value][g2] = v.map(function (v) {
-                return v * 1;
-              });
-            } else if (g2.includes('rotate')) {
-              style[value][g2] = g3.match(/^-?\d+(\.\d+)?/)[0] * 1;
-            } else if (/[X, Y]/.test(g2)) {
-              style[value][g2] = /[X]/.test(g2) ? transform(v[0], node['width']) : transform(v[0], node['height']);
-            } else {
-              style[value][g2 + 'X'] = transform(v[0], node['width']);
-              style[value][g2 + 'Y'] = transform(v[1] || v[0], node['height']);
-            }
-          });
-          return "continue";
-        }
-        if (/^transformOrigin/i.test(value)) {
-          style[value] = item;
-          return "continue";
-        }
-        if (/%/.test(item)) {
-          var _parent$layoutBox = parent.layoutBox,
-            pw = _parent$layoutBox.width,
-            ph = _parent$layoutBox.height,
-            pl = _parent$layoutBox.left,
-            pt = _parent$layoutBox.top;
-          var _this$root = _this.root,
-            rw = _this$root.width,
-            rh = _this$root.height;
-          var isR = style.position == 'relative';
-          if (value == 'width') {
-            style[value] = (0, _utils.toPx)(item, pw || rw);
-          } else if (value == 'height') {
-            style[value] = (0, _utils.toPx)(item, ph || rh);
-          } else if (value == 'left') {
-            style[value] = item; // isR ? toPx(item, pw) + pl : toPx(item, rw)
-          } else if (value == 'top') {
-            style[value] = item; // isR ? toPx(item, ph) + pt : toPx(item, rh)
-          } else {
-            style[value] = (0, _utils.toPx)(item, node['width']);
-          }
-        } else {
-          style[value] = /px|rpx$/.test(item) ? (0, _utils.toPx)(item) : /em$/.test(item) && name == 'text' ? (0, _utils.toPx)(item, node['fontSize']) : item;
-        }
-      };
-      for (var _i = 0, _Object$keys = Object.keys(node); _i < _Object$keys.length; _i++) {
-        var _ret = _loop();
-        if (_ret === "continue") continue;
-      }
-      if (/image/.test(element.name || element.type) && !style.mode) {
-        style.mode = element.mode || 'scaleToFill';
-        if ((!node.width || node.width == 'auto') && (!node.height || node.width == 'auto')) {
-          style.mode = '';
-        }
-      }
-      return style;
-    }
-  }, {
-    key: "getLayoutBox",
-    value: function getLayoutBox(element) {
-      var _ls$margin, _ls$margin2;
-      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-      var siblings = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-      var source = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-      var box = {};
-      var _ref = element || {},
-        name = _ref.name,
-        cstyle = _ref.computedStyle,
-        layoutBox = _ref.layoutBox,
-        attributes = _ref.attributes,
-        isRoot = _ref.isRoot;
-      if (!name) return box;
-      var ctx = this.ctx;
-      var _parent$layoutBox2 = parent.layoutBox,
-        pbox = _parent$layoutBox2 === void 0 ? this.root : _parent$layoutBox2,
-        pstyle = parent.computedStyle;
-      var v = cstyle.verticalAlign,
-        x = cstyle.left,
-        y = cstyle.top,
-        w = cstyle.width,
-        h = cstyle.height,
-        _cstyle$fontSize = cstyle.fontSize,
-        fontSize = _cstyle$fontSize === void 0 ? 14 : _cstyle$fontSize,
-        _cstyle$lineHeight = cstyle.lineHeight,
-        lineHeight = _cstyle$lineHeight === void 0 ? '1.4em' : _cstyle$lineHeight,
-        maxLines = cstyle.maxLines,
-        fontWeight = cstyle.fontWeight,
-        fontFamily = cstyle.fontFamily,
-        textStyle = cstyle.textStyle,
-        position = cstyle.position,
-        display = cstyle.display,
-        _cstyle$padding = cstyle.padding,
-        p = _cstyle$padding === void 0 ? {} : _cstyle$padding,
-        _cstyle$margin = cstyle.margin,
-        m = _cstyle$margin === void 0 ? {} : _cstyle$margin;
-      var _p$paddingTop = p.paddingTop,
-        pt = _p$paddingTop === void 0 ? 0 : _p$paddingTop,
-        _p$paddingRight = p.paddingRight,
-        pr = _p$paddingRight === void 0 ? 0 : _p$paddingRight,
-        _p$paddingBottom = p.paddingBottom,
-        pb = _p$paddingBottom === void 0 ? 0 : _p$paddingBottom,
-        _p$paddingLeft = p.paddingLeft,
-        pl = _p$paddingLeft === void 0 ? 0 : _p$paddingLeft;
-      var _m$marginTop = m.marginTop,
-        mt = _m$marginTop === void 0 ? 0 : _m$marginTop,
-        _m$marginRight = m.marginRight,
-        mr = _m$marginRight === void 0 ? 0 : _m$marginRight,
-        _m$marginBottom = m.marginBottom,
-        mb = _m$marginBottom === void 0 ? 0 : _m$marginBottom,
-        _m$marginLeft = m.marginLeft,
-        ml = _m$marginLeft === void 0 ? 0 : _m$marginLeft;
-      var _ref2 = siblings[index - 1] || {},
-        lbox = _ref2.layoutBox,
-        ls = _ref2.computedStyle,
-        lname = _ref2.name;
-      var _ref3 = siblings[index + 1] || {},
-        rbox = _ref3.layoutBox,
-        rs = _ref3.computedStyle,
-        rname = _ref3.name;
-      var lmb = (ls === null || ls === void 0 ? void 0 : (_ls$margin = ls.margin) === null || _ls$margin === void 0 ? void 0 : _ls$margin.marginBottom) || 0;
-      var lmr = (ls === null || ls === void 0 ? void 0 : (_ls$margin2 = ls.margin) === null || _ls$margin2 === void 0 ? void 0 : _ls$margin2.marginRight) || 0;
-      if (/%$/.test(x)) {
-        x = (0, _utils.toPx)(x, pbox.width);
-      }
-      if (/%$/.test(y)) {
-        y = (0, _utils.toPx)(y, pbox.height);
-      }
-      if (position == 'relative') {
-        x += pbox.left;
-        y += pbox.top;
-      }
-      if (name === 'text') {
-        var text = attributes.text || '';
-        lineHeight = (0, _utils.toPx)(lineHeight, fontSize);
-        ctx.save();
-        ctx.setFonts({
-          fontFamily: fontFamily,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          textStyle: textStyle
-        });
-        var isLeft = index == 0;
-        var islineBlock = display === 'inlineBlock';
-        var isblock = display === 'block' || (ls === null || ls === void 0 ? void 0 : ls.display) === 'block';
-        var isOnly = isLeft && !rbox || !(parent !== null && parent !== void 0 && parent.id);
-        var lboxR = isLeft || isblock ? 0 : lbox.offsetRight || 0;
-        var texts = text.split('\n');
-        var lineIndex = 1;
-        var line = '';
-        var textIndent = cstyle.textIndent || 0;
-        if (!isOnly && !islineBlock) {
-          texts.map(function (t, i) {
-            lineIndex += i;
-            var chars = t.split('');
-            for (var j = 0; j < chars.length; j++) {
-              var ch = chars[j];
-              var textline = line + ch;
-              var textWidth = ctx.measureText(textline, fontSize).width;
-              if (lineIndex == 1) {
-                textWidth = textWidth + (isblock ? 0 : lboxR) + textIndent;
-              }
-              if (textWidth > (w || pbox.width)) {
-                lineIndex++;
-                line = ch;
-              } else {
-                line = textline;
-              }
-            }
-          });
-        } else {
-          line = text;
-          lineIndex = Math.max(texts.length, Math.ceil(ctx.measureText(text, fontSize).width / ((w || pbox.width) - ctx.measureText('!', fontSize).width / 2)));
-        }
-        if (!islineBlock) {
-          box.offsetLeft = ((0, _utils.isNumber)(x) || isblock || isOnly ? textIndent : lboxR) + pl + ml;
-        }
-        box.offsetTop = pt;
-        // 剩下的字宽度
-        var remain = ctx.measureText(line, fontSize).width;
-        var width = (lineIndex > 1 ? pbox.width : remain + ((box === null || box === void 0 ? void 0 : box.offsetLeft) || 0)) + pr;
-        if (!islineBlock) {
-          box.offsetRight = (x || 0) + box.offsetLeft + (w ? w : isblock ? pbox.width : remain) + pr + mr;
-        }
-        var lboxOffset = lbox ? lbox.left + lbox.width : 0;
-        var _getLeft = function _getLeft() {
-          if (islineBlock) {
-            return (lboxOffset + width > pbox.width || isLeft ? pbox.left : lboxOffset + lmr) + ml;
-          }
-          return x || pbox.left;
-        };
-        var _getWidth = function _getWidth() {
-          if (islineBlock) {
-            return width + pl + pr;
-          }
-          return w || (!isOnly || isblock ? pbox.width : width > pbox.width - box.left || lineIndex > 1 ? pbox.width - box.left : width);
-        };
-        var _getHeight = function _getHeight() {
-          if (h) {
-            return h;
-          } else if (lineIndex > 1) {
-            return (maxLines || lineIndex) * lineHeight + pt + pb;
-          } else {
-            return lineHeight + pt + pb;
-          }
-        };
-        var _getTop = function _getTop() {
-          var _y = y;
-          if (_y) {} else if (isLeft) {
-            _y = pbox.top;
-          } else if (lineIndex == 1 && width < pbox.width && lname === 'text' && !isblock && !islineBlock || lbox.width < pbox.width && !(islineBlock && lboxOffset + width > pbox.width)) {
-            _y = lbox.top;
-          } else {
-            _y = lbox.top + lbox.height - ((parent === null || parent === void 0 ? void 0 : parent.id) && ((ls === null || ls === void 0 ? void 0 : ls.lineHeight) || 0));
-          }
-          if (v === 'bottom') {
-            _y = pbox.top + (pbox.height - box.height || 0);
-          }
-          if (v === 'middle') {
-            _y = pbox.top + (pbox.height ? (pbox.height - box.height || 0) / 2 : 0);
-          }
-          return _y + mt + (isblock && (ls === null || ls === void 0 ? void 0 : ls.lineHeight) || 0) + (lboxOffset + width > pbox.width ? lmb : 0);
-        };
-        box.left = _getLeft();
-        box.width = _getWidth();
-        box.height = _getHeight();
-        box.top = _getTop();
-        if (pstyle && !pstyle.height) {
-          pbox.height = box.top - pbox.top + box.height;
-        }
-        ctx.restore();
-      } else if (['view', 'qrcode'].includes(name)) {
-        box.left = (x || pbox.left) + ml - mr;
-        box.width = (w || (pbox === null || pbox === void 0 ? void 0 : pbox.width)) - pl - pr;
-        box.height = h || 0;
-        if ((0, _utils.isNumber)(y)) {
-          box.top = y + mt;
-        } else {
-          box.top = (lbox && lbox.top + lbox.height || pbox.top) + mt + lmb;
-        }
-      } else if (name === 'image') {
-        var rWidth = attributes.width,
-          rHeight = attributes.height;
-        var limageOffset = lbox && lbox.left + lbox.width;
-        if ((0, _utils.isNumber)(x)) {
-          box.left = x + ml - mr;
-        } else {
-          box.left = (lbox && (limageOffset < pbox.width ? limageOffset : pbox.left) || pbox.left) + ml - mr;
-        }
-        if ((0, _utils.isNumber)(w)) {
-          box.width = w; // - pl - pr 
-        } else {
-          box.width = Math.round((0, _utils.isNumber)(h) ? rWidth * h / rHeight : pbox === null || pbox === void 0 ? void 0 : pbox.width); // - pl - pr
-        }
-
-        if ((0, _utils.isNumber)(h)) {
-          box.height = h;
-        } else {
-          var cH = Math.round(box.width * rHeight / rWidth);
-          box.height = Math.min(cH, pbox === null || pbox === void 0 ? void 0 : pbox.height);
-        }
-        if ((0, _utils.isNumber)(y)) {
-          box.top = y + mt;
-        } else {
-          box.top = (lbox && (limageOffset < pbox.width ? limageOffset : lbox.top + lbox.height) || pbox.top) + mt + lmb;
-        }
-      }
-      if (box.top + box.height + mb > this.layoutHeight) {
-        this.layoutHeight = box.top + box.height + mb;
-      }
-      return box;
-    }
-  }, {
-    key: "getAttributes",
-    value: function () {
-      var _getAttributes = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(element) {
-        var arr, _ref4, _ref4$width, width, _ref4$height, height, src, url;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                arr = {};
-                if (!(element !== null && element !== void 0 && element.url || element !== null && element !== void 0 && element.src)) {
-                  _context2.next = 16;
-                  break;
-                }
-                arr.src = element.url || (element === null || element === void 0 ? void 0 : element.src);
-                _context2.next = 5;
-                return (0, _utils.getImageInfo)(arr.src, this.isH5PathToBase64);
-              case 5:
-                _context2.t0 = _context2.sent;
-                if (_context2.t0) {
-                  _context2.next = 8;
-                  break;
-                }
-                _context2.t0 = {};
-              case 8:
-                _ref4 = _context2.t0;
-                _ref4$width = _ref4.width;
-                width = _ref4$width === void 0 ? 0 : _ref4$width;
-                _ref4$height = _ref4.height;
-                height = _ref4$height === void 0 ? 0 : _ref4$height;
-                src = _ref4.path;
-                url = _ref4.url;
-                arr = Object.assign({}, arr, {
-                  width: width,
-                  height: height,
-                  src: src,
-                  url: url
-                });
-              case 16:
-                if (element !== null && element !== void 0 && element.text) {
-                  arr.text = element.text;
-                }
-                return _context2.abrupt("return", arr);
-              case 18:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-      function getAttributes(_x2) {
-        return _getAttributes.apply(this, arguments);
-      }
-      return getAttributes;
-    }()
-  }, {
-    key: "calcNode",
-    value: function () {
-      var _calcNode = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(element) {
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return this.getNodeTree(element);
-              case 2:
-                return _context3.abrupt("return", _context3.sent);
-              case 3:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-      function calcNode(_x3) {
-        return _calcNode.apply(this, arguments);
-      }
-      return calcNode;
-    }()
-  }]);
-  return Layout;
-}();
-exports.Layout = Layout;
-
-/***/ }),
-
-/***/ 244:
-/*!***********************************************************************************!*\
-  !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/canvas.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.adaptor = adaptor;
-exports.expand = expand;
-var _expand = function _expand(ctx) {
-  return {
-    setFonts: function setFonts(_ref) {
-      var _ref$fontFamily = _ref.fontFamily,
-        ff = _ref$fontFamily === void 0 ? 'sans-serif' : _ref$fontFamily,
-        _ref$fontSize = _ref.fontSize,
-        fs = _ref$fontSize === void 0 ? 14 : _ref$fontSize,
-        _ref$fontWeight = _ref.fontWeight,
-        fw = _ref$fontWeight === void 0 ? 'normal' : _ref$fontWeight,
-        _ref$textStyle = _ref.textStyle,
-        ts = _ref$textStyle === void 0 ? 'normal' : _ref$textStyle;
-      // 设置属性
-
-      ctx.font = "".concat(ts, " ").concat(fw, " ").concat(fs, "px ").concat(ff);
-    }
-  };
-};
-function expand(ctx) {
-  return Object.assign(ctx, _expand(ctx));
-}
-function adaptor(ctx) {
-  return Object.assign(ctx, _expand(ctx), {
-    setStrokeStyle: function setStrokeStyle(val) {
-      ctx.strokeStyle = val;
-    },
-    setLineWidth: function setLineWidth(val) {
-      ctx.lineWidth = val;
-    },
-    setLineCap: function setLineCap(val) {
-      ctx.lineCap = val;
-    },
-    setFillStyle: function setFillStyle(val) {
-      ctx.fillStyle = val;
-    },
-    setFontSize: function setFontSize(val) {
-      ctx.font = String(val);
-    },
-    setGlobalAlpha: function setGlobalAlpha(val) {
-      ctx.globalAlpha = val;
-    },
-    setLineJoin: function setLineJoin(val) {
-      ctx.lineJoin = val;
-    },
-    setTextAlign: function setTextAlign(val) {
-      ctx.textAlign = val;
-    },
-    setMiterLimit: function setMiterLimit(val) {
-      ctx.miterLimit = val;
-    },
-    setShadow: function setShadow(offsetX, offsetY, blur, color) {
-      ctx.shadowOffsetX = offsetX;
-      ctx.shadowOffsetY = offsetY;
-      ctx.shadowBlur = blur;
-      ctx.shadowColor = color;
-    },
-    setTextBaseline: function setTextBaseline(val) {
-      ctx.textBaseline = val;
-    },
-    createCircularGradient: function createCircularGradient() {},
-    draw: function draw() {}
-  });
 }
 
 /***/ }),
@@ -13813,7 +13133,698 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 257:
+/***/ 250:
+/*!***********************************************************************************!*\
+  !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/qrcode.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 251:
+/*!***********************************************************************************!*\
+  !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/layout.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Layout = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 244));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 246));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _utils = __webpack_require__(/*! ./utils */ 247);
+var Layout = /*#__PURE__*/function () {
+  function Layout() {
+    (0, _classCallCheck2.default)(this, Layout);
+    this.layoutHeight = 0;
+    this.layoutWidth = 0;
+    this.uuid = 0;
+  }
+  (0, _createClass2.default)(Layout, [{
+    key: "init",
+    value: function init(context, root, isH5PathToBase64) {
+      this.ctx = context;
+      this.root = root;
+      this.layoutWidth = root.width || 0;
+      this.layoutHeight = root.height || 0;
+      this.uuid = 0;
+      this.isH5PathToBase64 = isH5PathToBase64;
+    }
+  }, {
+    key: "getNodeTree",
+    value: function () {
+      var _getNodeTree = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(element) {
+        var parent,
+          index,
+          siblings,
+          source,
+          computedStyle,
+          attributes,
+          node,
+          _computedStyle$left,
+          left,
+          _computedStyle$top,
+          top,
+          _computedStyle$width,
+          width,
+          _computedStyle$height,
+          height,
+          childrens,
+          i,
+          v,
+          _args = arguments;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                parent = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
+                index = _args.length > 2 && _args[2] !== undefined ? _args[2] : 0;
+                siblings = _args.length > 3 && _args[3] !== undefined ? _args[3] : [];
+                source = _args.length > 4 ? _args[4] : undefined;
+                computedStyle = Object.assign({}, this.getComputedStyle(element, parent, index));
+                _context.next = 7;
+                return this.getAttributes(element);
+              case 7:
+                attributes = _context.sent;
+                node = {
+                  id: this.uuid++,
+                  parent: parent,
+                  computedStyle: computedStyle,
+                  rules: element.rules,
+                  attributes: Object.assign({}, attributes),
+                  name: (element === null || element === void 0 ? void 0 : element.type) || 'view',
+                  isRoot: !(element !== null && element !== void 0 && element.type) && JSON.stringify(parent) == '{}'
+                };
+                if (JSON.stringify(parent) === '{}' && !element.type) {
+                  _computedStyle$left = computedStyle.left, left = _computedStyle$left === void 0 ? 0 : _computedStyle$left, _computedStyle$top = computedStyle.top, top = _computedStyle$top === void 0 ? 0 : _computedStyle$top, _computedStyle$width = computedStyle.width, width = _computedStyle$width === void 0 ? 0 : _computedStyle$width, _computedStyle$height = computedStyle.height, height = _computedStyle$height === void 0 ? 0 : _computedStyle$height;
+                  node.layoutBox = {
+                    left: left,
+                    top: top,
+                    width: width,
+                    height: height
+                  };
+                } else {
+                  node.layoutBox = Object.assign({
+                    left: 0,
+                    top: 0
+                  }, this.getLayoutBox(node, parent, index, siblings, source));
+                }
+                if (!(element !== null && element !== void 0 && element.views)) {
+                  _context.next = 25;
+                  break;
+                }
+                childrens = [];
+                node.children = [];
+                i = 0;
+              case 14:
+                if (!(i < element.views.length)) {
+                  _context.next = 24;
+                  break;
+                }
+                v = element.views[i];
+                _context.t0 = childrens;
+                _context.next = 19;
+                return this.getNodeTree(v, node, i, childrens, element);
+              case 19:
+                _context.t1 = _context.sent;
+                _context.t0.push.call(_context.t0, _context.t1);
+              case 21:
+                i++;
+                _context.next = 14;
+                break;
+              case 24:
+                node.children = childrens;
+              case 25:
+                return _context.abrupt("return", node);
+              case 26:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+      function getNodeTree(_x) {
+        return _getNodeTree.apply(this, arguments);
+      }
+      return getNodeTree;
+    }()
+  }, {
+    key: "getComputedStyle",
+    value: function getComputedStyle(element) {
+      var _this = this;
+      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+      var style = {};
+      var name = element.name || element.type;
+      var node = JSON.stringify(parent) == '{}' && !name ? element : element.css;
+      if (!node) return style;
+      var inheritProps = ['color', 'fontSize', 'lineHeight', 'verticalAlign', 'fontWeight', 'textAlign'];
+      if (parent.computedStyle) {
+        inheritProps.forEach(function (prop) {
+          if (node[prop] || parent.computedStyle[prop]) {
+            node[prop] = node[prop] || parent.computedStyle[prop];
+          }
+        });
+      }
+      var _loop = function _loop() {
+        var value = _Object$keys[_i];
+        var item = node[value];
+        if (value == 'views') {
+          return "continue";
+        }
+        if (/^(box)?shadow$/i.test(value)) {
+          var shadows = item.split(' ').map(function (v) {
+            return /^\d/.test(v) ? (0, _utils.toPx)(v) : v;
+          });
+          style.boxShadow = shadows;
+          return "continue";
+        }
+        if (/^border/i.test(value) && !/radius$/i.test(value)) {
+          var _style$prefix;
+          var prefix = value.match(/^border([BTRLa-z]+)?/)[0];
+          var type = value.match(/[W|S|C][a-z]+/);
+          var v = item.replace(/([\(,])\s+|\s+([\),])/g, '$1$2').split(' ').map(function (v) {
+            return /^\d/.test(v) ? (0, _utils.toPx)(v, '', true) : v;
+          });
+          style[prefix] = (_style$prefix = {}, (0, _defineProperty2.default)(_style$prefix, prefix + 'Width', ((0, _utils.isNumber)(v[0]) ? v[0] : 0) || 1), (0, _defineProperty2.default)(_style$prefix, prefix + 'Style', v[1] || 'solid'), (0, _defineProperty2.default)(_style$prefix, prefix + 'Color', v[2] || 'black'), _style$prefix);
+          if (v.length == 1 && type) {
+            style[prefix][prefix + type[0]] = v[0];
+          }
+          return "continue";
+        }
+        if (/^background(color)?$/i.test(value)) {
+          style['backgroundColor'] = item;
+          return "continue";
+        }
+        if (/padding|margin|radius/i.test(value)) {
+          var isRadius = /radius$/i.test(value);
+          var _prefix = isRadius ? 'borderRadius' : value.match(/[a-z]+/)[0];
+          var pre = [0, 0, 0, 0].map(function (item, i) {
+            return isRadius ? ['borderTopLeftRadius', 'borderTopRightRadius', 'borderBottomRightRadius', 'borderBottomLeftRadius'][i] : [_prefix + 'Top', _prefix + 'Right', _prefix + 'Bottom', _prefix + 'Left'][i];
+          });
+          if (value === 'padding' || value === 'margin' || /^(border)?radius$/i.test(value)) {
+            var _style$_type;
+            var _v = (item === null || item === void 0 ? void 0 : item.split(' ').map(function (item) {
+              return /^\d/.test(item) && (0, _utils.toPx)(item, node['width']);
+            }, [])) || [0];
+            var _type = isRadius ? 'borderRadius' : value;
+            var _v2 = (0, _slicedToArray2.default)(_v, 4),
+              t = _v2[0],
+              r = _v2[1],
+              b = _v2[2],
+              l = _v2[3];
+            style[_type] = (_style$_type = {}, (0, _defineProperty2.default)(_style$_type, pre[0], t), (0, _defineProperty2.default)(_style$_type, pre[1], (0, _utils.isNumber)(r) ? r : t), (0, _defineProperty2.default)(_style$_type, pre[2], (0, _utils.isNumber)(b) ? b : t), (0, _defineProperty2.default)(_style$_type, pre[3], (0, _utils.isNumber)(l) ? l : r || t), _style$_type);
+          } else {
+            if ((0, _typeof2.default)(style[_prefix]) === 'object') {
+              style[_prefix][value] = (0, _utils.toPx)(item, node['width']);
+            } else {
+              var _style$_prefix;
+              style[_prefix] = (_style$_prefix = {}, (0, _defineProperty2.default)(_style$_prefix, pre[0], style[_prefix] || 0), (0, _defineProperty2.default)(_style$_prefix, pre[1], style[_prefix] || 0), (0, _defineProperty2.default)(_style$_prefix, pre[2], style[_prefix] || 0), (0, _defineProperty2.default)(_style$_prefix, pre[3], style[_prefix] || 0), _style$_prefix);
+              style[_prefix][value] = (0, _utils.toPx)(item, node['width']);
+            }
+          }
+          return "continue";
+        }
+        if (/^(width|height)$/i.test(value)) {
+          if (/%$/.test(item)) {
+            style[value] = (0, _utils.toPx)(item, parent.layoutBox[value]);
+          } else {
+            style[value] = /px|rpx$/.test(item) ? (0, _utils.toPx)(item) : item;
+          }
+          return "continue";
+        }
+        if (/^transform$/i.test(value)) {
+          style[value] = {};
+          item.replace(/([a-zA-Z]+)\(([0-9,-\.%rpxdeg\s]+)\)/g, function (g1, g2, g3) {
+            var v = g3.split(',').map(function (k) {
+              return k.replace(/(^\s*)|(\s*$)/g, '');
+            });
+            var transform = function transform(v, r) {
+              return v.includes('deg') ? v * 1 : r && !/%$/.test(r) ? (0, _utils.toPx)(v, r) : v;
+            };
+            if (g2.includes('matrix')) {
+              style[value][g2] = v.map(function (v) {
+                return v * 1;
+              });
+            } else if (g2.includes('rotate')) {
+              style[value][g2] = g3.match(/^-?\d+(\.\d+)?/)[0] * 1;
+            } else if (/[X, Y]/.test(g2)) {
+              style[value][g2] = /[X]/.test(g2) ? transform(v[0], node['width']) : transform(v[0], node['height']);
+            } else {
+              style[value][g2 + 'X'] = transform(v[0], node['width']);
+              style[value][g2 + 'Y'] = transform(v[1] || v[0], node['height']);
+            }
+          });
+          return "continue";
+        }
+        if (/^transformOrigin/i.test(value)) {
+          style[value] = item;
+          return "continue";
+        }
+        if (/%/.test(item)) {
+          var _parent$layoutBox = parent.layoutBox,
+            pw = _parent$layoutBox.width,
+            ph = _parent$layoutBox.height,
+            pl = _parent$layoutBox.left,
+            pt = _parent$layoutBox.top;
+          var _this$root = _this.root,
+            rw = _this$root.width,
+            rh = _this$root.height;
+          var isR = style.position == 'relative';
+          if (value == 'width') {
+            style[value] = (0, _utils.toPx)(item, pw || rw);
+          } else if (value == 'height') {
+            style[value] = (0, _utils.toPx)(item, ph || rh);
+          } else if (value == 'left') {
+            style[value] = item; // isR ? toPx(item, pw) + pl : toPx(item, rw)
+          } else if (value == 'top') {
+            style[value] = item; // isR ? toPx(item, ph) + pt : toPx(item, rh)
+          } else {
+            style[value] = (0, _utils.toPx)(item, node['width']);
+          }
+        } else {
+          style[value] = /px|rpx$/.test(item) ? (0, _utils.toPx)(item) : /em$/.test(item) && name == 'text' ? (0, _utils.toPx)(item, node['fontSize']) : item;
+        }
+      };
+      for (var _i = 0, _Object$keys = Object.keys(node); _i < _Object$keys.length; _i++) {
+        var _ret = _loop();
+        if (_ret === "continue") continue;
+      }
+      if (/image/.test(element.name || element.type) && !style.mode) {
+        style.mode = element.mode || 'scaleToFill';
+        if ((!node.width || node.width == 'auto') && (!node.height || node.width == 'auto')) {
+          style.mode = '';
+        }
+      }
+      return style;
+    }
+  }, {
+    key: "getLayoutBox",
+    value: function getLayoutBox(element) {
+      var _ls$margin, _ls$margin2;
+      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+      var siblings = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+      var source = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+      var box = {};
+      var _ref = element || {},
+        name = _ref.name,
+        cstyle = _ref.computedStyle,
+        layoutBox = _ref.layoutBox,
+        attributes = _ref.attributes,
+        isRoot = _ref.isRoot;
+      if (!name) return box;
+      var ctx = this.ctx;
+      var _parent$layoutBox2 = parent.layoutBox,
+        pbox = _parent$layoutBox2 === void 0 ? this.root : _parent$layoutBox2,
+        pstyle = parent.computedStyle;
+      var v = cstyle.verticalAlign,
+        x = cstyle.left,
+        y = cstyle.top,
+        w = cstyle.width,
+        h = cstyle.height,
+        _cstyle$fontSize = cstyle.fontSize,
+        fontSize = _cstyle$fontSize === void 0 ? 14 : _cstyle$fontSize,
+        _cstyle$lineHeight = cstyle.lineHeight,
+        lineHeight = _cstyle$lineHeight === void 0 ? '1.4em' : _cstyle$lineHeight,
+        maxLines = cstyle.maxLines,
+        fontWeight = cstyle.fontWeight,
+        fontFamily = cstyle.fontFamily,
+        textStyle = cstyle.textStyle,
+        position = cstyle.position,
+        display = cstyle.display,
+        _cstyle$padding = cstyle.padding,
+        p = _cstyle$padding === void 0 ? {} : _cstyle$padding,
+        _cstyle$margin = cstyle.margin,
+        m = _cstyle$margin === void 0 ? {} : _cstyle$margin;
+      var _p$paddingTop = p.paddingTop,
+        pt = _p$paddingTop === void 0 ? 0 : _p$paddingTop,
+        _p$paddingRight = p.paddingRight,
+        pr = _p$paddingRight === void 0 ? 0 : _p$paddingRight,
+        _p$paddingBottom = p.paddingBottom,
+        pb = _p$paddingBottom === void 0 ? 0 : _p$paddingBottom,
+        _p$paddingLeft = p.paddingLeft,
+        pl = _p$paddingLeft === void 0 ? 0 : _p$paddingLeft;
+      var _m$marginTop = m.marginTop,
+        mt = _m$marginTop === void 0 ? 0 : _m$marginTop,
+        _m$marginRight = m.marginRight,
+        mr = _m$marginRight === void 0 ? 0 : _m$marginRight,
+        _m$marginBottom = m.marginBottom,
+        mb = _m$marginBottom === void 0 ? 0 : _m$marginBottom,
+        _m$marginLeft = m.marginLeft,
+        ml = _m$marginLeft === void 0 ? 0 : _m$marginLeft;
+      var _ref2 = siblings[index - 1] || {},
+        lbox = _ref2.layoutBox,
+        ls = _ref2.computedStyle,
+        lname = _ref2.name;
+      var _ref3 = siblings[index + 1] || {},
+        rbox = _ref3.layoutBox,
+        rs = _ref3.computedStyle,
+        rname = _ref3.name;
+      var lmb = (ls === null || ls === void 0 ? void 0 : (_ls$margin = ls.margin) === null || _ls$margin === void 0 ? void 0 : _ls$margin.marginBottom) || 0;
+      var lmr = (ls === null || ls === void 0 ? void 0 : (_ls$margin2 = ls.margin) === null || _ls$margin2 === void 0 ? void 0 : _ls$margin2.marginRight) || 0;
+      if (/%$/.test(x)) {
+        x = (0, _utils.toPx)(x, pbox.width);
+      }
+      if (/%$/.test(y)) {
+        y = (0, _utils.toPx)(y, pbox.height);
+      }
+      if (position == 'relative') {
+        x += pbox.left;
+        y += pbox.top;
+      }
+      if (name === 'text') {
+        var text = attributes.text || '';
+        lineHeight = (0, _utils.toPx)(lineHeight, fontSize);
+        ctx.save();
+        ctx.setFonts({
+          fontFamily: fontFamily,
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          textStyle: textStyle
+        });
+        var isLeft = index == 0;
+        var islineBlock = display === 'inlineBlock';
+        var isblock = display === 'block' || (ls === null || ls === void 0 ? void 0 : ls.display) === 'block';
+        var isOnly = isLeft && !rbox || !(parent !== null && parent !== void 0 && parent.id);
+        var lboxR = isLeft || isblock ? 0 : lbox.offsetRight || 0;
+        var texts = text.split('\n');
+        var lineIndex = 1;
+        var line = '';
+        var textIndent = cstyle.textIndent || 0;
+        if (!isOnly && !islineBlock) {
+          texts.map(function (t, i) {
+            lineIndex += i;
+            var chars = t.split('');
+            for (var j = 0; j < chars.length; j++) {
+              var ch = chars[j];
+              var textline = line + ch;
+              var textWidth = ctx.measureText(textline, fontSize).width;
+              if (lineIndex == 1) {
+                textWidth = textWidth + (isblock ? 0 : lboxR) + textIndent;
+              }
+              if (textWidth > (w || pbox.width)) {
+                lineIndex++;
+                line = ch;
+              } else {
+                line = textline;
+              }
+            }
+          });
+        } else {
+          line = text;
+          lineIndex = Math.max(texts.length, Math.ceil(ctx.measureText(text, fontSize).width / ((w || pbox.width) - ctx.measureText('!', fontSize).width / 2)));
+        }
+        if (!islineBlock) {
+          box.offsetLeft = ((0, _utils.isNumber)(x) || isblock || isOnly ? textIndent : lboxR) + pl + ml;
+        }
+        box.offsetTop = pt;
+        // 剩下的字宽度
+        var remain = ctx.measureText(line, fontSize).width;
+        var width = (lineIndex > 1 ? pbox.width : remain + ((box === null || box === void 0 ? void 0 : box.offsetLeft) || 0)) + pr;
+        if (!islineBlock) {
+          box.offsetRight = (x || 0) + box.offsetLeft + (w ? w : isblock ? pbox.width : remain) + pr + mr;
+        }
+        var lboxOffset = lbox ? lbox.left + lbox.width : 0;
+        var _getLeft = function _getLeft() {
+          if (islineBlock) {
+            return (lboxOffset + width > pbox.width || isLeft ? pbox.left : lboxOffset + lmr) + ml;
+          }
+          return x || pbox.left;
+        };
+        var _getWidth = function _getWidth() {
+          if (islineBlock) {
+            return width + pl + pr;
+          }
+          return w || (!isOnly || isblock ? pbox.width : width > pbox.width - box.left || lineIndex > 1 ? pbox.width - box.left : width);
+        };
+        var _getHeight = function _getHeight() {
+          if (h) {
+            return h;
+          } else if (lineIndex > 1) {
+            return (maxLines || lineIndex) * lineHeight + pt + pb;
+          } else {
+            return lineHeight + pt + pb;
+          }
+        };
+        var _getTop = function _getTop() {
+          var _y = y;
+          if (_y) {} else if (isLeft) {
+            _y = pbox.top;
+          } else if (lineIndex == 1 && width < pbox.width && lname === 'text' && !isblock && !islineBlock || lbox.width < pbox.width && !(islineBlock && lboxOffset + width > pbox.width)) {
+            _y = lbox.top;
+          } else {
+            _y = lbox.top + lbox.height - ((parent === null || parent === void 0 ? void 0 : parent.id) && ((ls === null || ls === void 0 ? void 0 : ls.lineHeight) || 0));
+          }
+          if (v === 'bottom') {
+            _y = pbox.top + (pbox.height - box.height || 0);
+          }
+          if (v === 'middle') {
+            _y = pbox.top + (pbox.height ? (pbox.height - box.height || 0) / 2 : 0);
+          }
+          return _y + mt + (isblock && (ls === null || ls === void 0 ? void 0 : ls.lineHeight) || 0) + (lboxOffset + width > pbox.width ? lmb : 0);
+        };
+        box.left = _getLeft();
+        box.width = _getWidth();
+        box.height = _getHeight();
+        box.top = _getTop();
+        if (pstyle && !pstyle.height) {
+          pbox.height = box.top - pbox.top + box.height;
+        }
+        ctx.restore();
+      } else if (['view', 'qrcode'].includes(name)) {
+        box.left = (x || pbox.left) + ml - mr;
+        box.width = (w || (pbox === null || pbox === void 0 ? void 0 : pbox.width)) - pl - pr;
+        box.height = h || 0;
+        if ((0, _utils.isNumber)(y)) {
+          box.top = y + mt;
+        } else {
+          box.top = (lbox && lbox.top + lbox.height || pbox.top) + mt + lmb;
+        }
+      } else if (name === 'image') {
+        var rWidth = attributes.width,
+          rHeight = attributes.height;
+        var limageOffset = lbox && lbox.left + lbox.width;
+        if ((0, _utils.isNumber)(x)) {
+          box.left = x + ml - mr;
+        } else {
+          box.left = (lbox && (limageOffset < pbox.width ? limageOffset : pbox.left) || pbox.left) + ml - mr;
+        }
+        if ((0, _utils.isNumber)(w)) {
+          box.width = w; // - pl - pr 
+        } else {
+          box.width = Math.round((0, _utils.isNumber)(h) ? rWidth * h / rHeight : pbox === null || pbox === void 0 ? void 0 : pbox.width); // - pl - pr
+        }
+
+        if ((0, _utils.isNumber)(h)) {
+          box.height = h;
+        } else {
+          var cH = Math.round(box.width * rHeight / rWidth);
+          box.height = Math.min(cH, pbox === null || pbox === void 0 ? void 0 : pbox.height);
+        }
+        if ((0, _utils.isNumber)(y)) {
+          box.top = y + mt;
+        } else {
+          box.top = (lbox && (limageOffset < pbox.width ? limageOffset : lbox.top + lbox.height) || pbox.top) + mt + lmb;
+        }
+      }
+      if (box.top + box.height + mb > this.layoutHeight) {
+        this.layoutHeight = box.top + box.height + mb;
+      }
+      return box;
+    }
+  }, {
+    key: "getAttributes",
+    value: function () {
+      var _getAttributes = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(element) {
+        var arr, _ref4, _ref4$width, width, _ref4$height, height, src, url;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                arr = {};
+                if (!(element !== null && element !== void 0 && element.url || element !== null && element !== void 0 && element.src)) {
+                  _context2.next = 16;
+                  break;
+                }
+                arr.src = element.url || (element === null || element === void 0 ? void 0 : element.src);
+                _context2.next = 5;
+                return (0, _utils.getImageInfo)(arr.src, this.isH5PathToBase64);
+              case 5:
+                _context2.t0 = _context2.sent;
+                if (_context2.t0) {
+                  _context2.next = 8;
+                  break;
+                }
+                _context2.t0 = {};
+              case 8:
+                _ref4 = _context2.t0;
+                _ref4$width = _ref4.width;
+                width = _ref4$width === void 0 ? 0 : _ref4$width;
+                _ref4$height = _ref4.height;
+                height = _ref4$height === void 0 ? 0 : _ref4$height;
+                src = _ref4.path;
+                url = _ref4.url;
+                arr = Object.assign({}, arr, {
+                  width: width,
+                  height: height,
+                  src: src,
+                  url: url
+                });
+              case 16:
+                if (element !== null && element !== void 0 && element.text) {
+                  arr.text = element.text;
+                }
+                return _context2.abrupt("return", arr);
+              case 18:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+      function getAttributes(_x2) {
+        return _getAttributes.apply(this, arguments);
+      }
+      return getAttributes;
+    }()
+  }, {
+    key: "calcNode",
+    value: function () {
+      var _calcNode = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(element) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return this.getNodeTree(element);
+              case 2:
+                return _context3.abrupt("return", _context3.sent);
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+      function calcNode(_x3) {
+        return _calcNode.apply(this, arguments);
+      }
+      return calcNode;
+    }()
+  }]);
+  return Layout;
+}();
+exports.Layout = Layout;
+
+/***/ }),
+
+/***/ 252:
+/*!***********************************************************************************!*\
+  !*** D:/A.work/yiyuan/uni_modules/lime-painter/components/lime-painter/canvas.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.adaptor = adaptor;
+exports.expand = expand;
+var _expand = function _expand(ctx) {
+  return {
+    setFonts: function setFonts(_ref) {
+      var _ref$fontFamily = _ref.fontFamily,
+        ff = _ref$fontFamily === void 0 ? 'sans-serif' : _ref$fontFamily,
+        _ref$fontSize = _ref.fontSize,
+        fs = _ref$fontSize === void 0 ? 14 : _ref$fontSize,
+        _ref$fontWeight = _ref.fontWeight,
+        fw = _ref$fontWeight === void 0 ? 'normal' : _ref$fontWeight,
+        _ref$textStyle = _ref.textStyle,
+        ts = _ref$textStyle === void 0 ? 'normal' : _ref$textStyle;
+      // 设置属性
+
+      ctx.font = "".concat(ts, " ").concat(fw, " ").concat(fs, "px ").concat(ff);
+    }
+  };
+};
+function expand(ctx) {
+  return Object.assign(ctx, _expand(ctx));
+}
+function adaptor(ctx) {
+  return Object.assign(ctx, _expand(ctx), {
+    setStrokeStyle: function setStrokeStyle(val) {
+      ctx.strokeStyle = val;
+    },
+    setLineWidth: function setLineWidth(val) {
+      ctx.lineWidth = val;
+    },
+    setLineCap: function setLineCap(val) {
+      ctx.lineCap = val;
+    },
+    setFillStyle: function setFillStyle(val) {
+      ctx.fillStyle = val;
+    },
+    setFontSize: function setFontSize(val) {
+      ctx.font = String(val);
+    },
+    setGlobalAlpha: function setGlobalAlpha(val) {
+      ctx.globalAlpha = val;
+    },
+    setLineJoin: function setLineJoin(val) {
+      ctx.lineJoin = val;
+    },
+    setTextAlign: function setTextAlign(val) {
+      ctx.textAlign = val;
+    },
+    setMiterLimit: function setMiterLimit(val) {
+      ctx.miterLimit = val;
+    },
+    setShadow: function setShadow(offsetX, offsetY, blur, color) {
+      ctx.shadowOffsetX = offsetX;
+      ctx.shadowOffsetY = offsetY;
+      ctx.shadowBlur = blur;
+      ctx.shadowColor = color;
+    },
+    setTextBaseline: function setTextBaseline(val) {
+      ctx.textBaseline = val;
+    },
+    createCircularGradient: function createCircularGradient() {},
+    draw: function draw() {}
+  });
+}
+
+/***/ }),
+
+/***/ 26:
+/*!***********************************!*\
+  !*** D:/A.work/yiyuan/pages.json ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 265:
 /*!****************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \****************************************************************************/
@@ -13855,7 +13866,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 258:
+/***/ 266:
 /*!*********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
   \*********************************************************************************/
@@ -13870,9 +13881,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 259));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 260));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 261));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 267));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 268));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 269));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -13882,7 +13893,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 259:
+/***/ 267:
 /*!********************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
   \********************************************************************************/
@@ -13893,18 +13904,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\
 
 /***/ }),
 
-/***/ 26:
-/*!***********************************!*\
-  !*** D:/A.work/yiyuan/pages.json ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 260:
+/***/ 268:
 /*!*************************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \*************************************************************************************/
@@ -13915,7 +13915,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 
 /***/ }),
 
-/***/ 261:
+/***/ 269:
 /*!*************************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \*************************************************************************************/
@@ -13926,7 +13926,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 
 /***/ }),
 
-/***/ 285:
+/***/ 293:
 /*!************************************************************************************************!*\
   !*** D:/A.work/yiyuan/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \************************************************************************************************/
@@ -14469,7 +14469,7 @@ module.exports = {
  */
 module.exports = {
   //你的域名
-  JQ_DOMAIN: 'xcx.jiangqie.com'
+  JQ_DOMAIN: '192.168.1.132:9001'
 };
 
 /***/ }),

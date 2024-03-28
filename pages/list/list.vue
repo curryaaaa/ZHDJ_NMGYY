@@ -11,7 +11,7 @@
 					</view>
 					<view class="jiangqie-news-text">
 						<view :class="'jiangqie-news-title ' + (item.excerpt?'':'jiangqie-news-no-excerpt')">
-							{{item.title}}
+							11{{item.title}}
 						</view>
 						<view v-if="item.excerpt" class="jiangqie-news-describe">{{item.excerpt}}</view>
 						<view class="jiangqie-news-info">

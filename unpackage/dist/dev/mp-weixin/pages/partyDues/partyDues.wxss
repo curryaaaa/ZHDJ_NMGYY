@@ -1,0 +1,61 @@
+@charset "UTF-8";
+.submit-button.data-v-f7a3afdc {
+  background-color: #e63621;
+  /* 初始颜色 */
+  color: white;
+  /* 文字颜色 */
+  width: 116rpx;
+  height: 72rpx;
+  font-size: 28rpx;
+}
+.dates.data-v-f7a3afdc {
+  padding-top: 16rpx;
+  font-size: 22rpx;
+}
+.form-item.data-v-f7a3afdc {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 8rpx 16rpx;
+}
+.xiangqing.data-v-f7a3afdc {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 8rpx 16rpx;
+}
+.label-title.data-v-f7a3afdc {
+  flex: 1;
+  text-align: left;
+}
+.money-title.data-v-f7a3afdc {
+  flex: 2;
+  text-align: right;
+}
+.label.data-v-f7a3afdc {
+  flex: 2;
+  text-align: left;
+  margin-right: 20rpx;
+}
+.data.data-v-f7a3afdc {
+  text-align: right;
+}
+.money.data-v-f7a3afdc {
+  flex: 1;
+  text-align: right;
+  margin-right: 20rpx;
+  font-weight: bolder;
+}
+.container.data-v-f7a3afdc {
+  padding: 0 20rpx 30rpx 20rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.jiangqie-content-box.data-v-f7a3afdc {
+  width: 100%;
+  margin-top: 30rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 0 10rpx #eee;
+}
+

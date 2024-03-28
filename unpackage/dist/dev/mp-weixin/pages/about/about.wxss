@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.kongstart.data-v-92c79dbc {
+  padding-top: 50%;
+  color: #bebdbd;
+  font-size: 40rpx;
+  text-align: center;
+}
 .submit-button.data-v-92c79dbc {
   background-color: #e63621;
   /* 初始颜色 */

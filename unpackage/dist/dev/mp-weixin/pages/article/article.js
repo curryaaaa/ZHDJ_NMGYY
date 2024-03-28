@@ -101,10 +101,10 @@ var components
 try {
   components = {
     mpHtml: function () {
-      return Promise.all(/*! import() | components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/components/mp-html/mp-html.vue */ 218))
+      return Promise.all(/*! import() | components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/components/mp-html/mp-html.vue */ 226))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 189))
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 197))
     },
   }
 } catch (e) {
@@ -203,22 +203,22 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var JiangqieLoadmore = function JiangqieLoadmore() {
   __webpack_require__.e(/*! require.ensure | components/loadmore/loadmore */ "components/loadmore/loadmore").then((function () {
-    return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 197));
+    return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 205));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var jiangqieNomore = function jiangqieNomore() {
   __webpack_require__.e(/*! require.ensure | components/nomore/nomore */ "components/nomore/nomore").then((function () {
-    return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 204));
+    return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 212));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var JiangqieNoData = function JiangqieNoData() {
   __webpack_require__.e(/*! require.ensure | components/nodata/nodata */ "components/nodata/nodata").then((function () {
-    return resolve(__webpack_require__(/*! @/components/nodata/nodata */ 211));
+    return resolve(__webpack_require__(/*! @/components/nodata/nodata */ 219));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var lPainter = function lPainter() {
   Promise.all(/*! require.ensure | uni_modules/lime-painter/components/lime-painter/index */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/lime-painter/components/lime-painter/index")]).then((function () {
-    return resolve(__webpack_require__(/*! @/uni_modules/lime-painter/components/lime-painter/ */ 231));
+    return resolve(__webpack_require__(/*! @/uni_modules/lime-painter/components/lime-painter/ */ 239));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Constants = __webpack_require__(/*! @/utils/constants.js */ 31);
@@ -246,6 +246,8 @@ var _default = {
     // 是否正在提交评论
     this.comment_submiting = false;
     return {
+      currentTime: 0,
+      //时间
       post: {
         title: "",
         views: "",
@@ -290,8 +292,19 @@ var _default = {
     this.loadWxacode();
     uni.$on('linktap', this.onMPHtmlLink);
   },
-  onShow: function onShow() {
+  created: function created() {
     var _this = this;
+    var timer = setInterval(function () {
+      _this.currentTime++;
+      console.log(_this.currentTime);
+      if (_this.currentTime === 30) {
+        clearInterval(timer);
+        _this.makeRequest(); // 达到30秒时执行请求
+      }
+    }, 1000);
+  },
+  onShow: function onShow() {
+    var _this2 = this;
     if (!this.needRefresh) {
       this.needRefresh = true;
       return;
@@ -302,19 +315,19 @@ var _default = {
       uni.setNavigationBarTitle({
         title: res.data.title
       });
-      _this.post = res.data;
-      _this.islike = res.data.user.islike;
-      _this.isfavorite = res.data.user.isfavorite;
-      _this.favorite_count = res.data.favorite_count;
-      _this.comment_count = Number(res.data.comment_count);
-      _this.like_list = res.data.like_list;
-      _this.article = res.data.content;
-      _this.wx_ad_top = res.data.wx_ad_top;
-      _this.wx_ad_bottom = res.data.wx_ad_bottom;
-      _this.pre_next = res.data.pre_next;
-      if (_this.pre_next) {
-        _this.pre = res.data.pre;
-        _this.next = res.data.next;
+      _this2.post = res.data;
+      _this2.islike = res.data.user.islike;
+      _this2.isfavorite = res.data.user.isfavorite;
+      _this2.favorite_count = res.data.favorite_count;
+      _this2.comment_count = Number(res.data.comment_count);
+      _this2.like_list = res.data.like_list;
+      _this2.article = res.data.content;
+      _this2.wx_ad_top = res.data.wx_ad_top;
+      _this2.wx_ad_bottom = res.data.wx_ad_bottom;
+      _this2.pre_next = res.data.pre_next;
+      if (_this2.pre_next) {
+        _this2.pre = res.data.pre;
+        _this2.next = res.data.next;
       }
     });
     this.loadComments(true);
@@ -344,6 +357,10 @@ var _default = {
     };
   },
   methods: {
+    makeRequest: function makeRequest() {
+      // 在这里进行请求的逻辑，例如使用axios或fetch请求数据
+      console.log('发送请求');
+    },
     /**
      * 点击文章内链接
      */
@@ -460,19 +477,19 @@ var _default = {
      * 文章 点赞
      */
     handlerLikeClick: function handlerLikeClick(e) {
-      var _this2 = this;
+      var _this3 = this;
       Rest.get(Api.JIANGQIE_USER_LIKE, {
         post_id: this.post.id
       }).then(function (res) {
         var avatar = Auth.getUser().avatar;
-        var index = _this2.like_list.indexOf(avatar);
+        var index = _this3.like_list.indexOf(avatar);
         if (index > -1) {
-          _this2.like_list.splice(index, 1);
+          _this3.like_list.splice(index, 1);
         } else {
-          _this2.like_list.unshift(avatar);
+          _this3.like_list.unshift(avatar);
         }
-        _this2.islike = _this2.islike == 1 ? 0 : 1;
-        _this2.like_list = _this2.like_list;
+        _this3.islike = _this3.islike == 1 ? 0 : 1;
+        _this3.like_list = _this3.like_list;
       });
     },
     /**
@@ -492,7 +509,7 @@ var _default = {
      * 评论 提交
      */
     handlerCommentSubmit: function handlerCommentSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
       if (!this.comment_content) {
         Util.toast('请输入内容');
         return;
@@ -506,10 +523,10 @@ var _default = {
         parent_id: this.comment_id,
         content: this.comment_content
       }).then(function (res) {
-        _this3.comment_count_change = _this3.comment_count_change + (res.data.comment_verify == 1 ? 0 : 1);
-        _this3.show_comment_submit = false;
-        _this3.loadComments(true);
-        _this3.comment_submiting = false;
+        _this4.comment_count_change = _this4.comment_count_change + (res.data.comment_verify == 1 ? 0 : 1);
+        _this4.show_comment_submit = false;
+        _this4.loadComments(true);
+        _this4.comment_submiting = false;
       });
     },
     /**
@@ -523,7 +540,7 @@ var _default = {
      * 评论 删除
      */
     handlerCommentDeleteClick: function handlerCommentDeleteClick(e) {
-      var _this4 = this;
+      var _this5 = this;
       uni.showModal({
         title: '提示',
         content: '确定要删除吗？',
@@ -533,8 +550,8 @@ var _default = {
             Rest.get(Api.JIANGQIE_COMMENT_DELETE, {
               comment_id: comment_id
             }).then(function (res) {
-              _this4.comment_count_change = _this4.comment_count_change - 1;
-              _this4.loadComments(true);
+              _this5.comment_count_change = _this5.comment_count_change - 1;
+              _this5.loadComments(true);
             });
           }
         }
@@ -550,13 +567,13 @@ var _default = {
      * 文章 收藏
      */
     handlerFavoriteClick: function handlerFavoriteClick(e) {
-      var _this5 = this;
+      var _this6 = this;
       Rest.get(Api.JIANGQIE_USER_FAVORITE, {
         post_id: this.post.id
       }).then(function (res) {
         // this.isfavorite = (this.isfavorite == 1 ? 0 : 1);
-        _this5.isfavorite = res.data.isfavorite;
-        _this5.favorite_count = res.data.favorite_count;
+        _this6.isfavorite = res.data.isfavorite;
+        _this6.favorite_count = res.data.favorite_count;
       });
     },
     /**
@@ -579,21 +596,8 @@ var _default = {
      * 加载微信小程序码
      */
     loadWxacode: function loadWxacode() {
-      var _this6 = this;
-      Rest.get(Api.JIANGQIE_POST_WX_ACODE, {
-        post_id: this.post_id
-      }).then(function (res) {
-        _this6.acode = res.data;
-      }, function (err) {
-        console.log(err);
-      });
-    },
-    /**
-     * 加载百度小程序码
-     */
-    loadBdacode: function loadBdacode() {
       var _this7 = this;
-      Rest.get(Api.JIANGQIE_POST_BD_ACODE, {
+      Rest.get(Api.JIANGQIE_POST_WX_ACODE, {
         post_id: this.post_id
       }).then(function (res) {
         _this7.acode = res.data;
@@ -602,10 +606,23 @@ var _default = {
       });
     },
     /**
+     * 加载百度小程序码
+     */
+    loadBdacode: function loadBdacode() {
+      var _this8 = this;
+      Rest.get(Api.JIANGQIE_POST_BD_ACODE, {
+        post_id: this.post_id
+      }).then(function (res) {
+        _this8.acode = res.data;
+      }, function (err) {
+        console.log(err);
+      });
+    },
+    /**
      * 加载 评论
      */
     loadComments: function loadComments(refresh) {
-      var _this8 = this;
+      var _this9 = this;
       this.loadding = true;
       var offset = 0;
       if (!refresh) {
@@ -615,10 +632,10 @@ var _default = {
         post_id: this.post_id,
         offset: offset
       }).then(function (res) {
-        _this8.loaded = true;
-        _this8.loadding = false;
-        _this8.comments = refresh ? res.data : _this8.comments.concat(res.data);
-        _this8.pullUpOn = res.data.length >= Constants.JQ_PER_PAGE_COUNT;
+        _this9.loaded = true;
+        _this9.loadding = false;
+        _this9.comments = refresh ? res.data : _this9.comments.concat(res.data);
+        _this9.pullUpOn = res.data.length >= Constants.JQ_PER_PAGE_COUNT;
       });
     }
   }
