@@ -14469,7 +14469,7 @@ module.exports = {
  */
 module.exports = {
   //你的域名
-  JQ_DOMAIN: '192.168.1.132:9001'
+  JQ_DOMAIN: 'xcx.jiangqie.com'
 };
 
 /***/ }),

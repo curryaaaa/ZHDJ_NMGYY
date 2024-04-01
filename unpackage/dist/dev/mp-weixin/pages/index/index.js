@@ -462,6 +462,7 @@ var _default = {
     var _this = this;
     Rest.get(Api.JIANGQIE_SETTING_HOME).then(function (res) {
       var logo = "/static/images/logo.png";
+      console.log(res, 'resresresres');
       if (res.data.logo && res.data.logo.length > 0) {
         logo = res.data.logo;
       }

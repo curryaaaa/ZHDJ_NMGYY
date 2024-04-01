@@ -324,7 +324,7 @@ var _default = {
     },
     Wodeintegral: function Wodeintegral(e) {
       uni.navigateTo({
-        url: '/pages/wodeintegral/wodeintegral'
+        url: '/pages/basicInformation/basicInformation'
       });
     },
     Gerenxinxi: function Gerenxinxi() {
@@ -339,12 +339,12 @@ var _default = {
     },
     DangfeiXQ: function DangfeiXQ() {
       uni.navigateTo({
-        url: '/pages/dangfei/dangfei'
+        url: '/pages/partyDues/partyDues'
       });
     },
     cailiaoshangbao: function cailiaoshangbao() {
       uni.navigateTo({
-        url: '/pages/CaiLiaoShangBao/CaiLiaoShangBao'
+        url: '/pages/materialDeclaration/materialDeclaration'
       });
     },
     /**

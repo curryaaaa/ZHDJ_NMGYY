@@ -284,10 +284,10 @@ export default {
   onLoad(options) {
     Rest.get(Api.JIANGQIE_SETTING_HOME).then(res => {
       let logo = "/static/images/logo.png";
+      console.log(res,'resresresres')
       if (res.data.logo && res.data.logo.length > 0) {
         logo = res.data.logo;
       }
-
       this.logo = logo;
       this.topNav = this.topNav.concat(res.data.top_nav);
       this.slide = res.data.home_slide;

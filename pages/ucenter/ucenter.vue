@@ -195,7 +195,7 @@
 
       Wodeintegral(e){
         uni.navigateTo({
-          url: '/pages/wodeintegral/wodeintegral'
+          url: '/pages/basicInformation/basicInformation'
         });
       },
       Gerenxinxi(){
@@ -210,12 +210,12 @@
       },
       DangfeiXQ(){
         uni.navigateTo({
-          url: '/pages/dangfei/dangfei'
+          url: '/pages/partyDues/partyDues'
         });
       },
       cailiaoshangbao(){
         uni.navigateTo({
-          url: '/pages/CaiLiaoShangBao/CaiLiaoShangBao'
+          url: '/pages/materialDeclaration/materialDeclaration'
         });
       },
 
