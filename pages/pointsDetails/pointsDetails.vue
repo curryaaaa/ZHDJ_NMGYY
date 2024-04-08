@@ -156,12 +156,7 @@ export default {
 
   methods: {
 
-    jifengmingxi() {
-      uni.navigateTo({
-        url: '/pages/jifenxiangqing/jifenxiangqing'
-      });
-
-    },
+  
     tiaozhuan(url) {
       console.log(url)
       if (url == '/pages/index/index') {

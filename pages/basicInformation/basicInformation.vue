@@ -12,7 +12,7 @@
       </view>
       <view class="buttonIco2" @tap.stop="tipClick">
         <view>
-          <text class="duihuan"> 去兑换</text>
+          <text class="duihuan"> </text>
         </view>
       </view>
     </view>
@@ -123,7 +123,7 @@ export default {
     jifengmingxi(){
 
       uni.navigateTo({
-        url: '/pages/jifenxiangqing/jifenxiangqing'
+        url: '/pages/pointsDetails/pointsDetails'
       });
 
     },

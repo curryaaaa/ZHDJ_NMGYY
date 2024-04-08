@@ -270,7 +270,7 @@ var _default = {
   methods: {
     jifengmingxi: function jifengmingxi() {
       uni.navigateTo({
-        url: '/pages/jifenxiangqing/jifenxiangqing'
+        url: '/pages/pointsDetails/pointsDetails'
       });
     },
     tiaozhuan: function tiaozhuan(url) {

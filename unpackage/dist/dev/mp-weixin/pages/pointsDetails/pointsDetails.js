@@ -294,11 +294,6 @@ var _default = {
     };
   },
   methods: {
-    jifengmingxi: function jifengmingxi() {
-      uni.navigateTo({
-        url: '/pages/jifenxiangqing/jifenxiangqing'
-      });
-    },
     tiaozhuan: function tiaozhuan(url) {
       console.log(url);
       if (url == '/pages/index/index') {
